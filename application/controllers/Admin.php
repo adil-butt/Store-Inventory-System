@@ -1,10 +1,5 @@
 <?php
-<<<<<<< HEAD
-//eeeeeeeeeeeeeeee
-// done 
-=======
 
->>>>>>> e13d31ac0ef75e15f343c500dca0eaf5a93cb2dd
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller
