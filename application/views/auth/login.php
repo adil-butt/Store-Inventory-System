@@ -16,14 +16,14 @@
 						<label for="inputPassword">Password</label>
 					</div>
 				</div>
-				<div class="form-group">
+				<!--<div class="form-group">
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" value="remember-me">
 							Remember Password
 						</label>
 					</div>
-				</div>
+				</div>-->
 				<button type="submit" class="btn btn-primary btn-block">Login</button>
 			</form>
 			<div class="text-center">
