@@ -44,6 +44,7 @@ class Sell_Model extends CI_Model {
 		$this->db->join('products', 'products.id = sale.productid');
 		$this->db->where($where);
 		$this->db->group_by('DAY(sale.addeddate)');
+		$this->db->order_by('addeddate', 'ASC');
 		$query = $this->db->get();
 		if($query !== FALSE && $query->num_rows() > 0) {
 			return $query->result_array();
