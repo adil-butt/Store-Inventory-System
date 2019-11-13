@@ -72,6 +72,7 @@ $lang['name'] = '名前';
 $lang['matched'] = '一致した';
 $lang['value'] = '値';
 $lang['last'] = '最終';
+$lang['anything'] = '何でも';
 
 // for profile page
 $lang['first_name'] = 'ファーストネーム';

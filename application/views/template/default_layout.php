@@ -83,23 +83,22 @@
 		<i class="fas fa-bars"></i>
 	</button>
 
-	<!-- Navbar Search -->
-	<form method="post" action="<?php echo base_url().'admin/search'; ?>" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-		<div class="input-group">
-			<input type="text" name="searchItem" class="form-control" placeholder="<?php echo $this->lang->line('search')." ".$this->lang->line('for') ?>..." aria-label="Search" aria-describedby="basic-addon2">
-			<div class="input-group-append">
-				<button class="btn btn-primary" type="submit">
-					<i class="fas fa-search"></i>
-				</button>
-			</div>
-		</div>
-	</form>
-
 	<?php
 	if(isset($_SESSION['user'])) {
 		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 		if((strpos($url, 'admin') !== FALSE || strpos($url, 'user') !== FALSE) && ($_SESSION['user']['role'] === '1' || $_SESSION['user']['role'] === '2')) {
 			?>
+			<!-- Navbar Search -->
+			<form method="post" action="<?php echo base_url().'admin/search'; ?>" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+				<div class="input-group">
+					<input type="text" name="searchItem" class="form-control" placeholder="<?php echo $this->lang->line('search')." ".$this->lang->line('for')." ".$this->lang->line('anything') ?>..." aria-label="Search" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</form>
 			<!-- Navbar -->
 			<ul class="navbar-nav ml-auto ml-md-0">
 				<li class="nav-item dropdown no-arrow">

@@ -69,10 +69,11 @@ $lang['search'] = 'Search';
 $lang['for'] = 'for';
 $lang['name'] = 'Name';
 $lang['matched'] = 'Matched';
-$lang['value'] = 'Value';$lang['name'] = 'Name';
+$lang['value'] = 'Value';
 $lang['matched'] = 'Matched';
 $lang['value'] = 'Value';
 $lang['last'] = 'Last';
+$lang['anything'] = 'anything';
 
 // for profile page
 $lang['first_name'] = 'First Name';
