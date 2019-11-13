@@ -66,7 +66,7 @@ $route['admin'] = 'admin';
 
 $route['reset_Password/(:any)/(:any)'] = 'authentication/resetPassword/$1/$2';
 $route['verify/(:any)/(:any)'] = 'authentication/verification/$1/$2';
-$route['logout'] = 'authentication/logout';
+$route['logout/(:any)'] = 'authentication/logout/$1';
 $route['reg'] = 'authentication/registration';
 $route['login'] = 'authentication/login';
 $route['forgot-password'] = 'authentication/forgotPassword';

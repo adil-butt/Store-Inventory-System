@@ -148,10 +148,14 @@ class Authentication extends CI_Controller {
 		}
 	}
 
-	public function logout() {
+	public function logout($role) {
 		//$this->session->sess_destroy();
 		$this->session->unset_userdata('user');
-		redirect('login');
+		if($role == '1') {
+			redirect('login');
+		} else {
+			redirect('home');
+		}
 	}
 
 	public function login() {

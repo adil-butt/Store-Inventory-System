@@ -419,7 +419,7 @@
 			<div class="modal-body"><?php echo $this->lang->line('select'); ?> "<?php echo $this->lang->line('logout'); ?>" <?php echo $this->lang->line('select_below_message'); ?>.</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal"><?php echo $this->lang->line('cancel'); ?></button>
-				<a class="btn btn-primary" href="<?php echo base_url('logout'); ?>"><?php echo $this->lang->line('logout'); ?></a>
+				<a class="btn btn-primary" href="<?php echo base_url('logout/1'); ?>"><?php echo $this->lang->line('logout'); ?></a>
 			</div>
 		</div>
 	</div>

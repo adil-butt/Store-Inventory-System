@@ -96,11 +96,34 @@
 						<i class="fab fa-facebook-f"></i>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link waves-effect" target="_blank">
-						<i class="fab fa-twitter"></i>
-					</a>
-				</li>
+				<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 2) { ?>
+					<li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img class="rounded-circle" id="userProfileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="<?php echo base_url().'user/profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
+							<a class="dropdown-item" id="viewUserProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
+							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
+						</div>
+					</li>
+				<?php } else { ?>
+					<li class="nav-item">
+						<a href="#" class="nav-link waves-effect" target="_blank">
+							<i class="fab fa-twitter"></i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url('login') ?>" class="nav-link waves-effect">
+							<i class="fab fa-sign-in">Sign In</i>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url('reg') ?>" class="nav-link waves-effect">
+							<i class="fab fa-user-plus">Sign Up</i>
+						</a>
+					</li>
+				<?php } ?>
 <!--				<li class="nav-item">-->
 <!--					<a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"-->
 <!--					   target="_blank">-->
@@ -108,6 +131,20 @@
 <!--					</a>-->
 <!--				</li>-->
 			</ul>
+
+			<!-- Navbar -->
+<!--			<ul class="navbar-nav ml-auto ml-md-0">-->
+<!--				<li class="nav-item dropdown no-arrow">-->
+<!--					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--						<img class="rounded-circle" id="profileImage" src="--><?php //echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?><!--" width="50" height="45">-->
+<!--					</a>-->
+<!--					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">-->
+<!--						<a class="dropdown-item" href="--><?php //echo base_url().'admin/profile'; ?><!--">--><?php //echo $this->lang->line('profile'); ?><!--</a>-->
+<!--						<a class="dropdown-item" id="viewProfilePhoto" href="#">--><?php //echo $this->lang->line('view_profile_photo'); ?><!--</a>-->
+<!--						<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">--><?php //echo $this->lang->line('logout'); ?><!--</a>-->
+<!--					</div>-->
+<!--				</li>-->
+<!--			</ul>-->
 
 		</div>
 
@@ -311,6 +348,49 @@
 </footer>
 <!--/.Footer-->
 
+<!-- Creates the bootstrap modal where the image will appear -->
+<div class="modal fade" id="userProfileImgViewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title"><?php echo $this->lang->line('image'); ?> <?php echo $this->lang->line('preview'); ?></h5>
+				<button type="button" class="close closeBillModal" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<img src="" id="userProfileImagePreview" style="max-width: 100%" >
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->lang->line('close'); ?></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><?php echo $this->lang->line('ready_to_leave'); ?>?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body"><?php echo $this->lang->line('select'); ?> "<?php echo $this->lang->line('logout'); ?>" <?php echo $this->lang->line('select_below_message'); ?>.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal"><?php echo $this->lang->line('cancel'); ?></button>
+				<a class="btn btn-primary" href="<?php echo base_url('logout/2'); ?>"><?php echo $this->lang->line('logout'); ?></a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- SCRIPTS -->
 <!-- JQuery -->
 <script type="text/javascript" src="<?php echo base_url('assets/front_end/js/jquery-3.4.1.min.js') ?>"></script>
@@ -320,6 +400,8 @@
 <script type="text/javascript" src="<?php echo base_url('assets/front_end/js/bootstrap.min.js') ?>"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="<?php echo base_url('assets/front_end/js/mdb.min.js') ?>"></script>
+<!-- Custom JavaScript Files-->
+<script src="<?php echo base_url('assets/front_end/js/user_events.js') ?>"></script>
 <!-- Initializations -->
 <script type="text/javascript">
     // Animations initialization
