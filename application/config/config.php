@@ -30,7 +30,7 @@ $config['site_name'] = 'ABC Store';
 $config['email_address'] = 'adil.islam@purelogics.net';		// change it to yours
 $config['email_password'] = 'purelogics7861';				// change it to yours
 
-// testtt
+// testttsss
 
 $config['base_url'] = 'http://localhost/Qureshi_Traders/';
 
