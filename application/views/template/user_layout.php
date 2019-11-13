@@ -55,7 +55,7 @@
 
 		<!-- Brand -->
 		<a class="navbar-brand waves-effect" href="<?php echo base_url(); ?>">
-			<strong class="blue-text"><?php echo $this->config->item('site_name');; ?></strong>
+			<strong class="blue-text"><?php echo $this->config->item('site_name'); ?></strong>
 		</a>
 
 		<!-- Collapse -->

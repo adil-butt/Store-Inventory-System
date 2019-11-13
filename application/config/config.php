@@ -27,6 +27,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['site_name'] = 'ABC Store';
 
+$config['email_address'] = 'adil.islam@purelogics.net';		// change it to yours
+$config['email_password'] = 'purelogics7861';				// change it to yours
+
 $config['base_url'] = 'http://localhost/Qureshi_Traders/';
 
 /*

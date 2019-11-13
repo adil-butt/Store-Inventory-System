@@ -15,8 +15,8 @@ class Authentication extends CI_Controller {
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
-			'smtp_user' => 'adil.islam@purelogics.net', // change it to yours
-			'smtp_pass' => 'purelogics7861', // change it to yours
+			'smtp_user' => $this->config->item('email_address'),
+			'smtp_pass' => $this->config->item('email_password'),
 			'mailtype' => 'html',
 			'charset' => 'iso-8859-1',
 			'wordwrap' => TRUE
@@ -149,8 +149,8 @@ class Authentication extends CI_Controller {
 	}
 
 	public function logout() {
-		$this->session->sess_destroy();
-		//$this->session->unset_userdata('user');
+		//$this->session->sess_destroy();
+		$this->session->unset_userdata('user');
 		redirect('login');
 	}
 
