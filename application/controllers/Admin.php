@@ -51,7 +51,7 @@ class Admin extends CI_Controller
 		$data['products'] = $products;
 		$data['sales'] = $sales;
 		$this->template->set('title', 'Search');
-		$this->template->load('default_layout', 'contents' , 'admin/search', $data);
+		$this->template->load('admin_layout', 'contents' , 'admin/search', $data);
 	}
 
 	public function getAllProduct() {	//ajax JSON
@@ -184,7 +184,7 @@ class Admin extends CI_Controller
 
 		$data['productRow'] = $row;
 		$data['billId'] = $billId;
-		$this->template->load('default_layout', 'contents' , 'admin/billdetail', $data);
+		$this->template->load('admin_layout', 'contents' , 'admin/billdetail', $data);
 
 	}
 
@@ -465,7 +465,7 @@ class Admin extends CI_Controller
 		$data['billRow'] = $row;
 
 		$this->template->set('title', 'Bills');
-		$this->template->load('default_layout', 'contents' , 'admin/bills', $data);
+		$this->template->load('admin_layout', 'contents' , 'admin/bills', $data);
 
 	}
 
@@ -551,7 +551,7 @@ class Admin extends CI_Controller
 		}
 		$data = array(); // optional parameter
 		$this->template->set('title', 'Profile');
-		$this->template->load('default_layout', 'contents' , 'admin/profile', $data);
+		$this->template->load('admin_layout', 'contents' , 'admin/profile', $data);
 
 	}
 
@@ -600,7 +600,7 @@ class Admin extends CI_Controller
 			$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 		}
 		$this->template->set('title', 'Admin Dashboard');
-		$this->template->load('default_layout', 'contents' , 'admin/dashboard', $data);
+		$this->template->load('admin_layout', 'contents' , 'admin/dashboard', $data);
 	}
 
 }

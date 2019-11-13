@@ -24,6 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+
+$config['site_name'] = 'ABC Store';
+
 $config['base_url'] = 'http://localhost/Qureshi_Traders/';
 
 /*

@@ -22,6 +22,6 @@ class Home extends CI_Controller
 	{
 		$data = array(); // optional parameter
 		$this->template->set('title', 'Home');
-		$this->template->load('default_layout', 'contents' , 'public/home', $data);
+		$this->template->load('user_layout', 'contents' , 'public/home', $data);
 	}
 }

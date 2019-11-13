@@ -29,6 +29,6 @@ class User extends CI_Controller
 	{
 		$data = array(); // optional parameter
 		$this->template->set('title', 'Dashboard');
-		$this->template->load('default_layout', 'contents' , 'user/dashboard', $data);
+		$this->template->load('user_layout', 'contents' , 'user/dashboard', $data);
 	}
 }

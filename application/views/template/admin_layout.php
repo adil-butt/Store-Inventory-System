@@ -64,86 +64,52 @@
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-	<a class="navbar-brand mr-1" href="#"><?php
-		if(isset($_SESSION['user'])) {
-			$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-			if(strpos($url, 'admin') === FALSE && strpos($url, 'user') === FALSE && $this->session->has_userdata('user')) {
-				echo $this->lang->line('qureshi_traders');
-			} elseif($_SESSION['user']['role'] === '1') {
-				echo $_SESSION['user']['username'].' ('.$this->lang->line('admin').')';
-			} elseif($_SESSION['user']['role'] === '2') {
-				echo $_SESSION['user']['username'].' ('.$this->lang->line('user').')';
-			}
-		} else {
-			echo $this->lang->line('qureshi_traders');
-		}
-
-		?></a>
+	<a class="navbar-brand mr-1" href="#"><?php echo $_SESSION['user']['username'].' ('.$this->lang->line('admin').')'; ?></a>
 	<button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
 		<i class="fas fa-bars"></i>
 	</button>
 
-	<?php
-	if(isset($_SESSION['user'])) {
-		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-		if((strpos($url, 'admin') !== FALSE || strpos($url, 'user') !== FALSE) && ($_SESSION['user']['role'] === '1' || $_SESSION['user']['role'] === '2')) {
-			?>
-			<!-- Navbar Search -->
-			<form method="post" action="<?php echo base_url().'admin/search'; ?>" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-				<div class="input-group">
-					<input type="text" name="searchItem" class="form-control" placeholder="<?php echo $this->lang->line('search')." ".$this->lang->line('for')." ".$this->lang->line('anything') ?>..." aria-label="Search" aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-primary" type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-			<!-- Navbar -->
-			<ul class="navbar-nav ml-auto ml-md-0">
-				<li class="nav-item dropdown no-arrow">
-					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img class="rounded-circle" id="profileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
+	<!-- Navbar Search -->
+	<form method="post" action="<?php echo base_url().'admin/search'; ?>" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+		<div class="input-group">
+			<input type="text" name="searchItem" class="form-control" placeholder="<?php echo $this->lang->line('search')." ".$this->lang->line('for')." ".$this->lang->line('anything') ?>..." aria-label="Search" aria-describedby="basic-addon2">
+			<div class="input-group-append">
+				<button class="btn btn-primary" type="submit">
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
+		</div>
+	</form>
+	<!-- Navbar -->
+	<ul class="navbar-nav ml-auto ml-md-0">
+		<li class="nav-item dropdown no-arrow">
+			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img class="rounded-circle" id="profileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
+			</a>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+				<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
+				<a class="dropdown-item" id="viewProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
+				<div class="dropdown-divider"></div>
+				<?php
+				if($this->session->userdata('site_lang') == 'japanese') { ?>
+					<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/english'; ?>">
+						<?php echo $this->lang->line('change_language_to_english'); ?>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
-						<a class="dropdown-item" id="viewProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
-						<div class="dropdown-divider"></div>
-						<?php
-						if($this->session->userdata('site_lang') == 'japanese') { ?>
-							<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/english'; ?>">
-								<?php echo $this->lang->line('change_language_to_english'); ?>
-							</a>
-						<?php } else { ?>
-							<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/japanese'; ?>">
-								<?php echo $this->lang->line('change_language_to_japanese'); ?>
-							</a>
-						<?php } ?>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
-					</div>
-				</li>
-			</ul>
-			<?php
-		}
-	}
-	?>
-
+				<?php } else { ?>
+					<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/japanese'; ?>">
+						<?php echo $this->lang->line('change_language_to_japanese'); ?>
+					</a>
+				<?php } ?>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
+			</div>
+		</li>
+	</ul>
 </nav>
 
 <!-- end of navbar -->
-
 <?php
-$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-if(strpos($url, 'admin') === FALSE && strpos($url, 'user') === FALSE && $this->session->has_userdata('user')) {
-	$dashboard = 'home';
-} elseif(!$this->session->has_userdata('user')) {
-	$dashboard = 'home';
-} elseif($this->session->has_userdata('user','role') == '1') {
 	$dashboard = 'admin';
-} elseif($this->session->has_userdata('user','role') == '2') {
-	$dashboard = 'user';
-}
 ?>
 <div id="wrapper">
 	<!-- Sidebar -->
