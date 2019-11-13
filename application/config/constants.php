@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// constant file
-
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
