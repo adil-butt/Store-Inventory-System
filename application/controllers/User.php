@@ -8,6 +8,8 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		test_login(2);
+
+		//echo $this->pagination->create_links();
 	}
 
 	/**
@@ -24,7 +26,66 @@ class User extends CI_Controller
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 * @param $pId
 	 */
+
+	public function checkout() {
+		$data = array(); // optional parameter
+		$this->template->set('title', 'Dashboard');
+		$this->template->load('user_layout', 'contents' , 'user/checkout', $data);
+	}
+
+	public function cart() {
+		$data = array(); // optional parameter
+		$this->template->set('title', 'Dashboard');
+		$this->template->load('user_layout', 'contents' , 'user/cart', $data);
+	}
+
+	public function updateCart() {
+		$data = array();
+		foreach ($_POST as $item):
+			$data[] = array(
+				'rowid'   => $item['rowid'],
+				'qty'     => $item['qty'],
+			);
+		endforeach;
+		$this->cart->update($data);
+		redirect(base_url('cart'));
+	}
+
+	public function addItemsToCart() {
+		$where = array(
+			'id' => $this->input->post('pBuyId'),
+		);
+		if($product = $this->Product_Model->getResultOfProducts($where)) {
+			if($this->input->post('pBuyQuantity') <= $product[0]['remaining']) {
+				$data = array(
+					'id'      => $this->input->post('pBuyId'),
+					'qty'     => $this->input->post('pBuyQuantity'),
+					'price'   => $this->input->post('pBuyPrice'),
+					'name'    => $this->input->post('pBuyName'),
+				);
+				$this->cart->insert($data);
+			} else {
+				$this->session->set_flashdata('error', 'Something Went Wrong');
+			}
+		} else {
+			$this->session->set_flashdata('error', 'Something Went Wrong');
+		}
+		redirect(base_url('display_product/').$this->input->post('pBuyId'));
+	}
+
+	public function productDisplay($pId) {
+		$data = array(); // optional parameter
+		$where = array(
+			'id' => $pId,
+		);
+		$product = $this->Product_Model->getResultOfProducts($where);
+		$data['product'] = $product;
+
+		$this->template->set('title', 'Product Information');
+		$this->template->load('user_layout', 'contents' , 'user/product_view', $data);
+	}
 
 	public function profile() {
 
@@ -112,9 +173,25 @@ class User extends CI_Controller
 
 	}
 
-	public function index()
+	public function index($num = 0)
 	{
 		$data = array(); // optional parameter
+		$where = array(
+			'remaining >' => '0',
+		);
+		$products = $this->Product_Model->getResultOfProducts($where);
+		$data['products'] = $products;
+		$data['num'] = $num;
+
+		$this->load->library('pagination');
+
+		$config['base_url'] = base_url('home');
+		$config['total_rows'] = count($products);
+		$config['per_page'] = 20;
+
+
+		$this->pagination->initialize($config);
+
 		$this->template->set('title', 'Dashboard');
 		$this->template->load('user_layout', 'contents' , 'user/dashboard', $data);
 	}

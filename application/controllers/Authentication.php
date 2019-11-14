@@ -151,6 +151,7 @@ class Authentication extends CI_Controller {
 	public function logout($role) {
 		//$this->session->sess_destroy();
 		$this->session->unset_userdata('user');
+		$this->cart->destroy();
 		if($role == '1') {
 			redirect('login');
 		} else {

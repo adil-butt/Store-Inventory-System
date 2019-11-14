@@ -35,7 +35,7 @@ class Admin extends CI_Controller
 
 	public function search() {
 		$data = array();
-		if($this->input->post('searchItem')!='') {
+		if($this->input->post('searchItem') != '') {
 			$accounts = $this->Account_Model->getSimilar($this->input->post('searchItem'));
 			$bills = $this->Bill_Model->getSimilar($this->input->post('searchItem'));
 			$products = $this->Product_Model->getSimilar($this->input->post('searchItem'));

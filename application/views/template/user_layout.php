@@ -16,6 +16,10 @@
 		<link href="<?php echo base_url('assets/front_end/css/mdb.min.css') ?>" rel="stylesheet">
 		<!-- Your custom styles (optional) -->
 		<link href="<?php echo base_url('assets/front_end/css/style.min.css') ?>" rel="stylesheet">
+		<!-- JQuery -->
+		<script type="text/javascript" src="<?php echo base_url('assets/front_end/js/jquery-3.4.1.min.js') ?>"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 		<style type="text/css">
 			html,
 			body,
@@ -70,7 +74,7 @@
 			<!-- Left -->
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link waves-effect" href="#">Home
+					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>">Home
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
@@ -84,16 +88,23 @@
 
 			<!-- Right -->
 			<ul class="navbar-nav nav-flex-icons">
+				<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 2) { ?>
 				<li class="nav-item">
-					<a class="nav-link waves-effect">
-						<span class="badge red z-depth-1 mr-1"> 1 </span>
+					<a href="<?php echo base_url('cart'); ?>" class="nav-link waves-effect">
+						<span class="badge red z-depth-1 mr-1"> <?php echo $this->cart->total_items(); ?> </span>
 						<i class="fas fa-shopping-cart"></i>
 						<span class="clearfix d-none d-sm-inline-block"> Cart </span>
 					</a>
 				</li>
+				<?php } ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link waves-effect" target="_blank">
 						<i class="fab fa-facebook-f"></i>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link waves-effect" target="_blank">
+						<i class="fab fa-twitter"></i>
 					</a>
 				</li>
 				<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 2) { ?>
@@ -109,11 +120,6 @@
 					</li>
 				<?php } else { ?>
 					<li class="nav-item">
-						<a href="#" class="nav-link waves-effect" target="_blank">
-							<i class="fab fa-twitter"></i>
-						</a>
-					</li>
-					<li class="nav-item">
 						<a href="<?php echo base_url('login') ?>" class="nav-link waves-effect">
 							<i class="fab fa-sign-in">Sign In</i>
 						</a>
@@ -124,175 +130,12 @@
 						</a>
 					</li>
 				<?php } ?>
-<!--				<li class="nav-item">-->
-<!--					<a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"-->
-<!--					   target="_blank">-->
-<!--						<i class="fab fa-github mr-2"></i>MDB GitHub-->
-<!--					</a>-->
-<!--				</li>-->
 			</ul>
-
-			<!-- Navbar -->
-<!--			<ul class="navbar-nav ml-auto ml-md-0">-->
-<!--				<li class="nav-item dropdown no-arrow">-->
-<!--					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--						<img class="rounded-circle" id="profileImage" src="--><?php //echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?><!--" width="50" height="45">-->
-<!--					</a>-->
-<!--					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">-->
-<!--						<a class="dropdown-item" href="--><?php //echo base_url().'admin/profile'; ?><!--">--><?php //echo $this->lang->line('profile'); ?><!--</a>-->
-<!--						<a class="dropdown-item" id="viewProfilePhoto" href="#">--><?php //echo $this->lang->line('view_profile_photo'); ?><!--</a>-->
-<!--						<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">--><?php //echo $this->lang->line('logout'); ?><!--</a>-->
-<!--					</div>-->
-<!--				</li>-->
-<!--			</ul>-->
-
 		</div>
 
 	</div>
 </nav>
 <!-- Navbar -->
-
-<!--Carousel Wrapper-->
-<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
-
-	<!--Indicators-->
-	<ol class="carousel-indicators">
-		<li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-		<li data-target="#carousel-example-1z" data-slide-to="1"></li>
-		<li data-target="#carousel-example-1z" data-slide-to="2"></li>
-	</ol>
-	<!--/.Indicators-->
-
-	<!--Slides-->
-	<div class="carousel-inner" role="listbox">
-
-		<!--First slide-->
-		<div class="carousel-item active">
-			<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-				<!-- Mask & flexbox options-->
-				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-					<!-- Content -->
-					<div class="text-center white-text mx-5 wow fadeIn">
-						<h1 class="mb-4">
-							<strong>Learn Bootstrap 4 with MDB</strong>
-						</h1>
-
-						<p>
-							<strong>Best & free guide of responsive web design</strong>
-						</p>
-
-						<p class="mb-4 d-none d-md-block">
-							<strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-								written versions
-								available. Create your own, stunning website.</strong>
-						</p>
-
-						<a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-							free tutorial
-							<i class="fas fa-graduation-cap ml-2"></i>
-						</a>
-					</div>
-					<!-- Content -->
-
-				</div>
-				<!-- Mask & flexbox options-->
-
-			</div>
-		</div>
-		<!--/First slide-->
-
-		<!--Second slide-->
-		<div class="carousel-item">
-			<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-				<!-- Mask & flexbox options-->
-				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-					<!-- Content -->
-					<div class="text-center white-text mx-5 wow fadeIn">
-						<h1 class="mb-4">
-							<strong>Learn Bootstrap 4 with MDB</strong>
-						</h1>
-
-						<p>
-							<strong>Best & free guide of responsive web design</strong>
-						</p>
-
-						<p class="mb-4 d-none d-md-block">
-							<strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-								written versions
-								available. Create your own, stunning website.</strong>
-						</p>
-
-						<a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-							free tutorial
-							<i class="fas fa-graduation-cap ml-2"></i>
-						</a>
-					</div>
-					<!-- Content -->
-
-				</div>
-				<!-- Mask & flexbox options-->
-
-			</div>
-		</div>
-		<!--/Second slide-->
-
-		<!--Third slide-->
-		<div class="carousel-item">
-			<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-				<!-- Mask & flexbox options-->
-				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-					<!-- Content -->
-					<div class="text-center white-text mx-5 wow fadeIn">
-						<h1 class="mb-4">
-							<strong>Learn Bootstrap 4 with MDB</strong>
-						</h1>
-
-						<p>
-							<strong>Best & free guide of responsive web design</strong>
-						</p>
-
-						<p class="mb-4 d-none d-md-block">
-							<strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-								written versions
-								available. Create your own, stunning website.</strong>
-						</p>
-
-						<a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-							free tutorial
-							<i class="fas fa-graduation-cap ml-2"></i>
-						</a>
-					</div>
-					<!-- Content -->
-
-				</div>
-				<!-- Mask & flexbox options-->
-
-			</div>
-		</div>
-		<!--/Third slide-->
-
-	</div>
-	<!--/.Slides-->
-
-	<!--Controls-->
-	<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
-	<!--/.Controls-->
-
-</div>
-<!--/.Carousel Wrapper-->
 
 <!--Main layout-->
 <?php echo $contents;?>
@@ -392,8 +235,6 @@
 </div>
 
 <!-- SCRIPTS -->
-<!-- JQuery -->
-<script type="text/javascript" src="<?php echo base_url('assets/front_end/js/jquery-3.4.1.min.js') ?>"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="<?php echo base_url('assets/front_end/js/popper.min.js') ?>"></script>
 <!-- Bootstrap core JavaScript -->
