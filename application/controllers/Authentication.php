@@ -182,7 +182,7 @@ class Authentication extends CI_Controller {
 					if($row['role'] === '1') {
 						redirect('admin');
 					} else {
-						redirect('user');
+						redirect('home');
 					}
 				}
 			} else {
