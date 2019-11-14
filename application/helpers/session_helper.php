@@ -9,15 +9,15 @@ if ( ! function_exists('test_login'))
 		}
 		$CI = & get_instance();  //get instance, access the CI superobject
 		$isLoggedIn = $CI->session->userdata('user');
-		if($check === 1) {
+		if($check == 1) {
 			if(!$isLoggedIn || $isLoggedIn['role'] === '2') {
 				redirect('login');
 			}
-		} elseif($check === 2) {
-			if(!$isLoggedIn || $isLoggedIn['role'] === '1') {
+		} /*elseif($check == 2) {
+			if($isLoggedIn['role'] === '1') {
 				redirect('login');
 			}
-		} elseif($check === 3) {
+		} */elseif($check == 3) {
 			if($isLoggedIn['role'] === '1') {
 				redirect('admin');
 			} elseif($isLoggedIn['role'] === '2') {

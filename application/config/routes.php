@@ -69,7 +69,7 @@ $route['reg'] = 'authentication/registration';
 $route['login'] = 'authentication/login';
 $route['forgot-password'] = 'authentication/forgotPassword';
 
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'user';
 $route['404_override'] = 'my404';
 $route['translate_uri_dashes'] = FALSE;
 
