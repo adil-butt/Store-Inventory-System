@@ -30,14 +30,54 @@ class User extends CI_Controller
 	 */
 
 	public function checkout() {
+
+		$this->form_validation->set_rules('address', 'Address', 'trim|required');
+		$this->form_validation->set_rules('phone', 'Phone', 'trim|exact_length[11]|numeric|required');
+		$this->form_validation->set_rules('state', 'State', 'trim|required|callback_state_check');
+		$this->form_validation->set_rules('zip', 'Zip', 'trim|exact_length[5]|numeric|required');
+		$data2 = array();
+		if($this->form_validation->run() == TRUE) {
+			if($this->cart->total_items() > 0) {
+				foreach ($this->cart->contents() as $item) {
+					$data2[] = array(
+						'productid' => $item['id'],
+						'accountid' => $_SESSION['user']['id'],
+						'quantity' => $item['qty'],
+						'addeddate' => date('Y-m-d G:i:s'),
+					);
+				}
+				if($this->Sell_Model->insertSalesAsBatch($data2)) {
+					$this->cart->destroy();
+					$this->session->set_flashdata('success', 'Successfully checkout');
+				} else {
+					$this->session->set_flashdata('error', 'Something Went Wrong');
+				}
+			} else {
+				$this->session->set_flashdata('error', 'Your cart is empty. Pleas add items in cart in order to make checkout');
+			}
+		}
+
 		$data = array(); // optional parameter
-		$this->template->set('title', 'Dashboard');
+		$this->template->set('title', 'Checkout');
 		$this->template->load('user_layout', 'contents' , 'user/checkout', $data);
+	}
+
+	public function state_check($str)
+	{
+		if ($str == 'Punjab' || $str == 'Islamabad' || $str == 'Sindh' || $str == 'KPK' || $str == 'Northern Areas' || $str == 'Balochistan')
+		{
+			return TRUE;
+		}
+		else
+		{
+			$this->form_validation->set_message('state_check', 'The {field} field can not be a valid field');
+			return FALSE;
+		}
 	}
 
 	public function cart() {
 		$data = array(); // optional parameter
-		$this->template->set('title', 'Dashboard');
+		$this->template->set('title', 'Cart');
 		$this->template->load('user_layout', 'contents' , 'user/cart', $data);
 	}
 
@@ -217,15 +257,41 @@ class User extends CI_Controller
 		$where = array(
 			'remaining >' => '0',
 		);
-		$products = $this->Product_Model->getResultOfProducts($where);
+		$limit = 12;
+		$offset = $num;
+		$totalProducts = $this->Product_Model->getResultOfProducts($where);
+		$products = $this->Product_Model->getResultOfProducts($where, $limit, $offset);
 		$data['products'] = $products;
 		$data['num'] = $num;
 
 		$this->load->library('pagination');
 
 		$config['base_url'] = base_url('home');
-		$config['total_rows'] = count($products);
-		$config['per_page'] = 20;
+		$config['total_rows'] = count ($totalProducts);
+		$config['per_page'] = $limit;
+
+		$config['full_tag_open'] = '<nav class="d-flex justify-content-center wow fadeIn"><ul class="pagination pg-blue">';
+		$config['full_tag_close'] = '</ul></nav>';
+
+		$config['num_tag_open'] = '<li class="page-item page-link">';
+		$config['num_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="page-item page-link" style="background-color: dodgerblue; color: white">';
+		$config['cur_tag_close'] = '</li>';
+
+		$config['next_link'] = '&raquo;';
+		$config['next_tag_open'] = '<li class="page-item page-link">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '&laquo;';
+		$config['prev_tag_open'] = '<li class="page-item page-link">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['first_tag_open'] = '<li class="page-item page-link">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_tag_open'] = '<li class="page-item page-link">';
+		$config['last_tag_close'] = '</li>';
 
 
 		$this->pagination->initialize($config);

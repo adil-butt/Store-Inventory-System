@@ -1,5 +1,9 @@
 <?php
 class Sell_Model extends CI_Model {
+	public function insertSalesAsBatch($data) {
+		return $this->db->insert_batch('sale', $data);
+	}
+
 	public function getSimilar($search) {
 		$this->db->select('productid, quantity, discount, comments, addeddate, lastupdated');
 		$this->db->like('quantity', $search);

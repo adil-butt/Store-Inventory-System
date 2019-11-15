@@ -42,9 +42,12 @@ class Product_Model extends CI_Model {
         return $query->num_rows();
     }
 
-	public function getResultOfProducts($where = '') {
+	public function getResultOfProducts($where = '', $limit = '', $offset = '') {
 		if($where !== '') {
 			$this->db->where($where);
+		}
+		if($limit !== '' && $offset !== '') {
+			$this->db->limit($limit, $offset);
 		}
 		$query = $this->db->get('products');
 		if($query !== FALSE && $query->num_rows() > 0) {

@@ -192,11 +192,9 @@
 		<!--Section: Products v.3-->
 		<section class="text-center mb-4">
 
-			<?php for($i = $num; $i < ($num+20); $i+=4) { ?>
 			<!--Grid row-->
 			<div class="row wow fadeIn">
-
-				<?php if($i < count($products)) { ?>
+			<?php foreach ($products as $product) { ?>
 				<!--Grid column-->
 				<div class="col-lg-3 col-md-6 mb-4">
 
@@ -207,7 +205,7 @@
 						<div class="view overlay">
 							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
 								 alt="">
-							<a href="<?php echo base_url('display_product/').$products[$i]['id']; ?>">
+							<a href="<?php echo base_url('display_product/').$product['id']; ?>">
 								<div class="mask rgba-white-slight"></div>
 							</a>
 						</div>
@@ -216,19 +214,19 @@
 						<!--Card content-->
 						<div class="card-body text-center">
 							<!--Category & Title-->
-							<a href="<?php echo base_url('display_product/').$products[$i]['id']; ?>" class="grey-text">
-								<h5><?php echo $products[$i]['productname'] ?></h5>
+							<a href="<?php echo base_url('display_product/').$product['id']; ?>" class="grey-text">
+								<h5><?php echo $product['productname'] ?></h5>
 							</a>
 							<h5>
 								<strong>
-									<p href="" class="dark-grey-text">Remaining: <?php echo $products[$i]['remaining'] ?>
+									<p href="" class="dark-grey-text">Remaining: <?php echo $product['remaining'] ?>
 										<span class="badge badge-pill danger-color">NEW</span>
 									</p>
 								</strong>
 							</h5>
 
 							<h4 class="font-weight-bold blue-text">
-								<strong>Price: <?php echo $products[$i]['price'] ?> Rs<?php echo ($products[$i]['unit'] != 'Other')? $products[$i+3]['unit']: ''; ?></strong>
+								<strong>Price: <?php echo $product['price'] ?> Rs<?php echo ($product['unit'] != 'Other') ? $product['unit']: ''; ?></strong>
 							</h4>
 
 						</div>
@@ -238,187 +236,15 @@
 					<!--Card-->
 
 				</div>
-				<!--Grid column-->
-				<?php } ?>
-
-				<?php if($i+1 < count($products)) { ?>
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg" class="card-img-top"
-								 alt="">
-							<a href="<?php echo base_url('display_product/').$products[$i+1]['id']; ?>">
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="<?php echo base_url('display_product/').$products[$i+1]['id']; ?>" class="grey-text">
-								<h5><?php echo $products[$i+1]['productname'] ?></h5>
-							</a>
-							<h5>
-								<strong>
-									<p href="" class="dark-grey-text">Remaining: <?php echo $products[$i+1]['remaining'] ?></p>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>Price: <?php echo $products[$i+1]['price'] ?> Rs<?php echo ($products[$i+1]['unit'] != 'Other')? $products[$i+3]['unit']: ''; ?></strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-				<?php } ?>
-
-				<?php if($i+2 < count($products)) { ?>
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg" class="card-img-top"
-								 alt="">
-							<a href="<?php echo base_url('display_product/').$products[$i+2]['id']; ?>">
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="<?php echo base_url('display_product/').$products[$i+2]['id']; ?>" class="grey-text">
-								<h5><?php echo $products[$i+2]['productname'] ?></h5>
-							</a>
-							<h5>
-								<strong>
-									<p href="" class="dark-grey-text">Remaining: <?php echo $products[$i+2]['remaining'] ?>
-										<span class="badge badge-pill primary-color">bestseller</span>
-									</p>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>Price: <?php echo $products[$i+2]['price'] ?> Rs<?php echo ($products[$i+2]['unit'] != 'Other')? $products[$i+3]['unit']: ''; ?></strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-				<?php } ?>
-
-				<?php if($i+3 < count($products)) { ?>
-				<!--Fourth column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top"
-								 alt="">
-							<a href="<?php echo base_url('display_product/').$products[$i+3]['id']; ?>">
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="<?php echo base_url('display_product/').$products[$i+3]['id']; ?>" class="grey-text">
-								<h5><?php echo $products[$i+3]['productname'] ?></h5>
-							</a>
-							<h5>
-								<strong>
-									<p href="" class="dark-grey-text">Remaining: <?php echo $products[$i+3]['remaining'] ?></p>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>Price: <?php echo $products[$i+3]['price'] ?> Rs<?php echo ($products[$i+3]['unit'] != 'Other')? $products[$i+3]['unit']: ''; ?></strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Fourth column-->
-				<?php } ?>
-
+			<?php } ?>
 			</div>
 			<!--Grid row-->
-			<?php } ?>
 
 		</section>
 		<!--Section: Products v.3-->
 
 		<!--Pagination-->
-		<nav class="d-flex justify-content-center wow fadeIn">
-			<ul class="pagination pg-blue">
-				<li class="page-item">
-					<?php echo $this->pagination->create_links(); ?>
-				</li>
-				<!--Arrow left-->
-				<li class="page-item disabled">
-					<a class="page-link" href="#" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-						<span class="sr-only">Previous</span>
-					</a>
-				</li>
-
-				<li class="page-item active">
-					<a class="page-link" href="#">1
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">2</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">3</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">4</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">5</a>
-				</li>
-
-				<li class="page-item">
-					<a class="page-link" href="#" aria-label="Next">
-						<span aria-hidden="true">&raquo;</span>
-						<span class="sr-only">Next</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
+		<?php echo $this->pagination->create_links(); ?>
 		<!--Pagination-->
 
 	</div>
