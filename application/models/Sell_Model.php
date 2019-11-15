@@ -1,6 +1,5 @@
 <?php
 class Sell_Model extends CI_Model {
-	//
 	public function insertSalesAsBatch($data) {
 		return $this->db->insert_batch('sale', $data);
 	}

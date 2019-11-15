@@ -1,6 +1,5 @@
 <?php
 class Product_Model extends CI_Model {
-	//
 	public function getSimilar($search) {
 		$this->db->select('productname, quantity, remaining, price, unit, comments, addeddate, lastupdated');
 		$this->db->like('productname', $search);
