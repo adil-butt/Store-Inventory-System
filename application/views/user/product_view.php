@@ -135,7 +135,7 @@
                 message = 'Quantity must not be empty';
 			} else if(quantity < 1 || quantity > <?php echo $product[0]['remaining']; ?> ) {
                 isCorrect = 0;
-                message = 'Please select quantity greater than 0 and less than ' + <?php echo $product[0]['remaining']+1; ?>;
+                message = 'Please select quantity greater than 0 and less than ' + <?php echo $product[0]['remaining']; ?>;
 			}
             if (isCorrect) {
 				<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 2) { ?>
@@ -149,7 +149,10 @@
 				<?php } ?>
             } else {
                 event.preventDefault();
-                alert(message);
+                $.dialog({
+                    title: 'Alert!',
+                    content: message,
+                });
             }
         });
     });

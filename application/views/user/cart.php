@@ -1,6 +1,8 @@
 <main class="mt-5 pt-4">
 	<div class="container dark-grey-text mt-5">
 
+		<?php $this->load->view('template/success_error_message'); ?>
+
 <?php echo form_open(base_url('user/updateCart')); ?>
 
 <table cellpadding="6" cellspacing="1" style="width:100%" border="0">
@@ -15,11 +17,18 @@
 	<?php $i = 1; ?>
 
 	<?php foreach ($this->cart->contents() as $items): ?>
+		<?php
+		$check = $this->cart->get_item($items['rowid']);
+		$where = array(
+		'id' => $check['id'],
+		);
+		$product = $this->Product_Model->getResultOfProducts($where);
+		?>
 
 		<?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
 
 		<tr>
-			<td><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
+			<td><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?> Max: <?php echo $product[0]['remaining']; ?></td>
 			<td>
 				<?php echo $items['name']; ?>
 

@@ -43,29 +43,67 @@ class User extends CI_Controller
 
 	public function updateCart() {
 		$data = array();
+		$error = false;
 		foreach ($_POST as $item):
-			$data[] = array(
-				'rowid'   => $item['rowid'],
-				'qty'     => $item['qty'],
+			$check = $this->cart->get_item($item['rowid']);
+			$where = array(
+				'id' => $check['id'],
 			);
+			$product = $this->Product_Model->getResultOfProducts($where);
+			if($product) {
+				if($item['qty'] <= $product[0]['remaining']) {
+					$data[] = array(
+						'rowid'   => $item['rowid'],
+						'qty'     => $item['qty'],
+					);
+				} else {
+					$this->session->set_flashdata('error', 'Something Went Wrong');
+					$error = true;
+					break;
+				}
+			} else {
+				$this->session->set_flashdata('error', 'Something Went Wrong');
+				$error = true;
+				break;
+			}
 		endforeach;
-		$this->cart->update($data);
+		if($error == false) {
+			$this->cart->update($data);
+			$this->session->set_flashdata('success', 'Cart Updated Successfully');
+		}
 		redirect(base_url('cart'));
 	}
 
 	public function addItemsToCart() {
+		$error = false;
 		$where = array(
 			'id' => $this->input->post('pBuyId'),
 		);
 		if($product = $this->Product_Model->getResultOfProducts($where)) {
 			if($this->input->post('pBuyQuantity') <= $product[0]['remaining']) {
-				$data = array(
-					'id'      => $this->input->post('pBuyId'),
-					'qty'     => $this->input->post('pBuyQuantity'),
-					'price'   => $this->input->post('pBuyPrice'),
-					'name'    => $this->input->post('pBuyName'),
-				);
-				$this->cart->insert($data);
+				foreach ($this->cart->contents() as $item) {
+					if($item['id'] == $this->input->post('pBuyId')) {
+						if($this->input->post('pBuyQuantity') > ($product[0]['remaining'] - $item['qty'])) {
+							if($product[0]['remaining'] - $item['qty'] == 0) {
+								$this->session->set_flashdata('error', 'You are already selected '.$item['qty'].' item');
+							} else {
+								$this->session->set_flashdata('error', 'You are already selected '.$item['qty'].' item. Please select quantity less than or equal to '.($product[0]['remaining'] - $item['qty']));
+							}
+							$error = true;
+							break;
+						}
+					}
+				}
+				if($error == false) {
+					$data = array(
+						'id'      => $this->input->post('pBuyId'),
+						'qty'     => $this->input->post('pBuyQuantity'),
+						'price'   => $this->input->post('pBuyPrice'),
+						'name'    => $this->input->post('pBuyName'),
+					);
+					$this->cart->insert($data);
+					$this->session->set_flashdata('success', 'Added Successfully');
+				}
 			} else {
 				$this->session->set_flashdata('error', 'Something Went Wrong');
 			}
