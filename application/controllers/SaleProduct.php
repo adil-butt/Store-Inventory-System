@@ -6,6 +6,7 @@ class SaleProduct extends CI_Controller {
 	{
 		parent::__construct();
 		test_login(1);
+		//
 	}
 
 	public function validateUpdateSale() {	// ajax
