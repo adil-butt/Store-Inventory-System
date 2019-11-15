@@ -8,8 +8,11 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		test_login(2);
-
-		//echo $this->pagination->create_links();
+		$config['upload_path'] = 'assets/profileimages';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config);
+		$this->load->library('image_lib');
 	}
 
 	/**
@@ -247,7 +250,7 @@ class User extends CI_Controller
 		}
 		$data = array(); // optional parameter
 		$this->template->set('title', 'Profile');
-		$this->template->load('admin_layout', 'contents' , 'admin/profile', $data);
+		$this->template->load('user_layout', 'contents' , 'user/profile', $data);
 
 	}
 

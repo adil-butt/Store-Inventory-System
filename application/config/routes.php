@@ -54,6 +54,7 @@ $route['checkout'] = 'user/checkout';
 $route['cart'] = 'user/cart';
 $route['display_product/(:num)'] = 'user/productDisplay/$1';
 $route['home/(:num)'] = 'user/index/$1';
+$route['profile'] = 'user/profile';
 $route['home'] = 'user';
 
 $route['admin/sales'] = 'SaleProduct/salesTable';

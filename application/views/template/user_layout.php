@@ -113,7 +113,7 @@
 							<img class="rounded-circle" id="userProfileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="<?php echo base_url().'user/profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
+							<a class="dropdown-item" href="<?php echo base_url().'profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
 							<a class="dropdown-item" id="viewUserProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
 							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
 						</div>
