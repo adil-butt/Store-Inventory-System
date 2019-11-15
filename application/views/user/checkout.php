@@ -1,7 +1,6 @@
 <!--Main layout-->
 <main class="mt-5 pt-4">
 	<div class="container wow fadeIn">
-		//
 
 		<div style="margin-top: 50px;">
 			<?php $this->load->view('template/success_error_message'); ?>
