@@ -4,7 +4,6 @@ class Authentication extends CI_Controller {
 
 	public function __construct()
 	{
-		//
 		parent::__construct();
 		test_login(3);
 		$config['upload_path'] = 'assets/profileimages';
