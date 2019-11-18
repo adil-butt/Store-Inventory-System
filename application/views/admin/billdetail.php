@@ -36,6 +36,7 @@
 							<th><?php echo $this->lang->line('total'); ?> <?php echo $this->lang->line('price'); ?></th>
 							<th><?php echo $this->lang->line('unit'); ?></th>
 							<th><?php echo $this->lang->line('comments'); ?></th>
+							<th><?php echo $this->lang->line('description'); ?></th>
 							<th><?php echo $this->lang->line('added_date'); ?></th>
 							<th><?php echo $this->lang->line('last_updated'); ?></th>
 							<th><?php echo $this->lang->line('operations'); ?></th>
@@ -50,6 +51,7 @@
 							<th><?php echo $this->lang->line('total'); ?> <?php echo $this->lang->line('price'); ?></th>
 							<th><?php echo $this->lang->line('unit'); ?></th>
 							<th><?php echo $this->lang->line('comments'); ?></th>
+							<th><?php echo $this->lang->line('description'); ?></th>
 							<th><?php echo $this->lang->line('added_date'); ?></th>
 							<th><?php echo $this->lang->line('last_updated'); ?></th>
 							<th><?php echo $this->lang->line('operations'); ?></th>
@@ -81,6 +83,7 @@
 									</select>
 									</td>
 								<td class="editable editableProductComments"><?php echo $row['comments']; ?></td>
+								<td class="editable editableProductDescription"><?php echo $row['description']; ?></td>
 								<td><?php echo $row['addeddate']; ?></td>
 								<td id="updatedAt<?php echo $row['id']; ?>"><?php echo $row['lastupdated']; ?></td>
 								<td>

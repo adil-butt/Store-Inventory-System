@@ -6,6 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 
+		<?php if(isset($product)) { ?>
+		<meta property="og:url"                content="https://developers.facebook.com/docs/plugins/share-button/" />
+		<meta property="og:type"               content="website" />
+		<meta property="og:title"              content="<?php echo $this->config->item('site_name'); ?>" />
+		<meta property="og:description"        content="<?php echo $product[0]['description']; ?>" />
+		<meta property="og:image"              content="http://personal.psu.edu/xqz5228/jpg.jpg" />
+		<?php } ?>
+
 		<title><?php echo $title; ?></title>
 
 		<script> var baseUrl = "<?php echo base_url(); ?>";</script>

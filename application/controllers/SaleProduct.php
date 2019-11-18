@@ -128,7 +128,7 @@ class SaleProduct extends CI_Controller {
 		$data['row'] = $row;
 
 		$this->template->set('title', 'Sales Table');
-		$this->template->load('default_layout', 'contents' , 'admin/salesdetails', $data);
+		$this->template->load('admin_layout', 'contents' , 'admin/salesdetails', $data);
 	}
 
 	public function checkUpdateQuantity() {	//ajax JSON

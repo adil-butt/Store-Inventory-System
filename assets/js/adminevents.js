@@ -71,6 +71,7 @@ $(document).ready(function () {
 			let productPrice = $.trim($(this).parents('tr').find('td.editableProductPrice').text());
 			let productUnit = $.trim($(this).parents('tr').find('td.editableProductUnit').find('option:selected').text());
 			let productComments = $.trim($(this).parents('tr').find('td.editableProductComments').text());
+			let productDescription = $.trim($(this).parents('tr').find('td.editableProductDescription').text());
 			var isCorrect = 1;
 			if (productName  === '') {
 				isCorrect = 0;
@@ -104,6 +105,7 @@ $(document).ready(function () {
 						productPrice: productPrice,
 						productUnit: productUnit,
 						productComments: productComments,
+						productDescription: productDescription,
 					},
 					success: function (data) {
 						if(data.status) {
@@ -243,6 +245,7 @@ $(document).ready(function () {
 					$('#productPrice0').val(data.productRow[0]['price']);
 					$('#productUnit0').val(data.productRow[0]['unit']);
 					$('#productComment0').val(data.productRow[0]['comments']);
+					$('#productDescription0').val(data.productRow[0]['description']);
 
 					if(data.productRow.length > 1) {
 						for(var k = 0; k < data.productRow.length-1; k++) {
@@ -284,6 +287,9 @@ $(document).ready(function () {
 								'\t\t\t\t\t\t\t</div>\n' +
 								'\t\t\t\t\t\t\t<div class="form-group">\n' +
 								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(k+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['comments']+'</textarea>\n' +
+								'\t\t\t\t\t\t\t</div>' +
+								'\t\t\t\t\t\t\t<div class="form-group">\n' +
+								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(k+1)+'" name="productDescription[]"  placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['description']+'</textarea>\n' +
 								'\t\t\t\t\t\t\t</div> </div>';
 							$('#productsRow').append(addNewProductRow);
 							$('#productUnit'+(k+1)).val(data.productRow[k+1]['unit']);
@@ -469,6 +475,7 @@ $(document).ready(function () {
 										'<option value="Other">'+langOther+'</option>'+
 										'</select>',
 										data.comments[k],
+										data.description[k],
 										data.addedAt,
 										data.updatedAt,
 										'<button data-productid="'+i+'" type="button" class="btn btn-outline-secondary sellProduct">'+langSell+'</button>'+
@@ -477,15 +484,18 @@ $(document).ready(function () {
 									] ).draw( false ).node();
 									$(rowNode).find('td:nth-child(1)').addClass('editable editableProductName');
 									$(rowNode).find('td:nth-child(2)').addClass('editable editableProductQuantity');
-									$(rowNode).find('td:nth-child(3)').addClass('editable editableProductPrice');
-									$(rowNode).find('td:nth-child(4)').attr("id", 'editableProductTotal'+i);
-									$(rowNode).find('td:nth-child(5)').addClass('editableProductUnit');
+									$(rowNode).find('td:nth-child(3)').attr('id', 'editableProductRemaining'+i);
+									$(rowNode).find('td:nth-child(4)').addClass('editable editableProductPrice');
+									$(rowNode).find('td:nth-child(5)').attr('id', 'editableProductTotal'+i);
+									$(rowNode).find('td:nth-child(6)').addClass('editableProductUnit');
 									$(rowNode).find('select').attr('id', 'editableProductUnit'+i);
-									$(rowNode).find('td:nth-child(6)').addClass('editable editableProductComments');
+									$(rowNode).find('td:nth-child(7)').addClass('editable editableProductComments');
+									$(rowNode).find('td:nth-child(8)').addClass('editable editableProductDescription');
 									$(rowNode).attr("id", "productRow"+i);
 									$('select[id="editableProductUnit'+i+'"] option[value="'+data.unit[k]+'"]').attr('selected','selected');
 									k++;
 								}
+								$("#tempInvoice").hide();
 								$("#billDetailMessage").text(data.statusMessage);
 								$('#billModal').modal('toggle');
 								$("#billDetailMessage").show("slow").delay(3000).fadeOut("slow");
@@ -659,7 +669,10 @@ $(document).ready(function () {
 			'\t\t\t\t\t\t\t</div>\n' +
 			'\t\t\t\t\t\t\t<div class="form-group">\n' +
 			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(largest+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+LangOptional+')" form="billForm"></textarea>\n' +
-			'\t\t\t\t\t\t\t</div> </div>';
+			'\t\t\t\t\t\t\t</div>' +
+			'\t\t\t\t\t\t\t<div class="form-group">\n' +
+			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(largest+1)+'" name="productDescription[]" placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm"></textarea>\n' +
+			'\t\t\t\t\t\t</div></div>';
 		$('#productsRow').prepend(addNewProductRow);
 
 		let addInvoiceProductName = '<span class="invoicePName'+(largest+1)+'"></span><br class="invoicePName'+(largest+1)+'">';
@@ -681,5 +694,6 @@ $(document).ready(function () {
 		arr = [];
 		i = 0;
 		arr = [i];
+		$("#tempInvoice").hide();
 	});
 });

@@ -74,6 +74,7 @@ $lang['matched'] = 'Matched';
 $lang['value'] = 'Value';
 $lang['last'] = 'Last';
 $lang['anything'] = 'anything';
+$lang['description'] = 'Description';
 
 // for profile page
 $lang['first_name'] = 'First Name';

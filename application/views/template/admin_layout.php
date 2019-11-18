@@ -44,6 +44,7 @@
         var langSell = "<?php echo $this->lang->line('sell'); ?>";
         var langSale = "<?php echo $this->lang->line('sale'); ?>";
         var langSales = "<?php echo $this->lang->line('sales'); ?>";
+        var langDescription = "<?php echo $this->lang->line('description'); ?>";
 	</script>
 
 	<!-- Custom fonts for this template-->
@@ -337,7 +338,7 @@
 						<div class="form-group">
 							<div>
 								<input type="text" id="productId0" name="productId[]" class="form-control" style="text-align: center; display:none;">
-								<input type="text" id="productName0" name="productName[]" value="<?php echo set_value('productName[]'); ?>" data-id="0" class="form-control detectNameInput" placeholder="<?php echo $this->lang->line('product_name'); ?>">
+								<input type="text" id="productName0" name="productName[]" data-id="0" class="form-control detectNameInput" placeholder="<?php echo $this->lang->line('product_name'); ?>">
 								<div class="alert alert-warning" role="alert" id="productNameError0"  style="text-align: center; display:none;"></div>
 							</div>
 						</div>
@@ -370,6 +371,9 @@
 						</div>
 						<div class="form-group">
 							<textarea  class="form-control" id="productComment0" name="productComment[]" value="<?php echo set_value('productComment[]'); ?>" placeholder="<?php echo $this->lang->line('product_comments'); ?> (<?php echo $this->lang->line('optional'); ?>)" form="billForm"></textarea>
+						</div>
+						<div class="form-group">
+							<textarea  class="form-control" id="productDescription0" name="productDescription[]" value="<?php echo set_value('productDescription[]'); ?>" placeholder="<?php echo $this->lang->line('product').' '.$this->lang->line('description'); ?> (<?php echo $this->lang->line('optional'); ?>)" form="billForm"></textarea>
 						</div>
 					</div>
 				</form>

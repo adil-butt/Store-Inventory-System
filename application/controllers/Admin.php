@@ -111,6 +111,7 @@ class Admin extends CI_Controller
 					'price' => $this->input->post("productPrice"),
 					'unit' => $this->input->post("productUnit"),
 					'comments' => $this->input->post("productComments"),
+					'description' => $this->input->post("productDescription"),
 				);
 				$where = array(
 					'id' => $productId,
@@ -265,6 +266,7 @@ class Admin extends CI_Controller
 				$price = $this->input->post("productPrice");
 				$unit = $this->input->post("productUnit");
 				$comments = $this->input->post("productComment");
+				$description = $this->input->post("productDescription");
 
 				$check = 1;
 				for($i = 0; $i < $number; $i++) {
@@ -275,6 +277,7 @@ class Admin extends CI_Controller
 						'price' => $price[$i],
 						'unit' => $unit[$i],
 						'comments' => $comments[$i],
+						'description' => $description[$i],
 					);
 					$where = array(
 						'id' => $productId[$i],
@@ -383,6 +386,7 @@ class Admin extends CI_Controller
 			$price = $this->input->post("productPrice");
 			$unit = $this->input->post("productUnit");
 			$comments = $this->input->post("productComment");
+			$description = $this->input->post("productDescription");
 
 			for($i = 0; $i < $number; $i++) {
 				$totalPrice = $totalPrice + ($quantity[$i]*$price[$i]);
@@ -394,6 +398,7 @@ class Admin extends CI_Controller
 					'price' => $price[$i],
 					'unit' => $unit[$i],
 					'comments' => $comments[$i],
+					'description' => $description[$i],
 					'addeddate' => $addedDate,
 				);
 				if($this->input->post('addProductBillId') !== '') {
@@ -429,6 +434,7 @@ class Admin extends CI_Controller
 					$response['total'] = $price;
 					$response['unit'] = $unit;
 					$response['comments'] = $comments;
+					$response['description'] = $description;
 					$response['updatedAt'] = $addedDate;
 				}
 			} else {
