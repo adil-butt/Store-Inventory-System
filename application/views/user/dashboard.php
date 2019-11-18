@@ -188,9 +188,9 @@
 				</ul>
 				<!-- Links -->
 
-				<form class="form-inline">
+				<form method="post" action="<?php echo base_url('home'); ?>" class="form-inline">
 					<div class="md-form my-0">
-						<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+						<input name="userSearch" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
 					</div>
 				</form>
 			</div>
@@ -259,7 +259,9 @@
 		<!--Section: Products v.3-->
 
 		<!--Pagination-->
-		<?php echo $this->pagination->create_links(); ?>
+		<?php if(!isset($_POST['userSearch'])) { ?>
+			<?php echo $this->pagination->create_links(); ?>
+		<?php } ?>
 		<!--Pagination-->
 
 	</div>

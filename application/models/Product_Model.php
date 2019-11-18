@@ -1,7 +1,13 @@
 <?php
 class Product_Model extends CI_Model {
-	public function getSimilar($search) {
-		$this->db->select('productname, quantity, remaining, price, unit, comments, addeddate, lastupdated');
+	public function getSimilar($search, $where = '', $limit = '', $offset = '') {
+		$this->db->select('id, productname, quantity, remaining, price, unit, comments, description, addeddate, lastupdated');
+		if($where !== '') {
+			$this->db->where($where);
+		}
+		if($limit !== '' && $offset !== '') {
+			$this->db->limit($limit, $offset);
+		}
 		$this->db->like('productname', $search);
 		$this->db->or_like('quantity', $search);
 		$this->db->or_like('remaining', $search);
@@ -11,7 +17,7 @@ class Product_Model extends CI_Model {
 		$this->db->or_like('addeddate', $search);
 		$this->db->or_like('lastupdated', $search);
 		$query = $this->db->get('products');
-		return $query->result();
+		return $query->result_array();
 	}
 
 	public function updateReturnProductQuantity($quantity, $where) {

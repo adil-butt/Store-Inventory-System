@@ -12,7 +12,7 @@ class Sell_Model extends CI_Model {
 		$this->db->or_like('addeddate', $search);
 		$this->db->or_like('lastupdated', $search);
 		$query = $this->db->get('sale');
-		return $query->result();
+		return $query->result_array();
 	}
 
 	public function updateSell($data, $where) {

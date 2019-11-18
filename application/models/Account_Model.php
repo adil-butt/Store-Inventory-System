@@ -11,7 +11,7 @@ class Account_Model extends CI_Model {
 		$this->db->or_like('address', $search);
 		$this->db->or_like('regtime', $search);
 		$query = $this->db->get('accounts');
-		return $query->result();
+		return $query->result_array();
 	}
 
 	public function insertNewAccount($data) {

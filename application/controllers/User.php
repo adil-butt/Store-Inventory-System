@@ -271,44 +271,51 @@ class User extends CI_Controller
 		$where = array(
 			'remaining >' => '0',
 		);
-		$limit = 12;
-		$offset = $num;
-		$totalProducts = $this->Product_Model->getResultOfProducts($where);
-		$products = $this->Product_Model->getResultOfProducts($where, $limit, $offset);
-		$data['products'] = $products;
-		$data['num'] = $num;
 
-		$this->load->library('pagination');
+		if(isset($_POST['userSearch'])) {
+			if($_POST['userSearch'] != '') {
+				$products = $this->Product_Model->getSimilar($this->input->post('userSearch'), $where);
+				$data['products'] = $products;
+			} else {
+				$data['products'] = array();
+			}
+		} else {
+			$limit = 12;
+			$offset = $num;
+			$totalProducts = $this->Product_Model->getResultOfProducts($where);
+			$products = $this->Product_Model->getResultOfProducts($where, $limit, $offset);
+			$data['products'] = $products;
+			$this->load->library('pagination');
 
-		$config['base_url'] = base_url('home');
-		$config['total_rows'] = count ($totalProducts);
-		$config['per_page'] = $limit;
+			$config['base_url'] = base_url('home');
+			$config['total_rows'] = count ($totalProducts);
+			$config['per_page'] = $limit;
 
-		$config['full_tag_open'] = '<nav class="d-flex justify-content-center wow fadeIn"><ul class="pagination pg-blue">';
-		$config['full_tag_close'] = '</ul></nav>';
+			$config['full_tag_open'] = '<nav class="d-flex justify-content-center wow fadeIn"><ul class="pagination pg-blue">';
+			$config['full_tag_close'] = '</ul></nav>';
 
-		$config['num_tag_open'] = '<li class="page-item page-link">';
-		$config['num_tag_close'] = '</li>';
+			$config['num_tag_open'] = '<li class="page-item page-link">';
+			$config['num_tag_close'] = '</li>';
 
-		$config['cur_tag_open'] = '<li class="page-item page-link" style="background-color: dodgerblue; color: white">';
-		$config['cur_tag_close'] = '</li>';
+			$config['cur_tag_open'] = '<li class="page-item page-link" style="background-color: dodgerblue; color: white">';
+			$config['cur_tag_close'] = '</li>';
 
-		$config['next_link'] = '&raquo;';
-		$config['next_tag_open'] = '<li class="page-item page-link">';
-		$config['next_tag_close'] = '</li>';
+			$config['next_link'] = '&raquo;';
+			$config['next_tag_open'] = '<li class="page-item page-link">';
+			$config['next_tag_close'] = '</li>';
 
-		$config['prev_link'] = '&laquo;';
-		$config['prev_tag_open'] = '<li class="page-item page-link">';
-		$config['prev_tag_close'] = '</li>';
+			$config['prev_link'] = '&laquo;';
+			$config['prev_tag_open'] = '<li class="page-item page-link">';
+			$config['prev_tag_close'] = '</li>';
 
-		$config['first_tag_open'] = '<li class="page-item page-link">';
-		$config['first_tag_close'] = '</li>';
+			$config['first_tag_open'] = '<li class="page-item page-link">';
+			$config['first_tag_close'] = '</li>';
 
-		$config['last_tag_open'] = '<li class="page-item page-link">';
-		$config['last_tag_close'] = '</li>';
+			$config['last_tag_open'] = '<li class="page-item page-link">';
+			$config['last_tag_close'] = '</li>';
 
-
-		$this->pagination->initialize($config);
+			$this->pagination->initialize($config);
+		}
 
 		$this->template->set('title', 'Home');
 		$this->template->load('user_layout', 'contents' , 'user/dashboard', $data);
