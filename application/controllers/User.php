@@ -310,7 +310,7 @@ class User extends CI_Controller
 
 		$this->pagination->initialize($config);
 
-		$this->template->set('title', 'Dashboard');
+		$this->template->set('title', 'Home');
 		$this->template->load('user_layout', 'contents' , 'user/dashboard', $data);
 	}
 }
