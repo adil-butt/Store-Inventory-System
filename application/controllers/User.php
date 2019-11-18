@@ -50,8 +50,19 @@ class User extends CI_Controller
 					);
 				}
 				if($this->Sell_Model->insertSalesAsBatch($data2)) {
+					foreach ($this->cart->contents() as $item) {
+						$where = array(
+							'id' => $item['id'],
+						);
+						$row = $this->Product_Model->getResultOfProducts($where);
+						$remaining = $row[0]['remaining'] - $item['qty'];
+						$data = array(
+							'remaining' => $remaining,
+						);
+						$this->Product_Model->updateProduct($data, $where);
+					}
 					$this->cart->destroy();
-					$this->session->set_flashdata('success', 'Successfully checkout');
+					$this->session->set_flashdata('success', 'Successfully Checkout');
 				} else {
 					$this->session->set_flashdata('error', 'Something Went Wrong');
 				}

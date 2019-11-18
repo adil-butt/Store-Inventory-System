@@ -46,7 +46,7 @@
 
 			</td>
 			<td style="text-align:right"><?php echo $this->cart->format_number($items['price']); ?></td>
-			<td style="text-align:right">$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
+			<td style="text-align:right">Rs.<?php echo $this->cart->format_number($items['subtotal']); ?></td>
 		</tr>
 
 		<?php $i++; ?>
@@ -56,7 +56,7 @@
 	<tr>
 		<td colspan="2"> </td>
 		<td class="right"><strong>Total</strong></td>
-		<td class="right">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
+		<td class="right">Rs.<?php echo $this->cart->format_number($this->cart->total()); ?></td>
 	</tr>
 
 </table>

@@ -1,5 +1,3 @@
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0"></script>
 <!--Carousel Wrapper-->
 <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
 
@@ -143,6 +141,16 @@
 <!--/.Carousel Wrapper-->
 
 <main>
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
 	<div class="container">
 
 		<!--Navbar-->
@@ -235,11 +243,9 @@
 						<!--Card content-->
 
 						<!--share on facebook-->
-						<div class="fb-share-button" data-href="<?php echo base_url('display_product/').$product['id'];?>"
-							 data-layout="button_count" data-size="small">
+						<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/share-button/" data-layout="button" data-size="large">
 							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-							   class="fb-xfbml-parse-ignore">Share</a>
-						</div>
+							   class="fb-xfbml-parse-ignore">Share</a></div>
 
 					</div>
 					<!--Card-->
