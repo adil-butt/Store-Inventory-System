@@ -213,7 +213,7 @@
 
 						<!--Card image-->
 						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+							<img src="<?php echo base_url('assets/product_images/').$product['imgpath'] ?>" class="card-img-top"
 								 alt="">
 							<a href="<?php echo base_url('display_product/').$product['id']; ?>">
 								<div class="mask rgba-white-slight"></div>

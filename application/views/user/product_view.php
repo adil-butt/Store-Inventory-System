@@ -10,7 +10,7 @@
 			<!--Grid column-->
 			<div class="col-md-6 mb-4">
 
-				<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+				<img src="<?php echo base_url('assets/product_images/').$product[0]['imgpath'] ?>" class="img-fluid" alt="">
 
 			</div>
 			<!--Grid column-->

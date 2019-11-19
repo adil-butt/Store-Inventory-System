@@ -9,11 +9,6 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		test_login(1);
-		$config['upload_path'] = 'assets/profileimages';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['encrypt_name'] = TRUE;
-		$this->load->library('upload', $config);
-		$this->load->library('image_lib');
 	}
 
 	/**
@@ -344,6 +339,12 @@ class Admin extends CI_Controller
 	}
 
 	public function addNewBill() {
+		$config['upload_path'] = 'assets/product_images';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config);
+		$this->load->library('image_lib');
+
 		if($this->input->post('addProductBillId') == '') {
 			$this->form_validation->set_rules('billNumber', 'Bill Number', 'trim|max_length[50]|min_length[1]|required|is_unique[bills.billnumber]',
 				array(
@@ -359,6 +360,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('productUnit[]', 'Product Unit', 'trim|required');
 
 		if($this->form_validation->run() == TRUE) {
+			$files = $_FILES;
 			$addedDate = date('Y-m-d G:i:s');
 			if($this->input->post('addProductBillId') == '') {
 				$data = array(
@@ -403,6 +405,41 @@ class Admin extends CI_Controller
 				);
 				if($this->input->post('addProductBillId') !== '') {
 					$data2[$i]['lastupdated'] = $addedDate;
+				}
+				if (is_uploaded_file($files['productImage']['tmp_name'][$i])) {
+					$_FILES['productImage']['name']= $files['productImage']['name'][$i];
+					$_FILES['productImage']['type']= $files['productImage']['type'][$i];
+					$_FILES['productImage']['tmp_name']= $files['productImage']['tmp_name'][$i];
+					$_FILES['productImage']['error']= $files['productImage']['error'][$i];
+					$_FILES['productImage']['size']= $files['productImage']['size'][$i];
+					if($this->upload->do_upload('productImage')) {
+						$image_data =   $this->upload->data();
+
+						$configer =  array(
+							'image_library'   => 'gd2',
+							'source_image'    =>  $image_data['full_path'],
+							'maintain_ratio'  =>  TRUE,
+							'width'           =>  710,
+							'height'          =>  480,
+						);
+						$this->image_lib->clear();
+						$this->image_lib->initialize($configer);
+						$this->image_lib->resize();
+
+						/*if($_SESSION['user']['profilepath'] != 'default.jpg') {
+							unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
+						}*/
+
+						$data2[$i]['imgpath'] = $image_data['file_name'];
+
+					} else {
+						$response = array(
+							'status' => 0,
+							'imageError' => $this->upload->display_errors,
+						);
+					}
+				} else {
+					$data2[$i]['imgpath'] = 'dummy.jpg';
 				}
 			}
 			if($this->Product_Model->insertNewProduct($data2)) {
@@ -476,6 +513,12 @@ class Admin extends CI_Controller
 	}
 
 	public function profile() {
+		$config['upload_path'] = 'assets/profileimages';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config);
+		$this->load->library('image_lib');
+
 		$this->form_validation->set_rules('updateFirstName', 'First Name', 'trim|max_length[50]|min_length[1]|required');
 		$this->form_validation->set_rules('updateLastName', 'Last Name', 'trim|max_length[50]|min_length[1]|required');
 		$this->form_validation->set_rules('updatePassword', 'Password', 'trim|max_length[100]|min_length[8]');
@@ -512,14 +555,16 @@ class Admin extends CI_Controller
 						'image_library'   => 'gd2',
 						'source_image'    =>  $image_data['full_path'],
 						'maintain_ratio'  =>  TRUE,
-						'width'           =>  500,
-						'height'          =>  500,
+						'width'           =>  540,
+						'height'          =>  360,
 					);
 					$this->image_lib->clear();
 					$this->image_lib->initialize($configer);
 					$this->image_lib->resize();
 
-					unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
+					if($_SESSION['user']['profilepath'] != 'default.jpg') {
+						unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
+					}
 
 					$data['profilepath'] = $image_data['file_name'];
 

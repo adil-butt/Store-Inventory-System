@@ -45,6 +45,7 @@
         var langSale = "<?php echo $this->lang->line('sale'); ?>";
         var langSales = "<?php echo $this->lang->line('sales'); ?>";
         var langDescription = "<?php echo $this->lang->line('description'); ?>";
+        var langImage = "<?php echo $this->lang->line('image'); ?>";
 	</script>
 
 	<!-- Custom fonts for this template-->
@@ -279,7 +280,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="alert alert-danger" role="alert" id="createBillBackendError"  style="text-align: center; display:none;"></div>
-				<form id="billForm" name="billForm">
+				<form id="billForm" name="billForm"  enctype="multipart/form-data">
 					<h5><b><?php echo $this->lang->line('bill').' '.$this->lang->line('information'); ?></b></h5>
 					<div class="form-group">
 						<div class="form-label-group">
@@ -328,13 +329,6 @@
 					</div>
 
 					<div id="productsRow">
-						<!--							<div class="form-group">-->
-						<!--								<div class="form-row">-->
-						<!--									<button style="margin-left: auto;" type="button" class="close" id="removeProductRow" aria-label="Close">-->
-						<!--										<span aria-hidden="true">&times;</span>-->
-						<!--									</button>-->
-						<!--								</div>-->
-						<!--							</div>-->
 						<div class="form-group">
 							<div>
 								<input type="text" id="productId0" name="productId[]" class="form-control" style="text-align: center; display:none;">
@@ -374,6 +368,12 @@
 						</div>
 						<div class="form-group">
 							<textarea  class="form-control" id="productDescription0" name="productDescription[]" value="<?php echo set_value('productDescription[]'); ?>" placeholder="<?php echo $this->lang->line('product').' '.$this->lang->line('description'); ?> (<?php echo $this->lang->line('optional'); ?>)" form="billForm"></textarea>
+						</div>
+						<div class="form-group">
+							<div class="form-label-group">
+								<input type="file" name="productImage[]" id="productImage0" />
+								<label><?php echo $this->lang->line('product')." ".$this->lang->line('image')." (".$this->lang->line('optional').")"; ?></label>
+							</div>
 						</div>
 					</div>
 				</form>
