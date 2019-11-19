@@ -230,7 +230,7 @@
 							<h5>
 								<strong>
 									<p href="" class="dark-grey-text">Remaining: <?php echo $product['remaining'] ?>
-										<span class="badge badge-pill danger-color">NEW</span>
+										<!--<span class="badge badge-pill danger-color">NEW</span>-->
 									</p>
 								</strong>
 							</h5>

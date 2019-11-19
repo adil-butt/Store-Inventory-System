@@ -21,7 +21,7 @@
 				<!--Content-->
 				<div class="p-4">
 
-					<div class="mb-3">
+					<!--<div class="mb-3">
 						<a href="">
 							<span class="badge purple mr-1">Category 2</span>
 						</a>
@@ -31,14 +31,14 @@
 						<a href="">
 							<span class="badge red mr-1">Bestseller</span>
 						</a>
-					</div>
+					</div>-->
 
-					<p class="lead">
+					<!--<p class="lead">
               <span class="mr-1">
                 <del>$200</del>
               </span>
 						<span>$100</span>
-					</p>
+					</p>-->
 
 					<h1><?php echo $product[0]['productname']; ?></h1>
 					<p class="lead font-weight-bold">Available: <?php echo $product[0]['remaining']; ?></p>
