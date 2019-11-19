@@ -290,7 +290,12 @@ $(document).ready(function () {
 								'\t\t\t\t\t\t\t</div>' +
 								'\t\t\t\t\t\t\t<div class="form-group">\n' +
 								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(k+1)+'" name="productDescription[]"  placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['description']+'</textarea>\n' +
-								'\t\t\t\t\t\t\t</div> </div>';
+								'\t\t\t\t\t\t\t</div> ' +
+								'\t\t\t\t\t\t\t<div class="form-group">\n' +
+								'\t\t\t\t\t\t\t\t<div class="form-label-group">\n' +
+								'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" />\n' +
+								'\t\t\t\t\t\t\t\t\t\t<label>'+products+" "+langImage+" ("+LangOptional+")"+'</label>\n' +
+								'\t\t\t\t\t\t\t\t\t</div></div>';
 							$('#productsRow').append(addNewProductRow);
 							$('#productUnit'+(k+1)).val(data.productRow[k+1]['unit']);
 						}
@@ -378,13 +383,18 @@ $(document).ready(function () {
 			}
 		}
 		if (isCorrect) {
+			let formData = new FormData($('#billForm')[0]);
 			if($("#submitBillButton").text() == updateBillButton) {
 				if(checkUpdateQuantity) {
+					formData.append('originalBillNumber', originalBillNumber);
 					$.ajax({
 						url: baseUrl+'admin/updateBill',
 						type: 'POST',
 						dataType: 'JSON',
-						data: $('#billForm').serialize() + '&originalBillNumber=' + originalBillNumber,
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
 						success: function (data) {
 							if(data.status) {
 								$('#billForm')[0].reset();
@@ -419,6 +429,9 @@ $(document).ready(function () {
 								} else if(data.productUnitError != '') {
 									$('#createBillBackendError').html(data.productUnitError);
 									$("#createBillBackendError").show("slow");
+								} else if(data.imageError != '') {
+									$('#createBillBackendError').html(data.imageError);
+									$("#createBillBackendError").show("slow");
 								}
 							}
 						},
@@ -434,7 +447,6 @@ $(document).ready(function () {
 					$("#createBillBackendError").show("slow").delay(2000).fadeOut("slow");
 				}
 			} else {
-				let formData = new FormData($('#billForm')[0]);
 				$.ajax({
 					url: baseUrl+'admin/addNewBill',
 					type: 'POST',
@@ -683,7 +695,7 @@ $(document).ready(function () {
 			'\t\t\t\t\t\t\t</div>' +
 			'\t\t\t\t\t\t\t<div class="form-group">\n' +
 			'\t\t\t\t\t\t\t\t<div class="form-label-group">\n' +
-			'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" id="productImage'+(largest+1)+'" />\n' +
+			'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" />\n' +
 			'\t\t\t\t\t\t\t\t\t\t<label>'+products+" "+langImage+" ("+LangOptional+")"+'</label>\n' +
 			'\t\t\t\t\t\t\t\t\t</div></div>';
 		$('#productsRow').prepend(addNewProductRow);

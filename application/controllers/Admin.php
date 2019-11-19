@@ -229,6 +229,11 @@ class Admin extends CI_Controller
 	}		//ajax JSON
 
 	public function updateBill() {		// ajax JSON
+		$config['upload_path'] = 'assets/product_images';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config);
+		$this->load->library('image_lib');
 
 		if($this->input->post('originalBillNumber') == $this->input->post('billNumber')) {
 			$this->form_validation->set_rules('billNumber', 'Bill Number', 'trim|max_length[50]|min_length[1]|required');
@@ -245,6 +250,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('productPrice[]', 'Product Price', 'trim|max_length[50]|min_length[1]|required|numeric');
 		$this->form_validation->set_rules('productUnit[]', 'Product Unit', 'trim|required');
 		if($this->form_validation->run() == TRUE) {
+			$files = $_FILES;
 			$data = array(
 				'billnumber' => $this->input->post('billNumber'),
 				'comments' => $this->input->post('billComment'),
@@ -296,6 +302,39 @@ class Admin extends CI_Controller
 					}
 
 					$data['remaining'] = $remaining;
+					if (is_uploaded_file($files['productImage']['tmp_name'][$i])) {
+						$_FILES['productImage']['name']= $files['productImage']['name'][$i];
+						$_FILES['productImage']['type']= $files['productImage']['type'][$i];
+						$_FILES['productImage']['tmp_name']= $files['productImage']['tmp_name'][$i];
+						$_FILES['productImage']['error']= $files['productImage']['error'][$i];
+						$_FILES['productImage']['size']= $files['productImage']['size'][$i];
+						if($this->upload->do_upload('productImage')) {
+							$image_data =   $this->upload->data();
+
+							$configer =  array(
+								'image_library'   => 'gd2',
+								'source_image'    =>  $image_data['full_path'],
+								'maintain_ratio'  =>  TRUE,
+								'width'           =>  710,
+								'height'          =>  480,
+							);
+							$this->image_lib->clear();
+							$this->image_lib->initialize($configer);
+							$this->image_lib->resize();
+
+							if($productRow[0]['imgpath'] != 'dummy.jpg') {
+								unlink('assets/product_images/'.$productRow[0]['imgpath']);		// delete the old image
+							}
+
+							$data['imgpath'] = $image_data['file_name'];
+
+						} else {
+							$response = array(
+								'status' => 0,
+								'imageError' => $this->upload->display_errors,
+							);
+						}
+					}
 
 					if(!$this->Product_Model->updateProduct($data, $where)) {
 						$check = 0;
@@ -425,10 +464,6 @@ class Admin extends CI_Controller
 						$this->image_lib->clear();
 						$this->image_lib->initialize($configer);
 						$this->image_lib->resize();
-
-						/*if($_SESSION['user']['profilepath'] != 'default.jpg') {
-							unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
-						}*/
 
 						$data2[$i]['imgpath'] = $image_data['file_name'];
 

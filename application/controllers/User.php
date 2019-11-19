@@ -284,13 +284,13 @@ class User extends CI_Controller
 		} else {
 			$limit = 12;
 			$offset = $num;
-			$totalProducts = $this->Product_Model->getResultOfProducts($where);
+			$totalProducts = $this->Product_Model->countProducts();
 			$products = $this->Product_Model->getResultOfProducts($where, $limit, $offset);
 			$data['products'] = $products;
 			$this->load->library('pagination');
 
 			$config['base_url'] = base_url('home');
-			$config['total_rows'] = count ($totalProducts);
+			$config['total_rows'] = $totalProducts;
 			$config['per_page'] = $limit;
 
 			$config['full_tag_open'] = '<nav class="d-flex justify-content-center wow fadeIn"><ul class="pagination pg-blue">';

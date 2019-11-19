@@ -371,7 +371,7 @@
 						</div>
 						<div class="form-group">
 							<div class="form-label-group">
-								<input type="file" name="productImage[]" id="productImage0" />
+								<input type="file" name="productImage[]" />
 								<label><?php echo $this->lang->line('product')." ".$this->lang->line('image')." (".$this->lang->line('optional').")"; ?></label>
 							</div>
 						</div>

@@ -1,7 +1,7 @@
 <?php
 class Product_Model extends CI_Model {
 	public function getSimilar($search, $where = '', $limit = '', $offset = '') {
-		$this->db->select('id, productname, quantity, remaining, price, unit, comments, description, addeddate, lastupdated');
+		$this->db->select('id, productname, quantity, remaining, price, unit, comments, description, imgpath, addeddate, lastupdated');
 		if($where !== '') {
 			$this->db->where($where);
 		}
@@ -43,9 +43,13 @@ class Product_Model extends CI_Model {
 		return $this->db->update('products', $data);
 	}
     
-    public function countProducts($where) {
-        $query = $this->db->get_where('products', $where);
-        return $query->num_rows();
+    public function countProducts($where = '') {
+		if($where == '') {
+			return $this->db->count_all('products');
+		} else {
+			$query = $this->db->get_where('products', $where);
+			return $query->num_rows();
+		}
     }
 
 	public function getResultOfProducts($where = '', $limit = '', $offset = '') {
