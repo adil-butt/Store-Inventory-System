@@ -434,6 +434,10 @@ $(document).ready(function () {
 									$("#createBillBackendError").show("slow");
 								}
 							}
+							if(data.status2) {
+								$("#imageUploadMessage").text(data.imageError);
+								$("#imageUploadMessage").show("slow").delay(3000).fadeOut("slow");
+							}
 						},
 						error: function (XMLHttpRequest, textStatus, errorThrown) {
 							$('#billForm')[0].reset();
@@ -552,9 +556,15 @@ $(document).ready(function () {
 							} else if(data.productUnitError != '') {
 								$('#createBillBackendError').html(data.productUnitError);
 								$("#createBillBackendError").show("slow");
-							} else if(data.imageError != '') {
-								$('#createBillBackendError').html(data.imageError);
-								$("#createBillBackendError").show("slow");
+							}
+						}
+						if(data.status2) {
+							if($('#addProductBillId').val() != '') {
+								$("#imageUploadMessage2").text(data.imageError);
+								$("#imageUploadMessage2").show("slow").delay(3000).fadeOut("slow");
+							} else {
+								$("#imageUploadMessage").text(data.imageError);
+								$("#imageUploadMessage").show("slow").delay(3000).fadeOut("slow");
 							}
 						}
 					},

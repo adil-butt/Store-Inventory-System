@@ -41,11 +41,11 @@
 					</p>-->
 
 					<h1><?php echo $product[0]['productname']; ?></h1>
-					<p class="lead font-weight-bold">Available: <?php echo $product[0]['remaining']; ?></p>
-					<p class="lead font-weight-bold">Price: <?php echo $product[0]['price']; ?></p>
-					<p class="lead font-weight-bold">Unit: <?php echo $product[0]['unit']; ?></p>
+					<p class="lead font-weight-bold"><?php echo $this->lang->line('available'); ?>: <?php echo $product[0]['remaining']; ?></p>
+					<p class="lead font-weight-bold"><?php echo $this->lang->line('price'); ?>: <?php echo $product[0]['price']; ?></p>
+					<p class="lead font-weight-bold"><?php echo $this->lang->line('unit'); ?>: <?php echo $product[0]['unit']; ?></p>
 
-					<p class="lead font-weight-bold">Description</p>
+					<p class="lead font-weight-bold"><?php echo $this->lang->line('description'); ?></p>
 
 					<p><?php echo $product[0]['description']; ?></p>
 
@@ -55,7 +55,7 @@
 						<input name="pBuyName" style="display: none" value="<?php echo $product[0]['productname']; ?>">
 						<input name="pBuyPrice" style="display: none" value="<?php echo $product[0]['price']; ?>">
 						<input id="addCartQuantity" name="pBuyQuantity" type="number" value="1" min="1" max="<?php echo $product[0]['remaining']; ?>" class="form-control" style="width: 100px">
-						<button id="addToCartButton" class="btn btn-primary btn-md my-0 p" type="button">Add to cart
+						<button id="addToCartButton" class="btn btn-primary btn-md my-0 p" type="button"><?php echo $this->lang->line('add')." ".$this->lang->line('to')." ".$this->lang->line('cart'); ?>
 							<i class="fas fa-shopping-cart ml-1"></i>
 						</button>
 
@@ -132,10 +132,10 @@
             let quantity = $.trim($("#addCartQuantity").val());
             if (quantity  == '') {
                 isCorrect = 0;
-                message = 'Quantity must not be empty';
+                message = langQuantity + ' ' + langMust + ' ' + langNot + ' '+ langBe + ' ' + langEmpty;
 			} else if(quantity < 1 || quantity > <?php echo $product[0]['remaining']; ?> ) {
                 isCorrect = 0;
-                message = 'Please select quantity greater than 0 and less than ' + <?php echo $product[0]['remaining']; ?>;
+                message = langUserSelectQuantity + ' ' + <?php echo $product[0]['remaining']; ?>;
 			}
             if (isCorrect) {
 				<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 2) { ?>
@@ -143,14 +143,14 @@
 				<?php } else { ?>
                 event.preventDefault();
                 $.alert({
-                    title: 'Not Log In!',
-                    content: 'You are not logged in. Please log in first in order to add the items in cart',
+                    title: langNot + ' ' + langLog + ' ' + langIn + '!',
+                    content: langUserNotLogIn + '. ' + langLogInToAddItem,
                 });
 				<?php } ?>
             } else {
                 event.preventDefault();
                 $.dialog({
-                    title: 'Alert!',
+                    title: langAlert + '!',
                     content: message,
                 });
             }

@@ -1,4 +1,72 @@
 <?php
+
+// for user navbar
+$lang['home'] = 'Home';
+$lang['about'] = 'About';
+$lang['contact_us'] = 'Contact Us';
+$lang['sign_in'] = 'Sign In';
+$lang['sign_up'] = 'Sign Up';
+
+// for user footer
+$lang['user_copyright'] = 'Copyright';
+
+// general keyword for user
+$lang['cart'] = 'Cart';
+$lang['share'] = 'Share';
+$lang['available'] = 'Available';
+$lang['to'] = 'To';
+$lang['must'] = 'must';
+$lang['be'] = 'be';
+$lang['empty'] = 'empty';
+$lang['alert'] = 'Alert';
+$lang['log'] = 'Log';
+$lang['in'] = 'In';
+$lang['user_not'] = 'Not';
+$lang['user_item'] = 'item';
+$lang['checkout'] = 'Checkout';
+$lang['your'] = 'Your';
+$lang['qty'] = 'QTY';
+$lang['item'] = 'Item';
+$lang['sub'] = 'Sub';
+$lang['country'] = 'Country';
+$lang['state'] = 'State';
+$lang['zip'] = 'Zip';
+$lang['pakistan'] = 'Pakistan';
+$lang['choose'] = 'Choose';
+$lang['please'] = 'Please';
+$lang['valid'] = 'Valid';
+$lang['provide'] = 'Provide';
+$lang['code'] = 'Code';
+$lang['required'] = 'Required';
+$lang['card'] = 'Card';
+$lang['credit'] = 'Credit';
+$lang['debit'] = 'Debit';
+$lang['paypal'] = 'Paypal';
+$lang['on'] = 'on';
+$lang['expiration'] = 'Expiration';
+$lang['continue'] = 'Continue';
+$lang['full'] = 'Full';
+$lang['as'] = 'as';
+$lang['displayed'] = 'displayed';
+$lang['punjab'] = 'Punjab';
+$lang['islamabad'] = 'Islamabad';
+$lang['sindh'] = 'Sindh';
+$lang['balochistan'] = 'Balochistan';
+$lang['northern_areas'] = 'Northern Areas';
+$lang['date'] = 'Date';
+$lang['security'] = 'Security';
+
+// user error messages
+$lang['user_not_log_in'] = 'You are not logged in';
+$lang['login_to_add_item_in_cart'] = 'Please log in first in order to add the items in cart';
+$lang['user_select_quantity'] = 'Please select quantity greater than 0 and less than';
+$lang['user_already_selected'] = 'You are already selected';
+$lang['user_select_quantity_again'] = 'Please select quantity less than or equal to';
+$lang['something'] = 'Something';
+$lang['went'] = 'Went';
+$lang['wrong'] = 'Wrong';
+$lang['add_items_to_checkout'] = 'Pleas add items in cart in order to make checkout';
+
 // for navbar
 $lang['qureshi_traders'] = 'Qureshi Traders';
 $lang['admin'] = 'Admin';
@@ -75,6 +143,34 @@ $lang['value'] = 'Value';
 $lang['last'] = 'Last';
 $lang['anything'] = 'anything';
 $lang['description'] = 'Description';
+$lang['an'] = 'an';
+$lang['invalid'] = 'Invalid';
+$lang['credentials'] = 'Credentials';
+$lang['are'] = 'are';
+$lang['uploaded'] = 'Uploaded';
+$lang['reset'] = 'Reset';
+$lang['forgot'] = 'Forgot';
+$lang['enter'] = 'Enter';
+$lang['registered'] = 'Registered';
+$lang['no'] = 'No';
+$lang['record'] = 'Record';
+$lang['click'] = 'Click';
+$lang['here'] = 'here';
+$lang['new'] = 'new';
+$lang['repeat'] = 'Repeat';
+
+// general lines
+$lang['forgot_password_page'] = 'Enter your email address and we will send you instructions on how to reset your password';
+$lang['verification_link_send'] = 'A verification link has been sent to your email';
+$lang['verify_your_account'] = 'Please verify your account by click on that link';
+$lang['reset_link_send'] = 'A Reset Password link has been sent to your email';
+$lang['click_link_to_reset'] = 'Click on that link to reset your password';
+$lang['link_not_exist_expired'] = 'This link not exist or expired';
+$lang['thanks_registering'] = 'Thanks for registering';
+$lang['successfully_verified'] = 'Your account is successfully verified';
+$lang['may_login'] = 'You may login now';
+$lang['already_been_verified'] = 'Your account have already been verified';
+$lang['login_by_clicking_link'] = 'You can login from by clicking the link below';
 
 // for profile page
 $lang['first_name'] = 'First Name';
@@ -153,3 +249,7 @@ $lang['successfully'] = 'Successfully';
 $lang['deleted'] = 'Deleted';
 $lang['added'] = 'Added';
 $lang['update_quantity_error_message'] = 'You must have greater amount of quantity than the sold item or you must correct the sold first. Product is not Updated Successfully';
+$lang['account_not_activated'] = 'Your Account is not activated yet';
+$lang['activate_account'] = 'Please Activate your account in order to login';
+$lang['activate_account_first'] = 'Please Activate your Account First';
+

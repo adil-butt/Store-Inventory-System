@@ -8,10 +8,10 @@
 <table cellpadding="6" cellspacing="1" style="width:100%" border="0">
 
 	<tr>
-		<th>QTY</th>
-		<th>Item Description</th>
-		<th style="text-align:right">Item Price</th>
-		<th style="text-align:right">Sub-Total</th>
+		<th><?php echo $this->lang->line('qty'); ?></th>
+		<th><?php echo $this->lang->line('item'); ?> <?php echo $this->lang->line('description'); ?></th>
+		<th style="text-align:right"><?php echo $this->lang->line('item'); ?> <?php echo $this->lang->line('price'); ?></th>
+		<th style="text-align:right"><?php echo $this->lang->line('sub'); ?>-<?php echo $this->lang->line('total'); ?></th>
 	</tr>
 
 	<?php $i = 1; ?>
@@ -55,15 +55,15 @@
 
 	<tr>
 		<td colspan="2"> </td>
-		<td class="right"><strong>Total</strong></td>
+		<td class="right"><strong><?php echo $this->lang->line('total'); ?></strong></td>
 		<td class="right">Rs.<?php echo $this->cart->format_number($this->cart->total()); ?></td>
 	</tr>
 
 </table>
 
 		<?php if($this->cart->total_items() > 0) { ?>
-			<?php echo form_submit('', 'Update your Cart', 'class="btn btn-primary"'); ?>
-			<a href="<?php echo base_url('checkout') ?>" class="btn btn-primary float-right"> Checkout</a>
+			<?php echo form_submit('', $this->lang->line('update').' '.$this->lang->line('your').' '.$this->lang->line('cart'), 'class="btn btn-primary"'); ?>
+			<a href="<?php echo base_url('checkout') ?>" class="btn btn-primary float-right"> <?php echo $this->lang->line('checkout'); ?></a>
 		<?php } ?>
 		<?php echo form_close(); ?>
 

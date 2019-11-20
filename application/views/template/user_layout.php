@@ -29,6 +29,42 @@
 		<script type="text/javascript" src="<?php echo base_url('assets/front_end/js/jquery-3.4.1.min.js') ?>"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+		<script>
+            var langMust = "<?php echo $this->lang->line('must'); ?>";
+            var langBe = "<?php echo $this->lang->line('be'); ?>";
+            var langEmpty = "<?php echo $this->lang->line('empty'); ?>";
+            var langNot = "<?php echo $this->lang->line('not'); ?>";
+            var langQuantity = "<?php echo $this->lang->line('quantity'); ?>";
+            var langAlert = "<?php echo $this->lang->line('alert'); ?>";
+            var langNot = "<?php echo $this->lang->line('user_not'); ?>";
+            var langLog = "<?php echo $this->lang->line('log'); ?>";
+            var langIn = "<?php echo $this->lang->line('in'); ?>";
+            var langUserNotLogIn = "<?php echo $this->lang->line('user_not_log_in'); ?>";
+            var langLogInToAddItem = "<?php echo $this->lang->line('login_to_add_item_in_cart'); ?>";
+            var langUserSelectQuantity = "<?php echo $this->lang->line('user_select_quantity'); ?>";
+
+            var langPrice = "<?php echo $this->lang->line('price'); ?>";
+            var langUnit = "<?php echo $this->lang->line('unit'); ?>";
+            var langKg = "<?php echo $this->lang->line('kg'); ?>";
+            var langMetre = "<?php echo $this->lang->line('metre'); ?>";
+            var langSquare = "<?php echo $this->lang->line('square'); ?>";
+            var langGm = "<?php echo $this->lang->line('gm'); ?>";
+            var langMillilitres = "<?php echo $this->lang->line('millilitres'); ?>";
+            var langItemIncluded = "<?php echo $this->lang->line('item_included'); ?>";
+            var langOther = "<?php echo $this->lang->line('other'); ?>";
+            var langProductComments = "<?php echo $this->lang->line('product_comments'); ?>";
+            var LangOptional = "<?php echo $this->lang->line('optional'); ?>";
+            var LangIsEmpty = "<?php echo $this->lang->line('is_empty'); ?>";
+            var LangMustNumeric = "<?php echo $this->lang->line('must_numeric'); ?>";
+            var LangRemaining = "<?php echo $this->lang->line('remaining'); ?>";
+            var langSell = "<?php echo $this->lang->line('sell'); ?>";
+            var langSale = "<?php echo $this->lang->line('sale'); ?>";
+            var langSales = "<?php echo $this->lang->line('sales'); ?>";
+            var langDescription = "<?php echo $this->lang->line('description'); ?>";
+            var langImage = "<?php echo $this->lang->line('image'); ?>";
+		</script>
+
 		<style type="text/css">
 			html,
 			body,
@@ -83,15 +119,15 @@
 			<!-- Left -->
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>">Home
+					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home'); ?>
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link waves-effect" href="#">About</a>
+					<a class="nav-link waves-effect" href="#"><?php echo $this->lang->line('about'); ?></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link waves-effect" href="#">Contact Us</a>
+					<a class="nav-link waves-effect" href="#"><?php echo $this->lang->line('contact_us'); ?></a>
 				</li>
 			</ul>
 
@@ -102,7 +138,7 @@
 					<a href="<?php echo base_url('cart'); ?>" class="nav-link waves-effect">
 						<span class="badge red z-depth-1 mr-1"> <?php echo $this->cart->total_items(); ?> </span>
 						<i class="fas fa-shopping-cart"></i>
-						<span class="clearfix d-none d-sm-inline-block"> Cart </span>
+						<span class="clearfix d-none d-sm-inline-block"> <?php echo $this->lang->line('cart'); ?> </span>
 					</a>
 				</li>
 				<?php } ?>
@@ -130,15 +166,20 @@
 				<?php } else { ?>
 					<li class="nav-item">
 						<a href="<?php echo base_url('login') ?>" class="nav-link waves-effect">
-							<i class="fab fa-sign-in">Sign In</i>
+							<i class="fab fa-sign-in"><?php echo $this->lang->line('sign_in'); ?></i>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?php echo base_url('reg') ?>" class="nav-link waves-effect">
-							<i class="fab fa-user-plus">Sign Up</i>
+							<i class="fab fa-user-plus"><?php echo $this->lang->line('sign_up'); ?></i>
 						</a>
 					</li>
 				<?php } ?>
+				<li class="nav-item">
+					<a href="<?php echo ($this->session->userdata('site_lang') == 'japanese')?base_url().'languageswitcher/switchLang/english':base_url().'languageswitcher/switchLang/japanese'; ?>" class="nav-link waves-effect">
+						<i class="fab fa-sign-language"><?php echo ($this->session->userdata('site_lang') == 'japanese')?$this->lang->line('change_language_to_english'):$this->lang->line('change_language_to_japanese'); ?></i>
+					</a>
+				</li>
 			</ul>
 		</div>
 
@@ -193,7 +234,7 @@
 
 	<!--Copyright-->
 	<div class="footer-copyright py-3">
-		© 2019 Copyright: <?php echo $this->config->item('site_name'); ?>
+		© 2019 <?php echo $this->lang->line('user_copyright'); ?>: <?php echo $this->config->item('site_name'); ?>
 	</div>
 	<!--/.Copyright-->
 

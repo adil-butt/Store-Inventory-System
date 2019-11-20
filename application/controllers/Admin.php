@@ -250,6 +250,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('productPrice[]', 'Product Price', 'trim|max_length[50]|min_length[1]|required|numeric');
 		$this->form_validation->set_rules('productUnit[]', 'Product Unit', 'trim|required');
 		if($this->form_validation->run() == TRUE) {
+			$response = array();
 			$files = $_FILES;
 			$data = array(
 				'billnumber' => $this->input->post('billNumber'),
@@ -329,10 +330,8 @@ class Admin extends CI_Controller
 							$data['imgpath'] = $image_data['file_name'];
 
 						} else {
-							$response = array(
-								'status' => 0,
-								'imageError' => $this->upload->display_errors,
-							);
+							$response['status2'] = 1;
+							$response['imageError'] = $this->upload->display_errors().' '.$this->lang->line('image').'(s) '.$this->lang->line('are').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully');
 						}
 					}
 
@@ -341,27 +340,21 @@ class Admin extends CI_Controller
 					}
 				}
 				if($check) {
-					$response = array(
-						'status' => 1,
-						'billId' => $this->input->post('addProductBillId'),
-						'billNumber' => $this->input->post('billNumber'),
-						'totalPrice' => $totalPrice,
-						'statusMessage' => $this->lang->line('bill').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'),
-					);
+					$response['status'] = 1;
+					$response['billId'] = $this->input->post('addProductBillId');
+					$response['billNumber'] = $this->input->post('billNumber');
+					$response['totalPrice'] = $totalPrice;
+					$response['statusMessage'] = $this->lang->line('bill').' '.$this->lang->line('updated').' '.$this->lang->line('successfully');
 				} else {
 					$error = $this->db->error();
-					$response = array(
-						'status' => 0,
-						'statusMessage' => 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"],
-					);
+					$response['status'] = 0;
+					$response['statusMessage'] = 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"];
 				}
 
 			} else {
 				$error = $this->db->error();
-				$response = array(
-					'status' => 0,
-					'statusMessage' => 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"],
-				);
+				$response['status'] = 0;
+				$response['statusMessage'] = 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"];
 			}
 
 		} else {
@@ -399,6 +392,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('productUnit[]', 'Product Unit', 'trim|required');
 
 		if($this->form_validation->run() == TRUE) {
+			$response = array();
 			$files = $_FILES;
 			$addedDate = date('Y-m-d G:i:s');
 			if($this->input->post('addProductBillId') == '') {
@@ -411,10 +405,8 @@ class Admin extends CI_Controller
 					$insert_id = $this->db->insert_id();
 				} else {
 					$error = $this->db->error();
-					$response = array(
-						'status' => 0,
-						'statusMessage' => 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"],
-					);
+					$response['status'] = 0;
+					$response['statusMessage'] = 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"];
 				}
 			} else {
 				$insert_id = $this->input->post('addProductBillId');
@@ -468,23 +460,21 @@ class Admin extends CI_Controller
 						$data2[$i]['imgpath'] = $image_data['file_name'];
 
 					} else {
-						$response = array(
-							'status' => 0,
-							'imageError' => $this->upload->display_errors,
-						);
+						$data2[$i]['imgpath'] = 'dummy.jpg';
+						$response['status2'] = 1;
+						$response['imageError'] = $this->upload->display_errors().' '.$this->lang->line('image').'(s) '.$this->lang->line('are').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully');
 					}
 				} else {
 					$data2[$i]['imgpath'] = 'dummy.jpg';
 				}
 			}
 			if($this->Product_Model->insertNewProduct($data2)) {
-				$response = array(
-					'status' => 1,
-					'billNumber' => $this->input->post('billNumber'),
-					'totalPrice' => $totalPrice,
-					'numberOfProducts' => $number,
-					'addedAt' => $addedDate,
-				);
+				$response['status'] = 1;
+				$response['billNumber'] = $this->input->post('billNumber');
+				$response['totalPrice'] = $totalPrice;
+				$response['numberOfProducts'] = $number;
+				$response['addedAt'] = $addedDate;
+
 				if($this->input->post('addProductBillId') == '') {
 					$response['id'] = $insert_id;
 					$response['statusMessage'] = $this->lang->line('bill').' '.$this->lang->line('added').' '.$this->lang->line('successfully');
@@ -511,10 +501,8 @@ class Admin extends CI_Controller
 				}
 			} else {
 				$error = $this->db->error();
-				$response = array(
-					'status' => 0,
-					'statusMessage' => 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"],
-				);
+				$response['status'] = 0;
+				$response['statusMessage'] = 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"];
 			}
 		} else {
 			$response = array(

@@ -57,12 +57,12 @@ class User extends CI_Controller
 						$this->Product_Model->updateProduct($data, $where);
 					}
 					$this->cart->destroy();
-					$this->session->set_flashdata('success', 'Successfully Checkout');
+					$this->session->set_flashdata('success', $this->lang->line('successfully').' '.$this->lang->line('checkout'));
 				} else {
-					$this->session->set_flashdata('error', 'Something Went Wrong');
+					$this->session->set_flashdata('error', $this->lang->line('something').' '.$this->lang->line('went').' '.$this->lang->line('wrong'));
 				}
 			} else {
-				$this->session->set_flashdata('error', 'Your cart is empty. Pleas add items in cart in order to make checkout');
+				$this->session->set_flashdata('error', $this->lang->line('your').' '.$this->lang->line('cart').' '.$this->lang->line('is_empty').'. '.$this->lang->line('add_items_to_checkout'));
 			}
 		}
 
@@ -106,19 +106,19 @@ class User extends CI_Controller
 						'qty'     => $item['qty'],
 					);
 				} else {
-					$this->session->set_flashdata('error', 'Something Went Wrong');
+					$this->session->set_flashdata('error', $this->lang->line('something').' '.$this->lang->line('went').' '.$this->lang->line('wrong'));
 					$error = true;
 					break;
 				}
 			} else {
-				$this->session->set_flashdata('error', 'Something Went Wrong');
+				$this->session->set_flashdata('error', $this->lang->line('something').' '.$this->lang->line('went').' '.$this->lang->line('wrong'));
 				$error = true;
 				break;
 			}
 		endforeach;
 		if($error == false) {
 			$this->cart->update($data);
-			$this->session->set_flashdata('success', 'Cart Updated Successfully');
+			$this->session->set_flashdata('success', $this->lang->line('cart').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'));
 		}
 		redirect(base_url('cart'));
 	}
@@ -134,9 +134,9 @@ class User extends CI_Controller
 					if($item['id'] == $this->input->post('pBuyId')) {
 						if($this->input->post('pBuyQuantity') > ($product[0]['remaining'] - $item['qty'])) {
 							if($product[0]['remaining'] - $item['qty'] == 0) {
-								$this->session->set_flashdata('error', 'You are already selected '.$item['qty'].' item');
+								$this->session->set_flashdata('error', $this->lang->line('user_already_selected').' '.$item['qty'].' '.$this->lang->line('user_item'));
 							} else {
-								$this->session->set_flashdata('error', 'You are already selected '.$item['qty'].' item. Please select quantity less than or equal to '.($product[0]['remaining'] - $item['qty']));
+								$this->session->set_flashdata('error', $this->lang->line('user_already_selected').' '.$item['qty'].' '.$this->lang->line('user_item').'. '.$this->lang->line('user_select_quantity_again').' '.($product[0]['remaining'] - $item['qty']));
 							}
 							$error = true;
 							break;
@@ -151,13 +151,13 @@ class User extends CI_Controller
 						'name'    => $this->input->post('pBuyName'),
 					);
 					$this->cart->insert($data);
-					$this->session->set_flashdata('success', 'Added Successfully');
+					$this->session->set_flashdata('success', $this->lang->line('added').' '.$this->lang->line('successfully'));
 				}
 			} else {
-				$this->session->set_flashdata('error', 'Something Went Wrong');
+				$this->session->set_flashdata('error', $this->lang->line('something').' '.$this->lang->line('went').' '.$this->lang->line('wrong'));
 			}
 		} else {
-			$this->session->set_flashdata('error', 'Something Went Wrong');
+			$this->session->set_flashdata('error', $this->lang->line('something').' '.$this->lang->line('went').' '.$this->lang->line('wrong'));
 		}
 		redirect(base_url('display_product/').$this->input->post('pBuyId'));
 	}

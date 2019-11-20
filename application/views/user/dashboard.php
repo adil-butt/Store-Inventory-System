@@ -190,7 +190,7 @@
 
 				<form method="post" action="<?php echo base_url('home'); ?>" class="form-inline">
 					<div class="md-form my-0">
-						<input name="userSearch" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+						<input name="userSearch" class="form-control mr-sm-2" type="text" placeholder="<?php echo $this->lang->line('search'); ?>" aria-label="Search">
 					</div>
 				</form>
 			</div>
@@ -229,14 +229,14 @@
 							</a>
 							<h5>
 								<strong>
-									<p href="" class="dark-grey-text">Remaining: <?php echo $product['remaining'] ?>
+									<p href="" class="dark-grey-text"><?php echo $this->lang->line('remaining'); ?>: <?php echo $product['remaining'] ?>
 										<!--<span class="badge badge-pill danger-color">NEW</span>-->
 									</p>
 								</strong>
 							</h5>
 
 							<h4 class="font-weight-bold blue-text">
-								<strong>Price: <?php echo $product['price'] ?> Rs<?php echo ($product['unit'] != 'Other') ? $product['unit']: ''; ?></strong>
+								<strong><?php echo $this->lang->line('price'); ?>: <?php echo $product['price'] ?> Rs<?php echo ($product['unit'] != 'Other') ? $product['unit']: ''; ?></strong>
 							</h4>
 
 						</div>
@@ -245,7 +245,7 @@
 						<!--share on facebook-->
 						<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/share-button/" data-layout="button" data-size="large">
 							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-							   class="fb-xfbml-parse-ignore">Share</a></div>
+							   class="fb-xfbml-parse-ignore"><?php echo $this->lang->line('share'); ?></a></div>
 
 					</div>
 					<!--Card-->

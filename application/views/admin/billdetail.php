@@ -11,6 +11,7 @@
 		</ol>
 		<?php $this->load->view('template/success_error_message'); ?>
 		<div class="alert alert-primary" role="alert" id="billDetailMessage"  style="text-align: center; display:none;"></div>
+		<div class="alert alert-primary" role="alert" id="imageUploadMessage2"  style="text-align: center; display:none;"></div>
 		<!-- DataTables Example -->
 		<div class="card mb-3">
 			<div class="card-header" <?php if ($billId == ''){ echo 'style="display:none;"'; } ?>>

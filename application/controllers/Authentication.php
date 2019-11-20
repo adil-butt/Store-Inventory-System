@@ -32,7 +32,7 @@ class Authentication extends CI_Controller {
 		$data['status'] = 0;
 		if($row) {
 			if(empty($row['auth'])) {
-				$data['message'] = '<div<p>This link not exist or expired</p></div>';
+				$data['message'] = '<div><p>'.$this->lang->line('link_not_exist_expired').'</p></div>';
 			} else {
 				if($row['auth'] == $code) {
 					$data['status'] = 1;
@@ -45,7 +45,7 @@ class Authentication extends CI_Controller {
 								'auth' => '',
 							);
 							if($this->Account_Model->updateAccount($data2, $where)) {
-								$this->session->set_flashdata('success', 'Password Successfully Reset');
+								$this->session->set_flashdata('success', $this->lang->line('password').' '.$this->lang->line('successfully').' '.$this->lang->line('reset'));
 							} else {
 								$error = $this->db->error();
 								$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
@@ -53,11 +53,11 @@ class Authentication extends CI_Controller {
 						}
 					}
 				} else {
-					$data['message'] = '<div<p>No Record Found</p></div>';
+					$data['message'] = '<div><p>'.$this->lang->line('no').' '.$this->lang->line('record').' '.$this->lang->line('found').'</p></div>';
 				}
 			}
 		} else {
-			$data['message'] = '<div<p>No Record Found</p></div>';
+			$data['message'] = '<div><p>'.$this->lang->line('no').' '.$this->lang->line('record').' '.$this->lang->line('found').'</p></div>';
 		}
 
 		$data['title'] = 'Reset Password';
@@ -78,7 +78,7 @@ class Authentication extends CI_Controller {
 				$row = $this->Account_Model->getAccountWhere($where);
 				if($row) {
 					if($row['status'] === '0') {
-						$this->session->set_flashdata('error', 'Your Account is not activated yet<br>Please Activate your Account First');
+						$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account_first'));
 					} else {
 						$code = md5(date('Y-m-d G:i:s'));
 						$where = array(
@@ -90,22 +90,22 @@ class Authentication extends CI_Controller {
 						if($this->Account_Model->updateAccount($data, $where)) {
 							$message= /*-----------email body starts-----------*/
 								'Click the link below to reset your password, !<br>					
-					' . base_url() . 'reset_Password/'.$row['username'].'/'.$code ;
+					' . base_url() . 'reset_password/'.$row['username'].'/'.$code ;
 							/*-----------email body ends-----------*/
 							$this->email->set_newline("\r\n");
-							$this->email->from('adil.islam@purelogics.net'); // change it to yours
-							$this->email->to($row['email']);// change it to yours
+							$this->email->from('adil.islam@purelogics.net');
+							$this->email->to($row['email']);
 							$this->email->subject('Reset Password');
 							$this->email->message($message);
 							$this->email->send();
-							$this->session->set_flashdata('success', 'A Reset Password link has been sent to your email<br>Click on that link to reset your password');
+							$this->session->set_flashdata('success', $this->lang->line('reset_link_send').'<br>'.$this->lang->line('click_link_to_reset'));
 						} else {
 							$error = $this->db->error();
 							$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 						}
 					}
 				} else {
-					$this->session->set_flashdata('error', 'No Record Found for '.$this->input->post('forgotPassEmail'));
+					$this->session->set_flashdata('error', $this->lang->line('no').' '.$this->lang->line('record').' '.$this->lang->line('found').' '.$this->lang->line('for').' '.$this->input->post('forgotPassEmail'));
 				}
 			}
 		}
@@ -131,20 +131,20 @@ class Authentication extends CI_Controller {
 						'username' => $username
 					);
 					if($this->Account_Model->updateAccount($data, $where)) {
-						$data['message'] = "Thanks for registering. Your account is successfully verified.<br>You may login now<br>";
+						$data['message'] = $this->lang->line('thanks_registering').". ".$this->lang->line('successfully_verified').".<br>".$this->lang->line('may_login')."<br>";
 					}
 				} else {
-					$data['message'] = "Thanks for registering. Your account have already been verified.<br>You can login from by clicking the link below<br>";
+					$data['message'] = $this->lang->line('thanks_registering').". ".$this->lang->line('already_been_verified').".<br>".$this->lang->line('login_by_clicking_link')."<br>";
 				}
 				$data['title'] = 'Verification';
 				$this->load->view('auth/include/header', $data);
 				$this->load->view('auth/verify', $data);
 				$this->load->view('auth/include/footer');
 			} else {
-				show_404();
+				$this->load->view('errors/404');
 			}
 		} else {
-			show_404();
+			$this->load->view('errors/404');
 		}
 	}
 
@@ -178,7 +178,7 @@ class Authentication extends CI_Controller {
 				unset($row["password"]);
 				$this->session->set_userdata('user', $row);
 				if($row['status'] === '0') {
-					$this->session->set_flashdata('error', 'Your Account is not activated yet<br>Please Activate your account in order to login');
+					$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account'));
 				} else {
 					if($row['role'] === '1') {
 						redirect('admin');
@@ -187,7 +187,7 @@ class Authentication extends CI_Controller {
 					}
 				}
 			} else {
-				$this->session->set_flashdata('error', 'Invalid Login Credentials');
+				$this->session->set_flashdata('error', $this->lang->line('invalid').' '.$this->lang->line('login').' '.$this->lang->line('credentials'));
 			}
 		}
 		$data['title'] = 'Login';
@@ -250,7 +250,7 @@ class Authentication extends CI_Controller {
 					$data['profilepath'] = $image_data['file_name'];
 
 				} else {
-					$this->session->set_flashdata('error', 'Image is not uploaded successfully');
+					$this->session->set_flashdata('error', $this->lang->line('image').' '.$this->lang->line('is').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully'));
 				}
 			}
 			$regTime = date('Y-m-d G:i:s');
@@ -273,12 +273,12 @@ class Authentication extends CI_Controller {
 					' . base_url() . 'verify/'.$this->input->post('accRegUsername').'/'.$emailCode ;
 				/*-----------email body ends-----------*/
 				$this->email->set_newline("\r\n");
-				$this->email->from('adil.islam@purelogics.net'); // change it to yours
-				$this->email->to($this->input->post('accRegEmail'));// change it to yours
+				$this->email->from('adil.islam@purelogics.net');
+				$this->email->to($this->input->post('accRegEmail'));
 				$this->email->subject('Account Verification');
 				$this->email->message($message);
 				$this->email->send();
-				$this->session->set_flashdata('success', 'Successfully Registered<br>A verification link has been sent to your email<br>Please verify your account by click on that link');
+				$this->session->set_flashdata('success', $this->lang->line('successfully').' '.$this->lang->line('registered').'<br>'.$this->lang->line('verification_link_send').'<br>'.$this->lang->line('verify_your_account'));
 			} else {
 				$error = $this->db->error();
 				$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);

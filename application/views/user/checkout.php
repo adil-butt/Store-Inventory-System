@@ -6,7 +6,7 @@
 			<?php $this->load->view('template/success_error_message'); ?>
 		</div>
 		<!-- Heading -->
-		<h2 class="my-5 h2 text-center">Checkout form</h2>
+		<h2 class="my-5 h2 text-center"><?php echo $this->lang->line('checkout'); ?></h2>
 
 		<!--Grid row-->
 		<div class="row">
@@ -29,7 +29,7 @@
 								<!--firstName-->
 								<div class="md-form ">
 									<input type="text" id="firstName" value="<?php echo $_SESSION['user']['firstname']; ?>" class="form-control">
-									<label for="firstName" class="">First name</label>
+									<label for="firstName" class=""><?php echo $this->lang->line('first_name'); ?></label>
 								</div>
 
 							</div>
@@ -41,7 +41,7 @@
 								<!--lastName-->
 								<div class="md-form">
 									<input type="text" id="lastName" value="<?php echo $_SESSION['user']['lastname']; ?>" class="form-control">
-									<label for="lastName" class="">Last name</label>
+									<label for="lastName" class=""><?php echo $this->lang->line('last_name'); ?></label>
 								</div>
 
 							</div>
@@ -55,32 +55,32 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1">@</span>
 							</div>
-							<input type="text" class="form-control py-0" placeholder="Username" value="<?php echo $_SESSION['user']['username']; ?>" aria-describedby="basic-addon1">
+							<input type="text" class="form-control py-0" placeholder="<?php echo $this->lang->line('user_name'); ?>" value="<?php echo $_SESSION['user']['username']; ?>" aria-describedby="basic-addon1">
 						</div>
 
 						<!--email-->
 						<div class="md-form mb-5">
 							<input type="text" id="email" class="form-control" placeholder="youremail@example.com" value="<?php echo $_SESSION['user']['email']; ?>">
-							<label for="email" class="">Email</label>
+							<label for="email" class=""><?php echo $this->lang->line('email'); ?></label>
 						</div>
 
 						<!--address-->
 						<div class="md-form mb-5">
 							<input type="text" id="address" name="address" class="form-control" placeholder="1234 Main St" value="<?php echo $_SESSION['user']['address']; ?>">
-							<label for="address" class="">Address</label>
+							<label for="address" class=""><?php echo $this->lang->line('address'); ?></label>
 							<?php echo form_error('address', '<p class="alert alert-warning" role="alert">'); ?>
 						</div>
 
 						<!--address-2-->
 						<div class="md-form mb-5">
 							<input type="text" id="address-2" class="form-control" placeholder="Apartment or suite">
-							<label for="address-2" class="">Address 2 (optional)</label>
+							<label for="address-2" class=""><?php echo $this->lang->line('address'); ?> 2 (<?php echo $this->lang->line('optional'); ?>)</label>
 						</div>
 
 						<!--phone-->
 						<div class="md-form mb-5">
 							<input type="text" id="phone" name="phone" class="form-control" placeholder="03XX-XXXXXXX" value="<?php echo $_SESSION['user']['phone']; ?>">
-							<label for="phone" class="">Phone</label>
+							<label for="phone" class=""><?php echo $this->lang->line('phone'); ?></label>
 							<?php echo form_error('phone', '<p class="alert alert-warning" role="alert">'); ?>
 						</div>
 
@@ -90,13 +90,13 @@
 							<!--Grid column-->
 							<div class="col-lg-4 col-md-12 mb-4">
 
-								<label for="country">Country</label>
+								<label for="country"><?php echo $this->lang->line('country'); ?></label>
 								<select class="custom-select d-block w-100" id="country" required>
-									<option value="">Choose...</option>
-									<option selected>Pakistan</option>
+									<option value=""><?php echo $this->lang->line('choose'); ?>...</option>
+									<option selected><?php echo $this->lang->line('pakistan'); ?></option>
 								</select>
 								<div class="invalid-feedback">
-									Please select a valid country.
+									<?php echo $this->lang->line('please').' '.$this->lang->line('select').' a '.$this->lang->line('valid').' '.$this->lang->line('country'); ?>.
 								</div>
 
 							</div>
@@ -105,19 +105,19 @@
 							<!--Grid column-->
 							<div class="col-lg-4 col-md-6 mb-4">
 
-								<label for="state">State</label>
+								<label for="state"><?php echo $this->lang->line('state'); ?></label>
 								<select class="custom-select d-block w-100" id="state" name="state" required>
-									<option value="">Choose...</option>
-									<option>Punjab</option>
-									<option>Islamabad</option>
-									<option>Sindh</option>
+									<option value=""><?php echo $this->lang->line('choose'); ?>...</option>
+									<option><?php echo $this->lang->line('punjab'); ?></option>
+									<option><?php echo $this->lang->line('islamabad'); ?></option>
+									<option><?php echo $this->lang->line('sindh'); ?></option>
 									<option>KPK</option>
-									<option>Balochistan</option>
-									<option>Northern Areas</option>
+									<option><?php echo $this->lang->line('balochistan'); ?></option>
+									<option><?php echo $this->lang->line('northern_areas'); ?></option>
 								</select>
 								<?php echo form_error('state', '<p class="alert alert-warning" role="alert">'); ?>
 								<div class="invalid-feedback">
-									Please provide a valid state.
+									<?php echo $this->lang->line('please').' '.$this->lang->line('provide').' a '.$this->lang->line('valid').' '.$this->lang->line('state'); ?>.
 								</div>
 
 							</div>
@@ -126,10 +126,10 @@
 							<!--Grid column-->
 							<div class="col-lg-4 col-md-6 mb-4">
 
-								<label for="zip">Zip</label>
+								<label for="zip"><?php echo $this->lang->line('zip'); ?></label>
 								<input type="text" name="zip" class="form-control" id="zip" placeholder="" required>
 								<div class="invalid-feedback">
-									Zip code required.
+									<?php echo $this->lang->line('zip').' '.$this->lang->line('code').' '.$this->lang->line('required'); ?>.
 								</div>
 								<?php echo form_error('zip', '<p class="alert alert-warning" role="alert">'); ?>
 
@@ -144,52 +144,53 @@
 						<div class="d-block my-3">
 							<div class="custom-control custom-radio">
 								<input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-								<label class="custom-control-label" for="credit">Credit card</label>
+								<label class="custom-control-label" for="credit"><?php echo $this->lang->line('credit'); ?> <?php echo $this->lang->line('card'); ?></label>
 							</div>
 							<div class="custom-control custom-radio">
 								<input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-								<label class="custom-control-label" for="debit">Debit card</label>
+								<label class="custom-control-label" for="debit"><?php echo $this->lang->line('debit'); ?> <?php echo $this->lang->line('card'); ?></label>
 							</div>
 							<div class="custom-control custom-radio">
 								<input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-								<label class="custom-control-label" for="paypal">Paypal</label>
+								<label class="custom-control-label" for="paypal"><?php echo $this->lang->line('paypal'); ?></label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="cc-name">Name on card</label>
+								<label for="cc-name"><?php echo $this->lang->line('name').' '.$this->lang->line('on').' '.$this->lang->line('card'); ?></label>
 								<input type="text" class="form-control" id="cc-name" placeholder="" required>
-								<small class="text-muted">Full name as displayed on card</small>
+								<small class="text-muted"><?php echo $this->lang->line('full').' '.$this->lang->line('name').' '.$this->lang->line('as').
+										' '.$this->lang->line('displayed').' '.$this->lang->line('on').' '.$this->lang->line('card'); ?></small>
 								<div class="invalid-feedback">
-									Name on card is required
+									<?php echo $this->lang->line('name').' '.$this->lang->line('on').' '.$this->lang->line('card').' '.$this->lang->line('is').' '.$this->lang->line('required'); ?>.
 								</div>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="cc-number">Credit card number</label>
+								<label for="cc-number"><?php echo $this->lang->line('credit').' '.$this->lang->line('card').' '.$this->lang->line('number'); ?></label>
 								<input type="text" class="form-control" id="cc-number" placeholder="" required>
 								<div class="invalid-feedback">
-									Credit card number is required
+									<?php echo $this->lang->line('credit').' '.$this->lang->line('card').' '.$this->lang->line('number').' '.$this->lang->line('is').' '.$this->lang->line('required'); ?>.
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-3 mb-3">
-								<label for="cc-expiration">Expiration</label>
+								<label for="cc-expiration"><?php echo $this->lang->line('expiration'); ?></label>
 								<input type="text" class="form-control" id="cc-expiration" placeholder="" required>
 								<div class="invalid-feedback">
-									Expiration date required
+									<?php echo $this->lang->line('expiration').' '.$this->lang->line('date').' '.$this->lang->line('is').' '.$this->lang->line('required'); ?>.
 								</div>
 							</div>
 							<div class="col-md-3 mb-3">
 								<label for="cc-expiration">CVV</label>
 								<input type="text" class="form-control" id="cc-cvv" placeholder="" required>
 								<div class="invalid-feedback">
-									Security code required
+									<?php echo $this->lang->line('security').' '.$this->lang->line('code').' '.$this->lang->line('required'); ?>.
 								</div>
 							</div>
 						</div>
 						<hr class="mb-4">
-						<button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+						<button class="btn btn-primary btn-lg btn-block" type="submit"><?php echo $this->lang->line('continue').' '.$this->lang->line('to').' '.$this->lang->line('checkout'); ?></button>
 
 					</form>
 

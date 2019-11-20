@@ -67,7 +67,7 @@ $route['admin/bills'] = 'admin/bills';
 $route['admin/profile'] = 'admin/profile';
 $route['admin'] = 'admin';
 
-$route['reset_Password/(:any)/(:any)'] = 'authentication/resetPassword/$1/$2';
+$route['reset_password/(:any)/(:any)'] = 'authentication/resetPassword/$1/$2';
 $route['verify/(:any)/(:any)'] = 'authentication/verification/$1/$2';
 $route['logout/(:any)'] = 'authentication/logout/$1';
 $route['reg'] = 'authentication/registration';
