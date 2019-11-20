@@ -284,7 +284,7 @@ class User extends CI_Controller
 		} else {
 			$limit = 12;
 			$offset = $num;
-			$totalProducts = $this->Product_Model->countProducts();
+			$totalProducts = $this->Product_Model->countProducts($where);
 			$products = $this->Product_Model->getResultOfProducts($where, $limit, $offset);
 			$data['products'] = $products;
 			$this->load->library('pagination');
