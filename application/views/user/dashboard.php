@@ -14,7 +14,7 @@
 
 		<!--First slide-->
 		<div class="carousel-item active">
-			<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slide1_image.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
 
 				<!-- Mask & flexbox options-->
 				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -51,7 +51,7 @@
 
 		<!--Second slide-->
 		<div class="carousel-item">
-			<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slide2_image.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
 
 				<!-- Mask & flexbox options-->
 				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -88,7 +88,7 @@
 
 		<!--Third slide-->
 		<div class="carousel-item">
-			<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slide3_image.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
 
 				<!-- Mask & flexbox options-->
 				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -157,19 +157,19 @@
 		<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
 			<!-- Navbar brand -->
-			<span class="navbar-brand">Categories: </span>
+			<!--<span class="navbar-brand">Categories: </span>-->
 
 			<!-- Collapse button -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+			<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
 					aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
-			</button>
+			</button>-->
 
 			<!-- Collapsible content -->
 			<div class="collapse navbar-collapse" id="basicExampleNav">
 
 				<!-- Links -->
-				<ul class="navbar-nav mr-auto">
+				<!--<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<a class="nav-link" href="#">All
 							<span class="sr-only">(current)</span>
@@ -185,7 +185,7 @@
 						<a class="nav-link" href="#">Outwears</a>
 					</li>
 
-				</ul>
+				</ul>-->
 				<!-- Links -->
 
 				<form method="post" action="<?php echo base_url('home'); ?>" class="form-inline">

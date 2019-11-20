@@ -152,6 +152,16 @@
 				<i class="fas fa-fw fa-table"></i>
 				<span><?php echo $this->lang->line('sales')." ".$this->lang->line('table'); ?></span></a>
 		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="settingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-fw fa-edit"></i>
+				<span><?php echo $this->lang->line('site').' '.$this->lang->line('setting'); ?></span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="settingDropdown">
+				<h6 class="dropdown-header"><?php echo $this->lang->line('site').' '.$this->lang->line('setting').':'; ?></h6>
+				<a class="dropdown-item" href="<?php echo base_url('site_setting'); ?>"><?php echo $this->lang->line('setting'); ?></a>
+			</div>
+		</li>
 	</ul>
 
 <!-- end of sidebar -->

@@ -158,6 +158,10 @@ $lang['click'] = 'Click';
 $lang['here'] = 'here';
 $lang['new'] = 'new';
 $lang['repeat'] = 'Repeat';
+$lang['site'] = 'Site';
+$lang['setting'] = 'Setting';
+$lang['change'] = 'Change';
+$lang['language'] = 'Language';
 
 // general lines
 $lang['forgot_password_page'] = 'Enter your email address and we will send you instructions on how to reset your password';

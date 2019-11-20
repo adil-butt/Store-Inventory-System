@@ -43,26 +43,6 @@
             var langUserNotLogIn = "<?php echo $this->lang->line('user_not_log_in'); ?>";
             var langLogInToAddItem = "<?php echo $this->lang->line('login_to_add_item_in_cart'); ?>";
             var langUserSelectQuantity = "<?php echo $this->lang->line('user_select_quantity'); ?>";
-
-            var langPrice = "<?php echo $this->lang->line('price'); ?>";
-            var langUnit = "<?php echo $this->lang->line('unit'); ?>";
-            var langKg = "<?php echo $this->lang->line('kg'); ?>";
-            var langMetre = "<?php echo $this->lang->line('metre'); ?>";
-            var langSquare = "<?php echo $this->lang->line('square'); ?>";
-            var langGm = "<?php echo $this->lang->line('gm'); ?>";
-            var langMillilitres = "<?php echo $this->lang->line('millilitres'); ?>";
-            var langItemIncluded = "<?php echo $this->lang->line('item_included'); ?>";
-            var langOther = "<?php echo $this->lang->line('other'); ?>";
-            var langProductComments = "<?php echo $this->lang->line('product_comments'); ?>";
-            var LangOptional = "<?php echo $this->lang->line('optional'); ?>";
-            var LangIsEmpty = "<?php echo $this->lang->line('is_empty'); ?>";
-            var LangMustNumeric = "<?php echo $this->lang->line('must_numeric'); ?>";
-            var LangRemaining = "<?php echo $this->lang->line('remaining'); ?>";
-            var langSell = "<?php echo $this->lang->line('sell'); ?>";
-            var langSale = "<?php echo $this->lang->line('sale'); ?>";
-            var langSales = "<?php echo $this->lang->line('sales'); ?>";
-            var langDescription = "<?php echo $this->lang->line('description'); ?>";
-            var langImage = "<?php echo $this->lang->line('image'); ?>";
 		</script>
 
 		<style type="text/css">
@@ -175,10 +155,14 @@
 						</a>
 					</li>
 				<?php } ?>
-				<li class="nav-item">
-					<a href="<?php echo ($this->session->userdata('site_lang') == 'japanese')?base_url().'languageswitcher/switchLang/english':base_url().'languageswitcher/switchLang/japanese'; ?>" class="nav-link waves-effect">
-						<i class="fab fa-sign-language"><?php echo ($this->session->userdata('site_lang') == 'japanese')?$this->lang->line('change_language_to_english'):$this->lang->line('change_language_to_japanese'); ?></i>
+				<li class="nav-item dropdown no-arrow">
+					<a class="nav-link dropdown-toggle" href="#" id="userOtherDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fab"><?php echo $this->lang->line('change').' '.$this->lang->line('language'); ?></i>
 					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userOtherDropdown">
+						<a class="dropdown-item" href="<?php echo ($this->session->userdata('site_lang') == 'japanese')?base_url().'languageswitcher/switchLang/english':base_url().'languageswitcher/switchLang/japanese'; ?>">
+							<?php echo ($this->session->userdata('site_lang') == 'japanese')?$this->lang->line('change_language_to_english'):$this->lang->line('change_language_to_japanese'); ?></a>
+					</div>
 				</li>
 			</ul>
 		</div>

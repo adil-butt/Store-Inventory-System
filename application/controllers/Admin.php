@@ -28,6 +28,12 @@ class Admin extends CI_Controller
 	 * @param $billId
 	 */
 
+	public function siteSetting() {
+		$data = array(); // optional parameter
+		$this->template->set('title', 'Site Setting');
+		$this->template->load('admin_layout', 'contents' , 'admin/site_setting', $data);
+	}
+
 	public function search() {
 		$data = array();
 		if($this->input->post('searchItem') != '') {

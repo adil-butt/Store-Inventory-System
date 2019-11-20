@@ -60,6 +60,7 @@ $route['home'] = 'user';
 $route['admin/sales'] = 'SaleProduct/salesTable';
 $route['admin/sale_product'] = 'SaleProduct/saleProduct';
 
+$route['site_setting'] = 'admin/siteSetting';
 $route['admin/search'] = 'admin/search';
 $route['admin/all_products'] = 'admin/billDetail';
 $route['admin/bill_detail/(:any)'] = 'admin/billDetail/$1';

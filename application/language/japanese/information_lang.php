@@ -157,6 +157,10 @@ $lang['click'] = 'クリック';
 $lang['here'] = 'ここに';
 $lang['new'] = '新しい';
 $lang['repeat'] = '繰り返す';
+$lang['site'] = 'サイト';
+$lang['setting'] = 'セッティング';
+$lang['change'] = '変化する';
+$lang['language'] = '言語';
 
 // general lines
 $lang['forgot_password_page'] = 'メールアドレスを入力すると、パスワードのリセット方法に関する指示が送信されます';
