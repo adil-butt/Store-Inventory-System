@@ -1,11 +1,9 @@
 <!-- Begin Page Content -->
 <div class="container-fluid" style="margin-top: 50px">
 	<?php $this->load->view('template/success_error_message'); ?>
-
-
-	<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+	<a style="font-size: x-large; color: black" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
 		<i class="fas fa-fw fa-images"></i>
-		<span style="font-size: x-large; color: black"><?php echo $this->lang->line('change').' '.$this->lang->line('slider').' '.$this->lang->line('images'); ?></span>
+		<span><?php echo $this->lang->line('change').' '.$this->lang->line('slider').' '.$this->lang->line('images'); ?></span>
 	</a>
 
 	<div class="collapse" id="collapseExample">
