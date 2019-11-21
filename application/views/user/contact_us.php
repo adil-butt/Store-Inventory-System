@@ -65,19 +65,19 @@
 						<div class="form-group">
 							<input type="text" name="txtName" class="form-control" placeholder="<?php echo $this->lang->line('your').' '.$this->lang->line('name'); ?> *" value="<?php echo set_value('txtName') ?>" required/>
 							<?php
-							echo form_error('txtName', '<p class="alert alert-warning" role="alert">');
+							echo form_error('txtName', '<p style="border-radius:1rem;" class="alert alert-warning" role="alert">');
 							?>
 						</div>
 						<div class="form-group">
 							<input type="text" name="txtEmail" class="form-control" placeholder="<?php echo $this->lang->line('your').' '.$this->lang->line('email'); ?> *" value="<?php echo set_value('txtEmail') ?>" required/>
 							<?php
-							echo form_error('txtEmail', '<p class="alert alert-warning" role="alert">');
+							echo form_error('txtEmail', '<p style="border-radius:1rem;" class="alert alert-warning" role="alert">');
 							?>
 						</div>
 						<div class="form-group">
 							<input type="text" name="txtPhone" class="form-control" placeholder="<?php echo $this->lang->line('your').' '.$this->lang->line('phone').' '.$this->lang->line('number'); ?> *" value="<?php echo set_value('txtPhone') ?>" required/>
 							<?php
-							echo form_error('txtPhone', '<p class="alert alert-warning" role="alert">');
+							echo form_error('txtPhone', '<p style="border-radius:1rem;" class="alert alert-warning" role="alert">');
 							?>
 						</div>
 						<div class="form-group">
@@ -88,7 +88,7 @@
 						<div class="form-group">
 							<textarea name="txtMsg" class="form-control" placeholder="<?php echo $this->lang->line('your').' '.$this->lang->line('message'); ?> *" style="width: 100%; height: 150px;" required><?php echo set_value('txtMsg') ?></textarea>
 							<?php
-							echo form_error('txtMsg', '<p class="alert alert-warning" role="alert">');
+							echo form_error('txtMsg', '<p style="border-radius:1rem;" class="alert alert-warning" role="alert">');
 							?>
 						</div>
 					</div>

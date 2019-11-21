@@ -39,17 +39,14 @@ class Admin extends CI_Controller
 		$config['overwrite'] = true;
 		$this->load->library('upload', $config);
 
-		echo "<pre>";
-		print_r($_FILES[$fieldName]);
+		/*echo "<pre>";
+		print_r($_FILES[$fieldName]);*/
 
-		/*if($this->upload->do_upload($fieldName)) {
-			if($fieldName == 'sliderImage1'){
-				exit;
-			}
+		if($this->upload->do_upload($fieldName)) {
 			return true;
 		} else {
 			return false;
-		}*/
+		}
 	}
 
 	public function siteSetting() {
@@ -67,7 +64,6 @@ class Admin extends CI_Controller
 				}
 				$i++;
 			}
-			exit;
 			if(!$errorUpload) {
 				$this->session->set_flashdata('success', $this->lang->line('images').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'));
 			} elseif(isset($errorUpload[1]) && isset($errorUpload[2]) && isset($errorUpload[3])) {
