@@ -27,6 +27,60 @@ class User extends CI_Controller
 	 * @param $pId
 	 */
 
+	public function about() {
+		$data = array(); // optional parameter
+
+		$this->template->set('title', 'About');
+		$this->template->load('user_layout', 'contents' , 'user/about', $data);
+	}
+
+	public function contact() {
+		$data = array(); // optional parameter
+		$this->form_validation->set_rules('txtName', 'Name', 'trim|max_length[50]|min_length[1]|required');
+		$this->form_validation->set_rules('txtEmail', 'Email', 'trim|max_length[100]|min_length[5]|valid_email|required');
+		$this->form_validation->set_rules('txtPhone', 'Phone Number', 'trim|exact_length[11]|numeric|required');
+		$this->form_validation->set_rules('txtMsg', 'Message', 'trim|max_length[500]|min_length[20]|required');
+
+		if($this->form_validation->run() == TRUE) {
+			$config = Array(
+				'protocol' => 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+				'smtp_port' => 465,
+				'smtp_user' => $this->config->item('email_address'),
+				'smtp_pass' => $this->config->item('email_password'),
+				'mailtype' => 'html',
+				'charset' => 'iso-8859-1',
+				'wordwrap' => TRUE
+			);
+			$this->load->library('email', $config);
+
+			$message= /*-----------email body starts-----------*/
+				'New Message for '.$this->config->item('site_name').'<br>
+        			Here are the message details.<br>
+        			Name of Sender: '.$this->input->post('txtName').'<br>
+        			Phone Number of Sender: '.$this->input->post('txtPhone').'<br>
+        			Email of Sender: '.$this->input->post('txtEmail').'<br>
+        			Message:<br>
+					-------------------------------------------------<br>'
+					.$this->input->post('txtMsg').'<br>
+					-------------------------------------------------<br>';
+			/*-----------email body ends-----------*/
+			$this->email->set_newline("\r\n");
+			$this->email->from($this->input->post('txtEmail'));
+			$this->email->to('adil.islam@purelogics.net');
+			$this->email->subject('New Message for '.$this->config->item('site_name'));
+			$this->email->message($message);
+			if($this->email->send()) {
+				$this->session->set_flashdata('success', $this->lang->line('your').' '.$this->lang->line('message').' '.$this->lang->line('is').' '.$this->lang->line('send').' '.$this->lang->line('successfully'));
+			} else {
+				$this->session->set_flashdata('error', $this->lang->line('something').' '.$this->lang->line('went').' '.$this->lang->line('wrong'));
+			}
+
+		}
+		$this->template->set('title', 'Contact Us');
+		$this->template->load('user_layout', 'contents' , 'user/contact_us', $data);
+	}
+
 	public function checkout() {
 
 		$this->form_validation->set_rules('address', 'Address', 'trim|required');

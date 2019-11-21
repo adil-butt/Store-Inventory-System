@@ -162,6 +162,11 @@ $lang['site'] = 'Site';
 $lang['setting'] = 'Setting';
 $lang['change'] = 'Change';
 $lang['language'] = 'Language';
+$lang['slider'] = 'Slider';
+$lang['message'] = 'Message';
+$lang['send'] = 'Send';
+$lang['drop'] = 'Drop';
+$lang['us'] = 'Us';
 
 // general lines
 $lang['forgot_password_page'] = 'Enter your email address and we will send you instructions on how to reset your password';
@@ -222,6 +227,7 @@ $lang['cancel'] = 'Cancel';
 
 // for image Modal
 $lang['image'] = 'Image';
+$lang['images'] = 'Images';
 $lang['preview'] = 'Preview';
 
 // for invoice

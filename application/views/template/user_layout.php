@@ -97,17 +97,15 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 			<!-- Left -->
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home'); ?>
-						<span class="sr-only">(current)</span>
-					</a>
+			<ul id="userNav" class="navbar-nav mr-auto">
+				<li id="navHome" class="nav-item">
+					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home'); ?></a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link waves-effect" href="#"><?php echo $this->lang->line('about'); ?></a>
+				<li id="navAbout" class="nav-item">
+					<a class="nav-link waves-effect" href="<?php echo base_url('about'); ?>"><?php echo $this->lang->line('about'); ?></a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link waves-effect" href="#"><?php echo $this->lang->line('contact_us'); ?></a>
+				<li id="navContact" class="nav-item">
+					<a class="nav-link waves-effect" href="<?php echo base_url('contact_us'); ?>"><?php echo $this->lang->line('contact_us'); ?></a>
 				</li>
 			</ul>
 

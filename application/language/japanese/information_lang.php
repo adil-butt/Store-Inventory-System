@@ -161,6 +161,11 @@ $lang['site'] = 'サイト';
 $lang['setting'] = 'セッティング';
 $lang['change'] = '変化する';
 $lang['language'] = '言語';
+$lang['slider'] = 'スライダー';
+$lang['message'] = 'メッセージ';
+$lang['send'] = '送る';
+$lang['drop'] = 'ドロップ';
+$lang['us'] = '私たち';
 
 // general lines
 $lang['forgot_password_page'] = 'メールアドレスを入力すると、パスワードのリセット方法に関する指示が送信されます';
@@ -221,6 +226,7 @@ $lang['cancel'] = 'キャンセル';
 
 // for image Modal
 $lang['image'] = '画像';
+$lang['images'] = '画像';
 $lang['preview'] = 'プレビュー';
 
 // for invoice

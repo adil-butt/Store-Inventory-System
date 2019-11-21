@@ -14,7 +14,7 @@
 
 		<!--First slide-->
 		<div class="carousel-item active">
-			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slide1_image.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slider_image1.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
 
 				<!-- Mask & flexbox options-->
 				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -51,7 +51,7 @@
 
 		<!--Second slide-->
 		<div class="carousel-item">
-			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slide2_image.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slider_image2.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
 
 				<!-- Mask & flexbox options-->
 				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -88,7 +88,7 @@
 
 		<!--Third slide-->
 		<div class="carousel-item">
-			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slide3_image.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url('<?php echo base_url('assets/slider_images/slider_image3.jpg'); ?>'); background-repeat: no-repeat; background-size: cover;">
 
 				<!-- Mask & flexbox options-->
 				<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">

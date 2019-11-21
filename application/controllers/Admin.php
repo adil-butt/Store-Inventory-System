@@ -25,11 +25,77 @@ class Admin extends CI_Controller
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 * @param $billId
+	 * @param $fieldName
+	 * @param $fileName
+	 * @return bool
 	 */
+
+	public function uploadSliderImage($fieldName, $fileName) {
+		$config['upload_path'] = 'assets/slider_images';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['min_width']  = '1024';
+		$config['min_height']  = '768';
+		$config['file_name'] = $fileName;
+		$config['overwrite'] = true;
+		$this->load->library('upload', $config);
+
+		echo "<pre>";
+		print_r($_FILES[$fieldName]);
+
+		/*if($this->upload->do_upload($fieldName)) {
+			if($fieldName == 'sliderImage1'){
+				exit;
+			}
+			return true;
+		} else {
+			return false;
+		}*/
+	}
 
 	public function siteSetting() {
 		$data = array(); // optional parameter
+
+		if($_FILES) {
+			$i = 1;
+			$errorUpload = array();
+			foreach($_FILES as $file){
+				if (isset($file) && is_uploaded_file($file['tmp_name'])) {
+					$upload = $this->uploadSliderImage('sliderImage'.$i, 'slider_image'.$i);
+					if(!$upload) {
+						$errorUpload[$i] = $this->upload->display_errors();
+					}
+				}
+				$i++;
+			}
+			exit;
+			if(!$errorUpload) {
+				$this->session->set_flashdata('success', $this->lang->line('images').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'));
+			} elseif(isset($errorUpload[1]) && isset($errorUpload[2]) && isset($errorUpload[3])) {
+				$this->session->set_flashdata('error', $this->lang->line('images').' '.$this->lang->line('are').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully').
+					'<br>'.$errorUpload[1].'<br>'.$errorUpload[2].'<br>'.$errorUpload[3]);
+			} else {
+				$error = '';
+				$success = '';
+				if(isset($errorUpload[1])) {
+					$error = $error.' '.$errorUpload[1].' '.$this->lang->line('image').' 1 '.$this->lang->line('is').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').'<br>';
+				} else {
+					$success = $success.' '.$this->lang->line('image').' 1 '.$this->lang->line('is').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully').'<br>';
+				}
+				if(isset($errorUpload[2])) {
+					$error = $error.' '.$errorUpload[2].' '.$this->lang->line('image').' 2 '.$this->lang->line('is').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').'<br>';
+				} else {
+					$success = $success.' '.$this->lang->line('image').' 2 '.$this->lang->line('is').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully').'<br>';
+				}
+				if(isset($errorUpload[3])) {
+					$error = $error.' '.$errorUpload[3].' '.$this->lang->line('image').' 3 '.$this->lang->line('is').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').'<br>';
+				} else {
+					$success = $success.' '.$this->lang->line('image').' 3 '.$this->lang->line('is').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully').'<br>';
+				}
+				$this->session->set_flashdata('success', $success);
+				$this->session->set_flashdata('error', $error);
+			}
+		}
+
 		$this->template->set('title', 'Site Setting');
 		$this->template->load('admin_layout', 'contents' , 'admin/site_setting', $data);
 	}
