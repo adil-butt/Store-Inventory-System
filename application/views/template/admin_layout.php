@@ -337,6 +337,13 @@
 									</span>
 									<b><span id="tempInvoiceTotal3"></span></b>
 								</div>
+								<div class="form-group col-md-2">
+									<?php echo $this->lang->line('total'); ?><br>
+									<span id="tempInvoiceTotalPrice">
+										<span id="tempInvoiceTotalPrice0" class="tempInvoiceTotalPrice0"></span><br class="tempInvoiceTotalPrice0">
+									</span>
+									<b><span id="tempInvoiceTotal4"></span></b>
+								</div>
 							</div>
 						</div>
 					</div>

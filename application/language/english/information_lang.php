@@ -171,6 +171,7 @@ $lang['only'] = 'Only';
 $lang['format'] = 'Format';
 $lang['verification'] = 'Verification';
 $lang['registration'] = 'Registration';
+$lang['our'] = 'Our';
 
 // general lines
 $lang['forgot_password_page'] = 'Enter your email address and we will send you instructions on how to reset your password';

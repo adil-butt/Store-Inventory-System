@@ -190,7 +190,7 @@
 
 				<form method="post" action="<?php echo base_url('home'); ?>" class="form-inline">
 					<div class="md-form my-0">
-						<input name="userSearch" class="form-control mr-sm-2" type="text" placeholder="<?php echo $this->lang->line('search'); ?>" aria-label="Search">
+						<input name="userSearch" class="form-control mr-sm-2" type="text" placeholder="<?php echo $this->lang->line('search').' '.$this->lang->line('our').' '.$this->lang->line('product'); ?>" aria-label="Search">
 					</div>
 				</form>
 			</div>
