@@ -30,7 +30,7 @@ class User extends CI_Controller
 	public function about() {
 		$data = array(); // optional parameter
 
-		$this->template->set('title', 'About');
+		$this->template->set('title', $this->lang->line('about').' '.$this->lang->line('us'));
 		$this->template->load('user_layout', 'contents' , 'user/about', $data);
 	}
 
@@ -77,7 +77,7 @@ class User extends CI_Controller
 			}
 
 		}
-		$this->template->set('title', 'Contact Us');
+		$this->template->set('title', $this->lang->line('contact_us'));
 		$this->template->load('user_layout', 'contents' , 'user/contact_us', $data);
 	}
 
@@ -121,12 +121,11 @@ class User extends CI_Controller
 		}
 
 		$data = array(); // optional parameter
-		$this->template->set('title', 'Checkout');
+		$this->template->set('title', $this->lang->line('checkout'));
 		$this->template->load('user_layout', 'contents' , 'user/checkout', $data);
 	}
 
-	public function state_check($str)
-	{
+	public function state_check($str) {
 		if ($str == 'Punjab' || $str == 'Islamabad' || $str == 'Sindh' || $str == 'KPK' || $str == 'Northern Areas' || $str == 'Balochistan')
 		{
 			return TRUE;
@@ -140,7 +139,7 @@ class User extends CI_Controller
 
 	public function cart() {
 		$data = array(); // optional parameter
-		$this->template->set('title', 'Cart');
+		$this->template->set('title', $this->lang->line('cart'));
 		$this->template->load('user_layout', 'contents' , 'user/cart', $data);
 	}
 
@@ -224,7 +223,7 @@ class User extends CI_Controller
 		$product = $this->Product_Model->getResultOfProducts($where);
 		$data['product'] = $product;
 
-		$this->template->set('title', 'Product Information');
+		$this->template->set('title', $this->lang->line('product').' '.$this->lang->line('information'));
 		$this->template->load('user_layout', 'contents' , 'user/product_view', $data);
 	}
 
@@ -316,7 +315,7 @@ class User extends CI_Controller
 			}
 		}
 		$data = array(); // optional parameter
-		$this->template->set('title', 'Profile');
+		$this->template->set('title', $this->lang->line('profile'));
 		$this->template->load('user_layout', 'contents' , 'user/profile', $data);
 
 	}
@@ -373,7 +372,7 @@ class User extends CI_Controller
 			$this->pagination->initialize($config);
 		}
 
-		$this->template->set('title', 'Home');
+		$this->template->set('title', $this->lang->line('home'));
 		$this->template->load('user_layout', 'contents' , 'user/dashboard', $data);
 	}
 }

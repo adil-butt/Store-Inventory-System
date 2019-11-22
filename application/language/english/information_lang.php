@@ -167,6 +167,10 @@ $lang['message'] = 'Message';
 $lang['send'] = 'Send';
 $lang['drop'] = 'Drop';
 $lang['us'] = 'Us';
+$lang['only'] = 'Only';
+$lang['format'] = 'Format';
+$lang['verification'] = 'Verification';
+$lang['registration'] = 'Registration';
 
 // general lines
 $lang['forgot_password_page'] = 'Enter your email address and we will send you instructions on how to reset your password';

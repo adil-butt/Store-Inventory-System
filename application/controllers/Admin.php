@@ -32,7 +32,7 @@ class Admin extends CI_Controller
 
 	public function uploadSliderImage($fieldName, $fileName) {
 		$config['upload_path'] = 'assets/slider_images';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'jpg';
 		$config['min_width']  = '1024';
 		$config['min_height']  = '768';
 		$config['file_name'] = $fileName;
@@ -92,7 +92,7 @@ class Admin extends CI_Controller
 			}
 		}
 
-		$this->template->set('title', 'Site Setting');
+		$this->template->set('title', $this->lang->line('site').' '.$this->lang->line('setting'));
 		$this->template->load('admin_layout', 'contents' , 'admin/site_setting', $data);
 	}
 
@@ -113,7 +113,7 @@ class Admin extends CI_Controller
 		$data['bills'] = $bills;
 		$data['products'] = $products;
 		$data['sales'] = $sales;
-		$this->template->set('title', 'Search');
+		$this->template->set('title', $this->lang->line('search'));
 		$this->template->load('admin_layout', 'contents' , 'admin/search', $data);
 	}
 
@@ -217,7 +217,7 @@ class Admin extends CI_Controller
 
 	public function billDetail($billId='') {
 		if($billId != '') {
-			$this->template->set('title', 'Bill Details');
+			$this->template->set('title', $this->lang->line('bill').' '.$this->lang->line('details'));
 			$where = array(
 				'id' => $billId
 			);
@@ -232,7 +232,7 @@ class Admin extends CI_Controller
 
 			$data['billRow'] = $row;
 		} else {
-			$this->template->set('title', 'All Products');;
+			$this->template->set('title', $this->lang->line('all').' '.$this->lang->line('products'));;
 			$where = '';
 		}
 
@@ -598,7 +598,7 @@ class Admin extends CI_Controller
 		}
 		$data['billRow'] = $row;
 
-		$this->template->set('title', 'Bills');
+		$this->template->set('title', $this->lang->line('bills'));
 		$this->template->load('admin_layout', 'contents' , 'admin/bills', $data);
 
 	}
@@ -691,13 +691,12 @@ class Admin extends CI_Controller
 			}
 		}
 		$data = array(); // optional parameter
-		$this->template->set('title', 'Profile');
+		$this->template->set('title', $this->lang->line('profile'));
 		$this->template->load('admin_layout', 'contents' , 'admin/profile', $data);
 
 	}
 
-	public function index()
-	{
+	public function index() {
 		$where = "sale.`addeddate` > (NOW() - INTERVAL 1 MONTH)";
 		$where2 = "products.`addeddate` > (NOW() - INTERVAL 1 MONTH)";
 		$row = $this->Sell_Model->getSalesWithPPrice($where);
@@ -740,7 +739,7 @@ class Admin extends CI_Controller
 			$error = $this->db->error();
 			$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 		}
-		$this->template->set('title', 'Admin Dashboard');
+		$this->template->set('title', $this->lang->line('admin').' '.$this->lang->line('dashboard'));
 		$this->template->load('admin_layout', 'contents' , 'admin/dashboard', $data);
 	}
 

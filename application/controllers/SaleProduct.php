@@ -109,8 +109,7 @@ class SaleProduct extends CI_Controller {
 		redirect(base_url('admin/sales'));
 	}
 
-	function validateReturnMaxQuantity($quantity)
-	{
+	function validateReturnMaxQuantity($quantity) {
 		$where = array(
 			'id' => $this->input->post('returnSalePId'),
 		);
@@ -127,7 +126,7 @@ class SaleProduct extends CI_Controller {
 		$row = $this->Sell_Model->getSalesWithPName();
 		$data['row'] = $row;
 
-		$this->template->set('title', 'Sales Table');
+		$this->template->set('title', $this->lang->line('sales').' '.$this->lang->line('table'));
 		$this->template->load('admin_layout', 'contents' , 'admin/salesdetails', $data);
 	}
 
@@ -244,8 +243,7 @@ class SaleProduct extends CI_Controller {
 		}
 	}
 
-	function validateMaxQuantity($quantity)
-	{
+	function validateMaxQuantity($quantity) {
 		$where = array(
 			'id' => $this->input->post('salePId'),
 		);

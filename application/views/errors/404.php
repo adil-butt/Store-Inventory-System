@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>404 Error</title>
+  <title>404 <?php echo $this->lang->line('error'); ?></title>
 
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">

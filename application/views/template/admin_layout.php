@@ -89,21 +89,29 @@
 				<img class="rounded-circle" id="profileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
-				<a class="dropdown-item" id="viewProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
+				<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>">
+				<i class="fa fa-user-circle"></i>
+				<?php echo $this->lang->line('profile'); ?></a>
+				<a class="dropdown-item" id="viewProfilePhoto" href="#">
+				<i class="fa fa-image"></i>
+				<?php echo $this->lang->line('view_profile_photo'); ?></a>
 				<div class="dropdown-divider"></div>
 				<?php
 				if($this->session->userdata('site_lang') == 'japanese') { ?>
 					<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/english'; ?>">
+					<i class="fas fa-language"></i>
 						<?php echo $this->lang->line('change_language_to_english'); ?>
 					</a>
 				<?php } else { ?>
 					<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/japanese'; ?>">
+					<i class="fas fa-language"></i>
 						<?php echo $this->lang->line('change_language_to_japanese'); ?>
 					</a>
 				<?php } ?>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
+				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+				<i class="fas fa-sign-out-alt"></i>
+				<?php echo $this->lang->line('logout'); ?></a>
 			</div>
 		</li>
 	</ul>
@@ -154,7 +162,7 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="settingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-fw fa-edit"></i>
+				<i class="fa fa-cog"></i>
 				<span><?php echo $this->lang->line('site').' '.$this->lang->line('setting'); ?></span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="settingDropdown">

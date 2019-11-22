@@ -60,7 +60,7 @@ class Authentication extends CI_Controller {
 			$data['message'] = '<div><p>'.$this->lang->line('no').' '.$this->lang->line('record').' '.$this->lang->line('found').'</p></div>';
 		}
 
-		$data['title'] = 'Reset Password';
+		$data['title'] = $this->lang->line('reset').' '.$this->lang->line('password');
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/reset-password');
 		$this->load->view('auth/include/footer');
@@ -110,7 +110,7 @@ class Authentication extends CI_Controller {
 			}
 		}
 
-		$data['title'] = 'Forgot Password';
+		$data['title'] = $this->lang->line('forgot').' '.$this->lang->line('password');
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/forgot-password');
 		$this->load->view('auth/include/footer');
@@ -136,7 +136,7 @@ class Authentication extends CI_Controller {
 				} else {
 					$data['message'] = $this->lang->line('thanks_registering').". ".$this->lang->line('already_been_verified').".<br>".$this->lang->line('login_by_clicking_link')."<br>";
 				}
-				$data['title'] = 'Verification';
+				$data['title'] = $this->lang->line('verification');
 				$this->load->view('auth/include/header', $data);
 				$this->load->view('auth/verify', $data);
 				$this->load->view('auth/include/footer');
@@ -190,7 +190,7 @@ class Authentication extends CI_Controller {
 				$this->session->set_flashdata('error', $this->lang->line('invalid').' '.$this->lang->line('login').' '.$this->lang->line('credentials'));
 			}
 		}
-		$data['title'] = 'Login';
+		$data['title'] = $this->lang->line('login');
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/login');
 		$this->load->view('auth/include/footer');
@@ -285,7 +285,7 @@ class Authentication extends CI_Controller {
 			}
 		}
 
-		$data['title'] = 'Registration';
+		$data['title'] = $this->lang->line('registration');
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/registration');
 		$this->load->view('auth/include/footer');

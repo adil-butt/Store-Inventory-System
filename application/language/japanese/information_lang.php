@@ -166,6 +166,10 @@ $lang['message'] = 'メッセージ';
 $lang['send'] = '送る';
 $lang['drop'] = 'ドロップ';
 $lang['us'] = '私たち';
+$lang['only'] = 'のみ';
+$lang['format'] = 'フォーマット';
+$lang['verification'] = '検証';
+$lang['registration'] = '登録';
 
 // general lines
 $lang['forgot_password_page'] = 'メールアドレスを入力すると、パスワードのリセット方法に関する指示が送信されます';

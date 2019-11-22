@@ -12,19 +12,19 @@
 				<div class="form-group collapse-item">
 					<div class="form-label-group">
 						<input type="file" name="sliderImage1" id="sliderImage1" />
-						<?php echo form_label($this->lang->line('slider').' '.$this->lang->line('image').' 1 ('.$this->lang->line('optional').')', 'sliderImage1'); ?>
+						<?php echo form_label($this->lang->line('slider').' '.$this->lang->line('image').' 1 ('.$this->lang->line('optional').') '.$this->lang->line('only').' .jpg '.$this->lang->line('format'), 'sliderImage1'); ?>
 					</div>
 				</div>
 				<div class="form-group collapse-item">
 					<div class="form-label-group">
 						<input type="file" name="sliderImage2" id="sliderImage2" />
-						<?php echo form_label($this->lang->line('slider').' '.$this->lang->line('image').' 2 ('.$this->lang->line('optional').')', 'sliderImage2'); ?>
+						<?php echo form_label($this->lang->line('slider').' '.$this->lang->line('image').' 2 ('.$this->lang->line('optional').') '.$this->lang->line('only').' .jpg '.$this->lang->line('format'), 'sliderImage2'); ?>
 					</div>
 				</div>
 				<div class="form-group collapse-item">
 					<div class="form-label-group">
 						<input type="file" name="sliderImage3" id="sliderImage3" />
-						<?php echo form_label($this->lang->line('slider').' '.$this->lang->line('image').' 3 ('.$this->lang->line('optional').')', 'sliderImage3'); ?>
+						<?php echo form_label($this->lang->line('slider').' '.$this->lang->line('image').' 3 ('.$this->lang->line('optional').') '.$this->lang->line('only').' .jpg '.$this->lang->line('format'), 'sliderImage3'); ?>
 					</div>
 				</div>
 				<div class="dropdown-divider"></div>

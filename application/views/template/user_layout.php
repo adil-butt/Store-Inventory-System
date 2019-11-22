@@ -99,13 +99,19 @@
 			<!-- Left -->
 			<ul id="userNav" class="navbar-nav mr-auto">
 				<li id="navHome" class="nav-item">
-					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home'); ?></a>
+					<a class="nav-link waves-effect" href="<?php echo base_url(); ?>">
+						<i class="fa fa-home"></i>
+						<?php echo $this->lang->line('home'); ?></a>
 				</li>
 				<li id="navAbout" class="nav-item">
-					<a class="nav-link waves-effect" href="<?php echo base_url('about'); ?>"><?php echo $this->lang->line('about'); ?></a>
+					<a class="nav-link waves-effect" href="<?php echo base_url('about'); ?>">
+						<i class="fa fa-user"></i>
+						<?php echo $this->lang->line('about').' '.$this->lang->line('us'); ?></a>
 				</li>
 				<li id="navContact" class="nav-item">
-					<a class="nav-link waves-effect" href="<?php echo base_url('contact_us'); ?>"><?php echo $this->lang->line('contact_us'); ?></a>
+					<a class="nav-link waves-effect" href="<?php echo base_url('contact_us'); ?>">
+						<i class="fa fa-phone"></i>
+						<?php echo $this->lang->line('contact_us'); ?></a>
 				</li>
 			</ul>
 
@@ -120,7 +126,7 @@
 					</a>
 				</li>
 				<?php } ?>
-				<li class="nav-item">
+				<!--<li class="nav-item">
 					<a href="#" class="nav-link waves-effect" target="_blank">
 						<i class="fab fa-facebook-f"></i>
 					</a>
@@ -129,33 +135,42 @@
 					<a href="#" class="nav-link waves-effect" target="_blank">
 						<i class="fab fa-twitter"></i>
 					</a>
-				</li>
+				</li>-->
 				<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 2) { ?>
 					<li class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img class="rounded-circle" id="userProfileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="<?php echo base_url().'profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
-							<a class="dropdown-item" id="viewUserProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
-							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
+							<a class="dropdown-item" href="<?php echo base_url().'profile'; ?>">
+								<i class="fa fa-user-circle"></i>
+								<?php echo $this->lang->line('profile'); ?></a>
+							<a class="dropdown-item" id="viewUserProfilePhoto" href="#">
+								<i class="fa fa-image"></i>
+								<?php echo $this->lang->line('view_profile_photo'); ?></a>
+							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+								<i class="fas fa-sign-out-alt"></i>
+								<?php echo $this->lang->line('logout'); ?></a>
 						</div>
 					</li>
 				<?php } else { ?>
 					<li class="nav-item">
 						<a href="<?php echo base_url('login') ?>" class="nav-link waves-effect">
-							<i class="fab fa-sign-in"><?php echo $this->lang->line('sign_in'); ?></i>
+							<i class="fas fa-sign-in-alt"></i>
+							<?php echo $this->lang->line('sign_in'); ?>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?php echo base_url('reg') ?>" class="nav-link waves-effect">
-							<i class="fab fa-user-plus"><?php echo $this->lang->line('sign_up'); ?></i>
+							<i class="fas fa-user-plus"></i>
+							<?php echo $this->lang->line('sign_up'); ?>
 						</a>
 					</li>
 				<?php } ?>
 				<li class="nav-item dropdown no-arrow">
 					<a class="nav-link dropdown-toggle" href="#" id="userOtherDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fab"><?php echo $this->lang->line('change').' '.$this->lang->line('language'); ?></i>
+						<i class="fas fa-language"></i>
+						<?php echo $this->lang->line('change').' '.$this->lang->line('language'); ?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userOtherDropdown">
 						<a class="dropdown-item" href="<?php echo ($this->session->userdata('site_lang') == 'japanese')?base_url().'languageswitcher/switchLang/english':base_url().'languageswitcher/switchLang/japanese'; ?>">
