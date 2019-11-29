@@ -594,28 +594,44 @@ $(document).ready(function () {
 	$('#productsRow').on('input', '.detectQuantityInput', function () {
 		if($('#submitBillButton').text() == 'Add') {
 			$(".invoiceQuantity"+$(this).data('id')).text($(this).val());
+			if($.isNumeric($(this).val()) && $.isNumeric($('#productPrice'+$(this).data('id')).val())) {
+				$(".tempInvoiceTotalPrice"+$(this).data('id')).text(($(this).val()) * ($('#productPrice'+$(this).data('id')).val()));
+			}
 			let a;
 			let tempInvoiceTotal2 = 0;
+			let tempInvoiceTotal4 = 0;
 			for(a = 0; a <= i; a++) {
 				if(parseInt($("#invoiceQuantity"+arr[a]).text())) {
 					tempInvoiceTotal2 = tempInvoiceTotal2 + parseInt($("#invoiceQuantity"+arr[a]).text());
 				}
+				if(parseInt($("#tempInvoiceTotalPrice"+arr[a]).text())) {
+					tempInvoiceTotal4 = tempInvoiceTotal4 + parseInt($("#tempInvoiceTotalPrice"+arr[a]).text());
+				}
 			}
 			$("#tempInvoiceTotal2").text(tempInvoiceTotal2);
+			$("#tempInvoiceTotal4").text(tempInvoiceTotal4);
 		}
 	});
 
 	$('#productsRow').on('input', '.detectPriceInput', function () {
 		if($('#submitBillButton').text() == 'Add') {
 			$(".invoicePrice"+$(this).data('id')).text($(this).val());
+			if($.isNumeric($(this).val()) && $.isNumeric($('#productQuantity'+$(this).data('id')).val())) {
+				$(".tempInvoiceTotalPrice"+$(this).data('id')).text(($(this).val()) * ($('#productQuantity'+$(this).data('id')).val()));
+			}
 			let a;
 			let tempInvoiceTotal3 = 0;
+			let tempInvoiceTotal4 = 0;
 			for(a = 0; a <= i; a++) {
 				if(parseInt($("#invoicePrice"+arr[a]).text())) {
 					tempInvoiceTotal3 = tempInvoiceTotal3 + parseInt($("#invoicePrice"+arr[a]).text());
 				}
+				if(parseInt($("#tempInvoiceTotalPrice"+arr[a]).text())) {
+					tempInvoiceTotal4 = tempInvoiceTotal4 + parseInt($("#tempInvoiceTotalPrice"+arr[a]).text());
+				}
 			}
 			$("#tempInvoiceTotal3").text(tempInvoiceTotal3);
+			$("#tempInvoiceTotal4").text(tempInvoiceTotal4);
 		}
 	});
 
@@ -630,10 +646,12 @@ $(document).ready(function () {
 				$("#tempInvoiceTotal3").text($("#tempInvoiceTotal3").text() - $("#productPrice"+$(this).data("id")).val());
 			}
 		}
+		$('#tempInvoiceTotal4').text($("#tempInvoiceTotal4").text() - $("#tempInvoiceTotalPrice"+$(this).data("id")).text());
 		$('#addNewProductsRow'+$(this).data('id')).remove();
 		$('.invoicePName'+$(this).data('id')).remove();
 		$('.invoiceQuantity'+$(this).data('id')).remove();
 		$('.invoicePrice'+$(this).data('id')).remove();
+		$('.tempInvoiceTotalPrice'+$(this).data('id')).remove();
 		let tempI = $("#tempInvoiceTotal1").text();
 		tempI--;
 		$("#tempInvoiceTotal1").text(tempI);
@@ -713,9 +731,11 @@ $(document).ready(function () {
 		let addInvoiceProductName = '<span class="invoicePName'+(largest+1)+'"></span><br class="invoicePName'+(largest+1)+'">';
 		let addInvoiceProductQuantity = '<span id="invoiceQuantity'+(largest+1)+'" class="invoiceQuantity'+(largest+1)+'"></span><br class="invoiceQuantity'+(largest+1)+'">';
 		let addInvoiceProductPrice = '<span id="invoicePrice'+(largest+1)+'" class="invoicePrice'+(largest+1)+'"></span><br class="invoicePrice'+(largest+1)+'">';
+		let addInvoiceProductTotalPrice = '<span id="tempInvoiceTotalPrice'+(largest+1)+'" class="tempInvoiceTotalPrice'+(largest+1)+'"></span><br class="tempInvoiceTotalPrice'+(largest+1)+'">';
 		$('#tempInvoiceName').append(addInvoiceProductName);
 		$('#tempInvoiceQuantity').append(addInvoiceProductQuantity);
 		$('#tempInvoicePrice').append(addInvoiceProductPrice);
+		$('#tempInvoiceTotalPrice').append(addInvoiceProductTotalPrice);
 
 
 	});
@@ -729,6 +749,18 @@ $(document).ready(function () {
 		arr = [];
 		i = 0;
 		arr = [i];
+		$("#tempInvoiceName").empty();
+		$("#tempInvoiceName").append('<span class="invoicePName0"></span><br class="invoicePName0">');
+		$("#tempInvoiceQuantity").empty();
+		$("#tempInvoiceQuantity").append('<span id="invoiceQuantity0" class="invoiceQuantity0"></span><br class="invoiceQuantity0">');
+		$("#tempInvoicePrice").empty();
+		$("#tempInvoicePrice").append('<span id="invoicePrice0" class="invoicePrice0"></span><br class="invoicePrice0">');
+		$("#tempInvoiceTotalPrice").empty();
+		$("#tempInvoiceTotalPrice").append('<span id="tempInvoiceTotalPrice0" class="tempInvoiceTotalPrice0"></span><br class="tempInvoiceTotalPrice0">');
+		$("#tempInvoiceTotal1").text('1');
+		$("#tempInvoiceTotal2").text('');
+		$("#tempInvoiceTotal3").text('');
+		$("#tempInvoiceTotal4").text('');
 		$("#tempInvoice").hide();
 	});
 });
