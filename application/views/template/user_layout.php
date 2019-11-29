@@ -173,7 +173,7 @@
 						<?php echo $this->lang->line('change').' '.$this->lang->line('language'); ?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userOtherDropdown">
-						<a class="dropdown-item" href="<?php echo ($this->session->userdata('site_lang') == 'japanese')?base_url().'languageswitcher/switchLang/english':base_url().'languageswitcher/switchLang/japanese'; ?>">
+						<a class="dropdown-item" href="<?php echo ($this->session->userdata('site_lang') == 'japanese')?base_url().'LanguageSwitcher/switchLang/english':base_url().'LanguageSwitcher/switchLang/japanese'; ?>">
 							<?php echo ($this->session->userdata('site_lang') == 'japanese')?$this->lang->line('change_language_to_english'):$this->lang->line('change_language_to_japanese'); ?></a>
 					</div>
 				</li>

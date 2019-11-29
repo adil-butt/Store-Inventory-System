@@ -183,9 +183,13 @@ class SaleProduct extends CI_Controller {
 		if($this->form_validation->run() == TRUE) {
 			$data = array(
 				'quantity' => $this->input->post('salePQuantity'),
-				'discount' => $this->input->post('salePDiscount'),
 				'comments' => $this->input->post('salePComment'),
 			);
+			if($this->input->post('salePDiscount') == '') {
+				$data['discount'] = 0;
+			} else {
+				$data['discount'] = $this->input->post('salePDiscount');
+			}
 			if($this->input->post('saleId') != '') {
 				$where = array(
 					'id' => $this->input->post('saleId'),

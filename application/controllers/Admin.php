@@ -736,8 +736,10 @@ class Admin extends CI_Controller
 			$data['chartData'] = json_encode($chartData);
 		} else {
 			$data = array(); // optional parameter
-			$error = $this->db->error();
-			$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
+			$data['todaySales'] = '0';
+			$data['todayPurchases'] = '0';
+			$data['monthSales'] = '0';
+			$data['monthPurchases'] = '0';
 		}
 		$this->template->set('title', $this->lang->line('admin').' '.$this->lang->line('dashboard'));
 		$this->template->load('admin_layout', 'contents' , 'admin/dashboard', $data);
