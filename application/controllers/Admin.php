@@ -39,9 +39,6 @@ class Admin extends CI_Controller
 		$config['overwrite'] = true;
 		$this->load->library('upload', $config);
 
-		/*echo "<pre>";
-		print_r($_FILES[$fieldName]);*/
-
 		if($this->upload->do_upload($fieldName)) {
 			return true;
 		} else {
