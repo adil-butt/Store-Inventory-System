@@ -1,4 +1,75 @@
 <?php
+<<<<<<< HEAD
+=======
+
+// for user navbar
+$lang['home'] = 'ホーム';
+$lang['about'] = '約';
+$lang['contact_us'] = 'お問い合わせ';
+$lang['sign_in'] = 'サインイン';
+$lang['sign_up'] = 'サインアップ';
+
+// for user footer
+$lang['user_copyright'] = '著作権';
+
+// general keyword for user
+$lang['cart'] = 'カート';
+$lang['share'] = 'シェア';
+$lang['available'] = '利用可能';
+$lang['to'] = 'に';
+$lang['must'] = 'しなければならない';
+$lang['be'] = 'なる';
+$lang['empty'] = '空の';
+$lang['alert'] = 'アラート';
+$lang['log'] = 'ログ';
+$lang['in'] = 'に';
+$lang['user_not'] = 'ない';
+$lang['user_item'] = '項目';
+$lang['checkout'] = 'チェックアウト';
+$lang['your'] = 'きみの';
+$lang['qty'] = '数量';
+$lang['item'] = '項目';
+$lang['sub'] = 'サブ';
+$lang['country'] = '国';
+$lang['state'] = '状態';
+$lang['zip'] = '郵便番号';
+$lang['pakistan'] = 'パキスタン';
+$lang['choose'] = '選ぶ';
+$lang['please'] = 'お願いします';
+$lang['valid'] = '有効な';
+$lang['provide'] = '提供する';
+$lang['code'] = 'コード';
+$lang['required'] = '必須';
+$lang['card'] = 'カード';
+$lang['credit'] = 'クレジット';
+$lang['debit'] = '借方';
+$lang['paypal'] = 'ペイパル';
+$lang['on'] = 'に';
+$lang['expiration'] = '有効期限';
+$lang['continue'] = '持続する';
+$lang['full'] = 'いっぱい';
+$lang['as'] = 'として';
+$lang['displayed'] = '表示された';
+$lang['punjab'] = 'パンジャーブ';
+$lang['islamabad'] = 'イスラマバード';
+$lang['sindh'] = 'シンド';
+$lang['balochistan'] = 'バロチスタン';
+$lang['northern_areas'] = '北部地域';
+$lang['date'] = '日付';
+$lang['security'] = 'セキュリティ';
+
+// user error messages
+$lang['user_not_log_in'] = 'ログインしていません';
+$lang['login_to_add_item_in_cart'] = 'カートにアイテムを追加するには、最初にログインしてください';
+$lang['user_select_quantity'] = '0より大きく、より小さい数量を選択してください';
+$lang['user_already_selected'] = 'すでに選択されています';
+$lang['user_select_quantity_again'] = '以下の数量を選択してください';
+$lang['something'] = '何か';
+$lang['went'] = '行った';
+$lang['wrong'] = '違う';
+$lang['add_items_to_checkout'] = 'チェックアウトするためにカートにアイテムを追加してください';
+
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 // for navbar
 $lang['qureshi_traders'] = 'クレシトレーダー';
 $lang['admin'] = '管理者';
@@ -72,6 +143,53 @@ $lang['name'] = '名前';
 $lang['matched'] = '一致した';
 $lang['value'] = '値';
 $lang['last'] = '最終';
+<<<<<<< HEAD
+=======
+$lang['anything'] = '何でも';
+$lang['description'] = '説明';
+$lang['an'] = 'と';
+$lang['invalid'] = '無効';
+$lang['credentials'] = '資格情報';
+$lang['are'] = 'は';
+$lang['uploaded'] = 'アップロード済み';
+$lang['reset'] = 'リセットする';
+$lang['forgot'] = '忘れた';
+$lang['enter'] = '入る';
+$lang['registered'] = '登録済み';
+$lang['no'] = 'いや';
+$lang['record'] = '記録';
+$lang['click'] = 'クリック';
+$lang['here'] = 'ここに';
+$lang['new'] = '新しい';
+$lang['repeat'] = '繰り返す';
+$lang['site'] = 'サイト';
+$lang['setting'] = 'セッティング';
+$lang['change'] = '変化する';
+$lang['language'] = '言語';
+$lang['slider'] = 'スライダー';
+$lang['message'] = 'メッセージ';
+$lang['send'] = '送る';
+$lang['drop'] = 'ドロップ';
+$lang['us'] = '私たち';
+$lang['only'] = 'のみ';
+$lang['format'] = 'フォーマット';
+$lang['verification'] = '検証';
+$lang['registration'] = '登録';
+$lang['our'] = '私たちの';
+
+// general lines
+$lang['forgot_password_page'] = 'メールアドレスを入力すると、パスワードのリセット方法に関する指示が送信されます';
+$lang['verification_link_send'] = '確認リンクがメールに送信されました';
+$lang['verify_your_account'] = 'そのリンクをクリックしてアカウントを確認してください';
+$lang['reset_link_send'] = 'パスワードをリセットするリンクがメールに送信されました';
+$lang['click_link_to_reset'] = 'そのリンクをクリックしてパスワードをリセットします';
+$lang['link_not_exist_expired'] = 'このリンクは存在しないか期限切れです';
+$lang['thanks_registering'] = '登録していただきありがとうございます';
+$lang['successfully_verified'] = 'アカウントは正常に確認されました';
+$lang['may_login'] = '今すぐログインできます';
+$lang['already_been_verified'] = 'アカウントは既に確認されています';
+$lang['login_by_clicking_link'] = '以下のリンクをクリックしてログインできます';
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 // for profile page
 $lang['first_name'] = 'ファーストネーム';
@@ -119,6 +237,10 @@ $lang['cancel'] = 'キャンセル';
 
 // for image Modal
 $lang['image'] = '画像';
+<<<<<<< HEAD
+=======
+$lang['images'] = '画像';
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 $lang['preview'] = 'プレビュー';
 
 // for invoice
@@ -150,3 +272,9 @@ $lang['successfully'] = '成功しました';
 $lang['deleted'] = '削除しました';
 $lang['added'] = '追加しました';
 $lang['update_quantity_error_message'] = '販売したアイテムよりも数量が多いか、最初に販売したアイテムを修正する必要があります。製品が正常に更新されない';
+<<<<<<< HEAD
+=======
+$lang['account_not_activated'] = 'アカウントはまだ有効化されていません';
+$lang['activate_account'] = 'ログインするには、アカウントを有効にしてください';
+$lang['activate_account_first'] = '最初にアカウントを有効にしてください';
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db

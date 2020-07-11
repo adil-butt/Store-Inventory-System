@@ -1,5 +1,12 @@
 <?php
 class Sell_Model extends CI_Model {
+<<<<<<< HEAD
+=======
+	public function insertSalesAsBatch($data) {
+		return $this->db->insert_batch('sale', $data);
+	}
+
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	public function getSimilar($search) {
 		$this->db->select('productid, quantity, discount, comments, addeddate, lastupdated');
 		$this->db->like('quantity', $search);
@@ -8,7 +15,11 @@ class Sell_Model extends CI_Model {
 		$this->db->or_like('addeddate', $search);
 		$this->db->or_like('lastupdated', $search);
 		$query = $this->db->get('sale');
+<<<<<<< HEAD
 		return $query->result();
+=======
+		return $query->result_array();
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	public function updateSell($data, $where) {
@@ -44,6 +55,10 @@ class Sell_Model extends CI_Model {
 		$this->db->join('products', 'products.id = sale.productid');
 		$this->db->where($where);
 		$this->db->group_by('DAY(sale.addeddate)');
+<<<<<<< HEAD
+=======
+		$this->db->order_by('addeddate', 'ASC');
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$query = $this->db->get();
 		if($query !== FALSE && $query->num_rows() > 0) {
 			return $query->result_array();

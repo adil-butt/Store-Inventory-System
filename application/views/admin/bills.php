@@ -13,6 +13,10 @@
 				</li>
 			</ol>
 		<div class="alert alert-primary" role="alert" id="createBillMessage"  style="text-align: center; display:none;"></div>
+<<<<<<< HEAD
+=======
+		<div class="alert alert-primary" role="alert" id="imageUploadMessage"  style="text-align: center; display:none;"></div>
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		<!-- DataTables Example -->
 		<div class="card mb-3">
 			<div class="card-header">

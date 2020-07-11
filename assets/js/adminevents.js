@@ -71,6 +71,10 @@ $(document).ready(function () {
 			let productPrice = $.trim($(this).parents('tr').find('td.editableProductPrice').text());
 			let productUnit = $.trim($(this).parents('tr').find('td.editableProductUnit').find('option:selected').text());
 			let productComments = $.trim($(this).parents('tr').find('td.editableProductComments').text());
+<<<<<<< HEAD
+=======
+			let productDescription = $.trim($(this).parents('tr').find('td.editableProductDescription').text());
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			var isCorrect = 1;
 			if (productName  === '') {
 				isCorrect = 0;
@@ -104,6 +108,10 @@ $(document).ready(function () {
 						productPrice: productPrice,
 						productUnit: productUnit,
 						productComments: productComments,
+<<<<<<< HEAD
+=======
+						productDescription: productDescription,
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					},
 					success: function (data) {
 						if(data.status) {
@@ -243,6 +251,10 @@ $(document).ready(function () {
 					$('#productPrice0').val(data.productRow[0]['price']);
 					$('#productUnit0').val(data.productRow[0]['unit']);
 					$('#productComment0').val(data.productRow[0]['comments']);
+<<<<<<< HEAD
+=======
+					$('#productDescription0').val(data.productRow[0]['description']);
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 					if(data.productRow.length > 1) {
 						for(var k = 0; k < data.productRow.length-1; k++) {
@@ -284,7 +296,19 @@ $(document).ready(function () {
 								'\t\t\t\t\t\t\t</div>\n' +
 								'\t\t\t\t\t\t\t<div class="form-group">\n' +
 								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(k+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['comments']+'</textarea>\n' +
+<<<<<<< HEAD
 								'\t\t\t\t\t\t\t</div> </div>';
+=======
+								'\t\t\t\t\t\t\t</div>' +
+								'\t\t\t\t\t\t\t<div class="form-group">\n' +
+								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(k+1)+'" name="productDescription[]"  placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['description']+'</textarea>\n' +
+								'\t\t\t\t\t\t\t</div> ' +
+								'\t\t\t\t\t\t\t<div class="form-group">\n' +
+								'\t\t\t\t\t\t\t\t<div class="form-label-group">\n' +
+								'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" />\n' +
+								'\t\t\t\t\t\t\t\t\t\t<label>'+products+" "+langImage+" ("+LangOptional+")"+'</label>\n' +
+								'\t\t\t\t\t\t\t\t\t</div></div>';
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							$('#productsRow').append(addNewProductRow);
 							$('#productUnit'+(k+1)).val(data.productRow[k+1]['unit']);
 						}
@@ -372,13 +396,27 @@ $(document).ready(function () {
 			}
 		}
 		if (isCorrect) {
+<<<<<<< HEAD
 			if($("#submitBillButton").text() == updateBillButton) {
 				if(checkUpdateQuantity) {
+=======
+			let formData = new FormData($('#billForm')[0]);
+			if($("#submitBillButton").text() == updateBillButton) {
+				if(checkUpdateQuantity) {
+					formData.append('originalBillNumber', originalBillNumber);
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					$.ajax({
 						url: baseUrl+'admin/updateBill',
 						type: 'POST',
 						dataType: 'JSON',
+<<<<<<< HEAD
 						data: $('#billForm').serialize() + '&originalBillNumber=' + originalBillNumber,
+=======
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 						success: function (data) {
 							if(data.status) {
 								$('#billForm')[0].reset();
@@ -413,8 +451,20 @@ $(document).ready(function () {
 								} else if(data.productUnitError != '') {
 									$('#createBillBackendError').html(data.productUnitError);
 									$("#createBillBackendError").show("slow");
+<<<<<<< HEAD
 								}
 							}
+=======
+								} else if(data.imageError != '') {
+									$('#createBillBackendError').html(data.imageError);
+									$("#createBillBackendError").show("slow");
+								}
+							}
+							if(data.status2) {
+								$("#imageUploadMessage").text(data.imageError);
+								$("#imageUploadMessage").show("slow").delay(3000).fadeOut("slow");
+							}
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 						},
 						error: function (XMLHttpRequest, textStatus, errorThrown) {
 							$('#billForm')[0].reset();
@@ -432,7 +482,15 @@ $(document).ready(function () {
 					url: baseUrl+'admin/addNewBill',
 					type: 'POST',
 					dataType: 'JSON',
+<<<<<<< HEAD
 					data: $('#billForm').serialize(),
+=======
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					success: function (data) {
 						if(data.status) {
 							let datatable = $('#dataTable').DataTable();
@@ -469,6 +527,10 @@ $(document).ready(function () {
 										'<option value="Other">'+langOther+'</option>'+
 										'</select>',
 										data.comments[k],
+<<<<<<< HEAD
+=======
+										data.description[k],
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 										data.addedAt,
 										data.updatedAt,
 										'<button data-productid="'+i+'" type="button" class="btn btn-outline-secondary sellProduct">'+langSell+'</button>'+
@@ -477,15 +539,29 @@ $(document).ready(function () {
 									] ).draw( false ).node();
 									$(rowNode).find('td:nth-child(1)').addClass('editable editableProductName');
 									$(rowNode).find('td:nth-child(2)').addClass('editable editableProductQuantity');
+<<<<<<< HEAD
 									$(rowNode).find('td:nth-child(3)').addClass('editable editableProductPrice');
 									$(rowNode).find('td:nth-child(4)').attr("id", 'editableProductTotal'+i);
 									$(rowNode).find('td:nth-child(5)').addClass('editableProductUnit');
 									$(rowNode).find('select').attr('id', 'editableProductUnit'+i);
 									$(rowNode).find('td:nth-child(6)').addClass('editable editableProductComments');
+=======
+									$(rowNode).find('td:nth-child(3)').attr('id', 'editableProductRemaining'+i);
+									$(rowNode).find('td:nth-child(4)').addClass('editable editableProductPrice');
+									$(rowNode).find('td:nth-child(5)').attr('id', 'editableProductTotal'+i);
+									$(rowNode).find('td:nth-child(6)').addClass('editableProductUnit');
+									$(rowNode).find('select').attr('id', 'editableProductUnit'+i);
+									$(rowNode).find('td:nth-child(7)').addClass('editable editableProductComments');
+									$(rowNode).find('td:nth-child(8)').addClass('editable editableProductDescription');
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 									$(rowNode).attr("id", "productRow"+i);
 									$('select[id="editableProductUnit'+i+'"] option[value="'+data.unit[k]+'"]').attr('selected','selected');
 									k++;
 								}
+<<<<<<< HEAD
+=======
+								$("#tempInvoice").hide();
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 								$("#billDetailMessage").text(data.statusMessage);
 								$('#billModal').modal('toggle');
 								$("#billDetailMessage").show("slow").delay(3000).fadeOut("slow");
@@ -527,6 +603,18 @@ $(document).ready(function () {
 								$("#createBillBackendError").show("slow");
 							}
 						}
+<<<<<<< HEAD
+=======
+						if(data.status2) {
+							if($('#addProductBillId').val() != '') {
+								$("#imageUploadMessage2").text(data.imageError);
+								$("#imageUploadMessage2").show("slow").delay(3000).fadeOut("slow");
+							} else {
+								$("#imageUploadMessage").text(data.imageError);
+								$("#imageUploadMessage").show("slow").delay(3000).fadeOut("slow");
+							}
+						}
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {
 						$('#billForm')[0].reset();
@@ -554,28 +642,64 @@ $(document).ready(function () {
 	$('#productsRow').on('input', '.detectQuantityInput', function () {
 		if($('#submitBillButton').text() == 'Add') {
 			$(".invoiceQuantity"+$(this).data('id')).text($(this).val());
+<<<<<<< HEAD
 			let a;
 			let tempInvoiceTotal2 = 0;
+=======
+			if($.isNumeric($(this).val()) && $.isNumeric($('#productPrice'+$(this).data('id')).val())) {
+				$(".tempInvoiceTotalPrice"+$(this).data('id')).text(($(this).val()) * ($('#productPrice'+$(this).data('id')).val()));
+			}
+			let a;
+			let tempInvoiceTotal2 = 0;
+			let tempInvoiceTotal4 = 0;
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			for(a = 0; a <= i; a++) {
 				if(parseInt($("#invoiceQuantity"+arr[a]).text())) {
 					tempInvoiceTotal2 = tempInvoiceTotal2 + parseInt($("#invoiceQuantity"+arr[a]).text());
 				}
+<<<<<<< HEAD
 			}
 			$("#tempInvoiceTotal2").text(tempInvoiceTotal2);
+=======
+				if(parseInt($("#tempInvoiceTotalPrice"+arr[a]).text())) {
+					tempInvoiceTotal4 = tempInvoiceTotal4 + parseInt($("#tempInvoiceTotalPrice"+arr[a]).text());
+				}
+			}
+			$("#tempInvoiceTotal2").text(tempInvoiceTotal2);
+			$("#tempInvoiceTotal4").text(tempInvoiceTotal4);
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		}
 	});
 
 	$('#productsRow').on('input', '.detectPriceInput', function () {
 		if($('#submitBillButton').text() == 'Add') {
 			$(".invoicePrice"+$(this).data('id')).text($(this).val());
+<<<<<<< HEAD
 			let a;
 			let tempInvoiceTotal3 = 0;
+=======
+			if($.isNumeric($(this).val()) && $.isNumeric($('#productQuantity'+$(this).data('id')).val())) {
+				$(".tempInvoiceTotalPrice"+$(this).data('id')).text(($(this).val()) * ($('#productQuantity'+$(this).data('id')).val()));
+			}
+			let a;
+			let tempInvoiceTotal3 = 0;
+			let tempInvoiceTotal4 = 0;
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			for(a = 0; a <= i; a++) {
 				if(parseInt($("#invoicePrice"+arr[a]).text())) {
 					tempInvoiceTotal3 = tempInvoiceTotal3 + parseInt($("#invoicePrice"+arr[a]).text());
 				}
+<<<<<<< HEAD
 			}
 			$("#tempInvoiceTotal3").text(tempInvoiceTotal3);
+=======
+				if(parseInt($("#tempInvoiceTotalPrice"+arr[a]).text())) {
+					tempInvoiceTotal4 = tempInvoiceTotal4 + parseInt($("#tempInvoiceTotalPrice"+arr[a]).text());
+				}
+			}
+			$("#tempInvoiceTotal3").text(tempInvoiceTotal3);
+			$("#tempInvoiceTotal4").text(tempInvoiceTotal4);
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		}
 	});
 
@@ -590,10 +714,18 @@ $(document).ready(function () {
 				$("#tempInvoiceTotal3").text($("#tempInvoiceTotal3").text() - $("#productPrice"+$(this).data("id")).val());
 			}
 		}
+<<<<<<< HEAD
+=======
+		$('#tempInvoiceTotal4').text($("#tempInvoiceTotal4").text() - $("#tempInvoiceTotalPrice"+$(this).data("id")).text());
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$('#addNewProductsRow'+$(this).data('id')).remove();
 		$('.invoicePName'+$(this).data('id')).remove();
 		$('.invoiceQuantity'+$(this).data('id')).remove();
 		$('.invoicePrice'+$(this).data('id')).remove();
+<<<<<<< HEAD
+=======
+		$('.tempInvoiceTotalPrice'+$(this).data('id')).remove();
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		let tempI = $("#tempInvoiceTotal1").text();
 		tempI--;
 		$("#tempInvoiceTotal1").text(tempI);
@@ -659,15 +791,35 @@ $(document).ready(function () {
 			'\t\t\t\t\t\t\t</div>\n' +
 			'\t\t\t\t\t\t\t<div class="form-group">\n' +
 			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(largest+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+LangOptional+')" form="billForm"></textarea>\n' +
+<<<<<<< HEAD
 			'\t\t\t\t\t\t\t</div> </div>';
+=======
+			'\t\t\t\t\t\t\t</div>' +
+			'\t\t\t\t\t\t\t<div class="form-group">\n' +
+			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(largest+1)+'" name="productDescription[]" placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm"></textarea>\n' +
+			'\t\t\t\t\t\t\t</div>' +
+			'\t\t\t\t\t\t\t<div class="form-group">\n' +
+			'\t\t\t\t\t\t\t\t<div class="form-label-group">\n' +
+			'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" />\n' +
+			'\t\t\t\t\t\t\t\t\t\t<label>'+products+" "+langImage+" ("+LangOptional+")"+'</label>\n' +
+			'\t\t\t\t\t\t\t\t\t</div></div>';
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$('#productsRow').prepend(addNewProductRow);
 
 		let addInvoiceProductName = '<span class="invoicePName'+(largest+1)+'"></span><br class="invoicePName'+(largest+1)+'">';
 		let addInvoiceProductQuantity = '<span id="invoiceQuantity'+(largest+1)+'" class="invoiceQuantity'+(largest+1)+'"></span><br class="invoiceQuantity'+(largest+1)+'">';
 		let addInvoiceProductPrice = '<span id="invoicePrice'+(largest+1)+'" class="invoicePrice'+(largest+1)+'"></span><br class="invoicePrice'+(largest+1)+'">';
+<<<<<<< HEAD
 		$('#tempInvoiceName').append(addInvoiceProductName);
 		$('#tempInvoiceQuantity').append(addInvoiceProductQuantity);
 		$('#tempInvoicePrice').append(addInvoiceProductPrice);
+=======
+		let addInvoiceProductTotalPrice = '<span id="tempInvoiceTotalPrice'+(largest+1)+'" class="tempInvoiceTotalPrice'+(largest+1)+'"></span><br class="tempInvoiceTotalPrice'+(largest+1)+'">';
+		$('#tempInvoiceName').append(addInvoiceProductName);
+		$('#tempInvoiceQuantity').append(addInvoiceProductQuantity);
+		$('#tempInvoicePrice').append(addInvoiceProductPrice);
+		$('#tempInvoiceTotalPrice').append(addInvoiceProductTotalPrice);
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 
 	});
@@ -681,5 +833,21 @@ $(document).ready(function () {
 		arr = [];
 		i = 0;
 		arr = [i];
+<<<<<<< HEAD
+=======
+		$("#tempInvoiceName").empty();
+		$("#tempInvoiceName").append('<span class="invoicePName0"></span><br class="invoicePName0">');
+		$("#tempInvoiceQuantity").empty();
+		$("#tempInvoiceQuantity").append('<span id="invoiceQuantity0" class="invoiceQuantity0"></span><br class="invoiceQuantity0">');
+		$("#tempInvoicePrice").empty();
+		$("#tempInvoicePrice").append('<span id="invoicePrice0" class="invoicePrice0"></span><br class="invoicePrice0">');
+		$("#tempInvoiceTotalPrice").empty();
+		$("#tempInvoiceTotalPrice").append('<span id="tempInvoiceTotalPrice0" class="tempInvoiceTotalPrice0"></span><br class="tempInvoiceTotalPrice0">');
+		$("#tempInvoiceTotal1").text('1');
+		$("#tempInvoiceTotal2").text('');
+		$("#tempInvoiceTotal3").text('');
+		$("#tempInvoiceTotal4").text('');
+		$("#tempInvoice").hide();
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	});
 });

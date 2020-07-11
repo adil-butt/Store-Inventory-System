@@ -9,6 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+<<<<<<< HEAD
   <title>404 Error</title>
 
   <!-- Custom fonts for this template-->
@@ -16,6 +17,9 @@
 
   <!-- Page level plugin CSS-->
   <link href="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.css') ?>" rel="stylesheet">
+=======
+  <title>404 <?php echo $this->lang->line('error'); ?></title>
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
@@ -24,6 +28,7 @@
 
 <body id="page-top">
 
+<<<<<<< HEAD
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
     <a class="navbar-brand mr-1" href="#"><?php echo $this->lang->line('page')." ".$this->lang->line('not')." ".$this->lang->line('found'); ?></a>
@@ -54,6 +59,10 @@
       </li>
     </ul>
 
+=======
+  <div id="wrapper">
+
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
     <div id="content-wrapper">
 
       <div class="container-fluid">
@@ -72,6 +81,7 @@
       </div>
       <!-- /.container-fluid -->
 
+<<<<<<< HEAD
       <!-- Sticky Footer -->
       <footer class="sticky-footer">
         <div class="container my-auto">
@@ -81,12 +91,15 @@
         </div>
       </footer>
 
+=======
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
     </div>
     <!-- /.content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
 
+<<<<<<< HEAD
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -102,6 +115,8 @@
   <!-- Custom scripts for all pages-->
   <script src="<?php echo base_url('assets/js/sb-admin.min.js') ?>"></script>
 
+=======
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 </body>
 
 </html>

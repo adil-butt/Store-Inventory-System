@@ -1,7 +1,18 @@
 <?php
 class Product_Model extends CI_Model {
+<<<<<<< HEAD
 	public function getSimilar($search) {
 		$this->db->select('productname, quantity, remaining, price, unit, comments, addeddate, lastupdated');
+=======
+	public function getSimilar($search, $where = '', $limit = '', $offset = '') {
+		$this->db->select('id, productname, quantity, remaining, price, unit, comments, description, imgpath, addeddate, lastupdated');
+		if($where !== '') {
+			$this->db->where($where);
+		}
+		if($limit !== '' && $offset !== '') {
+			$this->db->limit($limit, $offset);
+		}
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$this->db->like('productname', $search);
 		$this->db->or_like('quantity', $search);
 		$this->db->or_like('remaining', $search);
@@ -11,7 +22,11 @@ class Product_Model extends CI_Model {
 		$this->db->or_like('addeddate', $search);
 		$this->db->or_like('lastupdated', $search);
 		$query = $this->db->get('products');
+<<<<<<< HEAD
 		return $query->result();
+=======
+		return $query->result_array();
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	public function updateReturnProductQuantity($quantity, $where) {
@@ -37,6 +52,7 @@ class Product_Model extends CI_Model {
 		return $this->db->update('products', $data);
 	}
     
+<<<<<<< HEAD
     public function countProducts($where) {
         $query = $this->db->get_where('products', $where);
         return $query->num_rows();
@@ -46,6 +62,24 @@ class Product_Model extends CI_Model {
 		if($where !== '') {
 			$this->db->where($where);
 		}
+=======
+    public function countProducts($where = '') {
+		if($where == '') {
+			return $this->db->count_all('products');
+		} else {
+			$query = $this->db->get_where('products', $where);
+			return $query->num_rows();
+		}
+    }
+
+	public function getResultOfProducts($where = '', $limit = '', $offset = '') {
+		if($where !== '') {
+			$this->db->where($where);
+		}
+		if($limit !== '' && $offset !== '') {
+			$this->db->limit($limit, $offset);
+		}
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$query = $this->db->get('products');
 		if($query !== FALSE && $query->num_rows() > 0) {
 			return $query->result_array();

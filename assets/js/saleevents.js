@@ -1,7 +1,11 @@
 $(document).ready(function () {
 	$(document).on('click', '.sellUpdate', function () {
 		$('#saleModal').find("input,textarea,select").val('');
+<<<<<<< HEAD
 		$("#saleModalTitle").text(updateBillButton+" "+langSale0);
+=======
+		$("#saleModalTitle").text(updateBillButton+" "+langSale);
+>>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$("#saleId").val($(this).data('sellid'));
 		$("#salePId").val($(this).data('productid'));
 		$.ajax({
