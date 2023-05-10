@@ -109,12 +109,7 @@ class SaleProduct extends CI_Controller {
 		redirect(base_url('admin/sales'));
 	}
 
-<<<<<<< HEAD
-	function validateReturnMaxQuantity($quantity)
-	{
-=======
 	function validateReturnMaxQuantity($quantity) {
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$where = array(
 			'id' => $this->input->post('returnSalePId'),
 		);
@@ -131,13 +126,8 @@ class SaleProduct extends CI_Controller {
 		$row = $this->Sell_Model->getSalesWithPName();
 		$data['row'] = $row;
 
-<<<<<<< HEAD
-		$this->template->set('title', 'Sales Table');
-		$this->template->load('default_layout', 'contents' , 'admin/salesdetails', $data);
-=======
 		$this->template->set('title', $this->lang->line('sales').' '.$this->lang->line('table'));
 		$this->template->load('admin_layout', 'contents' , 'admin/salesdetails', $data);
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	public function checkUpdateQuantity() {	//ajax JSON
@@ -193,11 +183,6 @@ class SaleProduct extends CI_Controller {
 		if($this->form_validation->run() == TRUE) {
 			$data = array(
 				'quantity' => $this->input->post('salePQuantity'),
-<<<<<<< HEAD
-				'discount' => $this->input->post('salePDiscount'),
-				'comments' => $this->input->post('salePComment'),
-			);
-=======
 				'comments' => $this->input->post('salePComment'),
 			);
 			if($this->input->post('salePDiscount') == '') {
@@ -205,7 +190,6 @@ class SaleProduct extends CI_Controller {
 			} else {
 				$data['discount'] = $this->input->post('salePDiscount');
 			}
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			if($this->input->post('saleId') != '') {
 				$where = array(
 					'id' => $this->input->post('saleId'),
@@ -228,10 +212,7 @@ class SaleProduct extends CI_Controller {
 					$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 				}
 			} else {
-<<<<<<< HEAD
-=======
 				$data['accountid'] = $_SESSION['user']['id'];
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				$data['productid'] = $this->input->post('salePId');
 				$data['addeddate'] = date('Y-m-d G:i:s');
 				if($this->Sell_Model->insertSellProduct($data)) {
@@ -266,12 +247,7 @@ class SaleProduct extends CI_Controller {
 		}
 	}
 
-<<<<<<< HEAD
-	function validateMaxQuantity($quantity)
-	{
-=======
 	function validateMaxQuantity($quantity) {
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$where = array(
 			'id' => $this->input->post('salePId'),
 		);

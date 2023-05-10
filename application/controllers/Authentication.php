@@ -15,13 +15,8 @@ class Authentication extends CI_Controller {
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
-<<<<<<< HEAD
-			'smtp_user' => 'adil.islam@purelogics.net', // change it to yours
-			'smtp_pass' => 'purelogics7861', // change it to yours
-=======
 			'smtp_user' => $this->config->item('email_address'),
 			'smtp_pass' => $this->config->item('email_password'),
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			'mailtype' => 'html',
 			'charset' => 'iso-8859-1',
 			'wordwrap' => TRUE
@@ -37,11 +32,7 @@ class Authentication extends CI_Controller {
 		$data['status'] = 0;
 		if($row) {
 			if(empty($row['auth'])) {
-<<<<<<< HEAD
-				$data['message'] = '<div<p>This link not exist or expired</p></div>';
-=======
 				$data['message'] = '<div><p>'.$this->lang->line('link_not_exist_expired').'</p></div>';
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			} else {
 				if($row['auth'] == $code) {
 					$data['status'] = 1;
@@ -54,11 +45,7 @@ class Authentication extends CI_Controller {
 								'auth' => '',
 							);
 							if($this->Account_Model->updateAccount($data2, $where)) {
-<<<<<<< HEAD
-								$this->session->set_flashdata('success', 'Password Successfully Reset');
-=======
 								$this->session->set_flashdata('success', $this->lang->line('password').' '.$this->lang->line('successfully').' '.$this->lang->line('reset'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							} else {
 								$error = $this->db->error();
 								$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
@@ -66,16 +53,6 @@ class Authentication extends CI_Controller {
 						}
 					}
 				} else {
-<<<<<<< HEAD
-					$data['message'] = '<div<p>No Record Found</p></div>';
-				}
-			}
-		} else {
-			$data['message'] = '<div<p>No Record Found</p></div>';
-		}
-
-		$data['title'] = 'Reset Password';
-=======
 					$data['message'] = '<div><p>'.$this->lang->line('no').' '.$this->lang->line('record').' '.$this->lang->line('found').'</p></div>';
 				}
 			}
@@ -84,7 +61,6 @@ class Authentication extends CI_Controller {
 		}
 
 		$data['title'] = $this->lang->line('reset').' '.$this->lang->line('password');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/reset-password');
 		$this->load->view('auth/include/footer');
@@ -102,11 +78,7 @@ class Authentication extends CI_Controller {
 				$row = $this->Account_Model->getAccountWhere($where);
 				if($row) {
 					if($row['status'] === '0') {
-<<<<<<< HEAD
-						$this->session->set_flashdata('error', 'Your Account is not activated yet<br>Please Activate your Account First');
-=======
 						$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account_first'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					} else {
 						$code = md5(date('Y-m-d G:i:s'));
 						$where = array(
@@ -118,17 +90,6 @@ class Authentication extends CI_Controller {
 						if($this->Account_Model->updateAccount($data, $where)) {
 							$message= /*-----------email body starts-----------*/
 								'Click the link below to reset your password, !<br>					
-<<<<<<< HEAD
-					' . base_url() . 'reset_Password/'.$row['username'].'/'.$code ;
-							/*-----------email body ends-----------*/
-							$this->email->set_newline("\r\n");
-							$this->email->from('adil.islam@purelogics.net'); // change it to yours
-							$this->email->to($row['email']);// change it to yours
-							$this->email->subject('Reset Password');
-							$this->email->message($message);
-							$this->email->send();
-							$this->session->set_flashdata('success', 'A Reset Password link has been sent to your email<br>Click on that link to reset your password');
-=======
 					' . base_url() . 'reset_password/'.$row['username'].'/'.$code ;
 							/*-----------email body ends-----------*/
 							$this->email->set_newline("\r\n");
@@ -138,27 +99,18 @@ class Authentication extends CI_Controller {
 							$this->email->message($message);
 							$this->email->send();
 							$this->session->set_flashdata('success', $this->lang->line('reset_link_send').'<br>'.$this->lang->line('click_link_to_reset'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 						} else {
 							$error = $this->db->error();
 							$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 						}
 					}
 				} else {
-<<<<<<< HEAD
-					$this->session->set_flashdata('error', 'No Record Found for '.$this->input->post('forgotPassEmail'));
-=======
 					$this->session->set_flashdata('error', $this->lang->line('no').' '.$this->lang->line('record').' '.$this->lang->line('found').' '.$this->lang->line('for').' '.$this->input->post('forgotPassEmail'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				}
 			}
 		}
 
-<<<<<<< HEAD
-		$data['title'] = 'Forgot Password';
-=======
 		$data['title'] = $this->lang->line('forgot').' '.$this->lang->line('password');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/forgot-password');
 		$this->load->view('auth/include/footer');
@@ -179,37 +131,16 @@ class Authentication extends CI_Controller {
 						'username' => $username
 					);
 					if($this->Account_Model->updateAccount($data, $where)) {
-<<<<<<< HEAD
-						$data['message'] = "Thanks for registering. Your account is successfully verified.<br>You may login now<br>";
-					}
-				} else {
-					$data['message'] = "Thanks for registering. Your account have already been verified.<br>You can login from by clicking the link below<br>";
-				}
-				$data['title'] = 'Verification';
-=======
 						$data['message'] = $this->lang->line('thanks_registering').". ".$this->lang->line('successfully_verified').".<br>".$this->lang->line('may_login')."<br>";
 					}
 				} else {
 					$data['message'] = $this->lang->line('thanks_registering').". ".$this->lang->line('already_been_verified').".<br>".$this->lang->line('login_by_clicking_link')."<br>";
 				}
 				$data['title'] = $this->lang->line('verification');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				$this->load->view('auth/include/header', $data);
 				$this->load->view('auth/verify', $data);
 				$this->load->view('auth/include/footer');
 			} else {
-<<<<<<< HEAD
-				show_404();
-			}
-		} else {
-			show_404();
-		}
-	}
-
-	public function logout() {
-		$this->session->unset_userdata('user');
-		redirect('login');
-=======
 				$this->load->view('errors/404');
 			}
 		} else {
@@ -226,7 +157,6 @@ class Authentication extends CI_Controller {
 		} else {
 			redirect('home');
 		}
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	public function login() {
@@ -248,25 +178,11 @@ class Authentication extends CI_Controller {
 				unset($row["password"]);
 				$this->session->set_userdata('user', $row);
 				if($row['status'] === '0') {
-<<<<<<< HEAD
-					$this->session->set_flashdata('error', 'Your Account is not activated yet<br>Please Activate your account in order to login');
-=======
 					$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				} else {
 					if($row['role'] === '1') {
 						redirect('admin');
 					} else {
-<<<<<<< HEAD
-						redirect('user');
-					}
-				}
-			} else {
-				$this->session->set_flashdata('error', 'Invalid Login Credentials');
-			}
-		}
-		$data['title'] = 'Login';
-=======
 						redirect('home');
 					}
 				}
@@ -275,7 +191,6 @@ class Authentication extends CI_Controller {
 			}
 		}
 		$data['title'] = $this->lang->line('login');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/login');
 		$this->load->view('auth/include/footer');
@@ -335,11 +250,7 @@ class Authentication extends CI_Controller {
 					$data['profilepath'] = $image_data['file_name'];
 
 				} else {
-<<<<<<< HEAD
-					$this->session->set_flashdata('error', 'Image is not uploaded successfully');
-=======
 					$this->session->set_flashdata('error', $this->lang->line('image').' '.$this->lang->line('is').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				}
 			}
 			$regTime = date('Y-m-d G:i:s');
@@ -362,32 +273,19 @@ class Authentication extends CI_Controller {
 					' . base_url() . 'verify/'.$this->input->post('accRegUsername').'/'.$emailCode ;
 				/*-----------email body ends-----------*/
 				$this->email->set_newline("\r\n");
-<<<<<<< HEAD
-				$this->email->from('adil.islam@purelogics.net'); // change it to yours
-				$this->email->to($this->input->post('accRegEmail'));// change it to yours
-				$this->email->subject('Account Verification');
-				$this->email->message($message);
-				$this->email->send();
-				$this->session->set_flashdata('success', 'Successfully Registered<br>A verification link has been sent to your email<br>Please verify your account by click on that link');
-=======
 				$this->email->from('adil.islam@purelogics.net');
 				$this->email->to($this->input->post('accRegEmail'));
 				$this->email->subject('Account Verification');
 				$this->email->message($message);
 				$this->email->send();
 				$this->session->set_flashdata('success', $this->lang->line('successfully').' '.$this->lang->line('registered').'<br>'.$this->lang->line('verification_link_send').'<br>'.$this->lang->line('verify_your_account'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			} else {
 				$error = $this->db->error();
 				$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 			}
 		}
 
-<<<<<<< HEAD
-		$data['title'] = 'Registration';
-=======
 		$data['title'] = $this->lang->line('registration');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$this->load->view('auth/include/header', $data);
 		$this->load->view('auth/registration');
 		$this->load->view('auth/include/footer');

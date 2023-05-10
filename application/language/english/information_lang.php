@@ -1,6 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
 
 // for user navbar
 $lang['home'] = 'Home';
@@ -69,7 +67,6 @@ $lang['went'] = 'Went';
 $lang['wrong'] = 'Wrong';
 $lang['add_items_to_checkout'] = 'Pleas add items in cart in order to make checkout';
 
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 // for navbar
 $lang['qureshi_traders'] = 'Qureshi Traders';
 $lang['admin'] = 'Admin';
@@ -140,12 +137,6 @@ $lang['search'] = 'Search';
 $lang['for'] = 'for';
 $lang['name'] = 'Name';
 $lang['matched'] = 'Matched';
-<<<<<<< HEAD
-$lang['value'] = 'Value';$lang['name'] = 'Name';
-$lang['matched'] = 'Matched';
-$lang['value'] = 'Value';
-$lang['last'] = 'Last';
-=======
 $lang['value'] = 'Value';
 $lang['matched'] = 'Matched';
 $lang['value'] = 'Value';
@@ -194,7 +185,6 @@ $lang['successfully_verified'] = 'Your account is successfully verified';
 $lang['may_login'] = 'You may login now';
 $lang['already_been_verified'] = 'Your account have already been verified';
 $lang['login_by_clicking_link'] = 'You can login from by clicking the link below';
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 // for profile page
 $lang['first_name'] = 'First Name';
@@ -242,10 +232,7 @@ $lang['cancel'] = 'Cancel';
 
 // for image Modal
 $lang['image'] = 'Image';
-<<<<<<< HEAD
-=======
 $lang['images'] = 'Images';
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 $lang['preview'] = 'Preview';
 
 // for invoice
@@ -277,10 +264,7 @@ $lang['successfully'] = 'Successfully';
 $lang['deleted'] = 'Deleted';
 $lang['added'] = 'Added';
 $lang['update_quantity_error_message'] = 'You must have greater amount of quantity than the sold item or you must correct the sold first. Product is not Updated Successfully';
-<<<<<<< HEAD
-=======
 $lang['account_not_activated'] = 'Your Account is not activated yet';
 $lang['activate_account'] = 'Please Activate your account in order to login';
 $lang['activate_account_first'] = 'Please Activate your Account First';
 
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db

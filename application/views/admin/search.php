@@ -31,10 +31,6 @@
 						</tfoot>
 						<tbody>
 						<?php foreach ($accounts as $value) {
-<<<<<<< HEAD
-							$value = get_object_vars($value);
-=======
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							?>
 							<tr>
 								<td><?php echo $this->lang->line('account'); ?></td>
@@ -51,10 +47,6 @@
 							</tr>
 						<?php } ?>
 						<?php foreach ($bills as $value) {
-<<<<<<< HEAD
-							$value = get_object_vars($value);
-=======
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							?>
 							<tr>
 								<td><?php echo $this->lang->line('bills'); ?></td>
@@ -67,10 +59,6 @@
 							</tr>
 						<?php } ?>
 						<?php foreach ($products as $value) {
-<<<<<<< HEAD
-							$value = get_object_vars($value);
-=======
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							?>
 							<tr>
 								<td><?php echo $this->lang->line('products'); ?></td>
@@ -81,20 +69,13 @@
 									<?php echo $this->lang->line('price'); ?>: <?php echo $value['price']; ?> <br>
 									<?php echo $this->lang->line('unit'); ?>: <?php echo $value['unit']; ?> <br>
 									<?php echo $this->lang->line('comments'); ?>: <?php echo $value['comments']; ?> <br>
-<<<<<<< HEAD
-=======
 									<?php echo $this->lang->line('description'); ?>: <?php echo $value['description']; ?> <br>
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['addeddate']; ?> <br>
 									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['lastupdated']; ?>
 								</td>
 							</tr>
 						<?php } ?>
 						<?php foreach ($sales as $value) {
-<<<<<<< HEAD
-							$value = get_object_vars($value);
-=======
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							$where = array(
 								'id' => $value['productid'],
 							);

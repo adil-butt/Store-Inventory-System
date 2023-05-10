@@ -11,10 +11,7 @@
 		</ol>
 		<?php $this->load->view('template/success_error_message'); ?>
 		<div class="alert alert-primary" role="alert" id="billDetailMessage"  style="text-align: center; display:none;"></div>
-<<<<<<< HEAD
-=======
 		<div class="alert alert-primary" role="alert" id="imageUploadMessage2"  style="text-align: center; display:none;"></div>
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		<!-- DataTables Example -->
 		<div class="card mb-3">
 			<div class="card-header" <?php if ($billId == ''){ echo 'style="display:none;"'; } ?>>
@@ -40,10 +37,7 @@
 							<th><?php echo $this->lang->line('total'); ?> <?php echo $this->lang->line('price'); ?></th>
 							<th><?php echo $this->lang->line('unit'); ?></th>
 							<th><?php echo $this->lang->line('comments'); ?></th>
-<<<<<<< HEAD
-=======
 							<th><?php echo $this->lang->line('description'); ?></th>
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							<th><?php echo $this->lang->line('added_date'); ?></th>
 							<th><?php echo $this->lang->line('last_updated'); ?></th>
 							<th><?php echo $this->lang->line('operations'); ?></th>
@@ -58,10 +52,7 @@
 							<th><?php echo $this->lang->line('total'); ?> <?php echo $this->lang->line('price'); ?></th>
 							<th><?php echo $this->lang->line('unit'); ?></th>
 							<th><?php echo $this->lang->line('comments'); ?></th>
-<<<<<<< HEAD
-=======
 							<th><?php echo $this->lang->line('description'); ?></th>
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 							<th><?php echo $this->lang->line('added_date'); ?></th>
 							<th><?php echo $this->lang->line('last_updated'); ?></th>
 							<th><?php echo $this->lang->line('operations'); ?></th>
@@ -93,10 +84,7 @@
 									</select>
 									</td>
 								<td class="editable editableProductComments"><?php echo $row['comments']; ?></td>
-<<<<<<< HEAD
-=======
 								<td class="editable editableProductDescription"><?php echo $row['description']; ?></td>
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 								<td><?php echo $row['addeddate']; ?></td>
 								<td id="updatedAt<?php echo $row['id']; ?>"><?php echo $row['lastupdated']; ?></td>
 								<td>

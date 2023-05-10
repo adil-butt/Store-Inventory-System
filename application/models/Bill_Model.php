@@ -7,11 +7,7 @@ class Bill_Model extends CI_Model {
 		$this->db->or_like('addeddate', $search);
 		$this->db->or_like('lastupdated', $search);
 		$query = $this->db->get('bills');
-<<<<<<< HEAD
-		return $query->result();
-=======
 		return $query->result_array();
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	public function insertNewBill($data) {

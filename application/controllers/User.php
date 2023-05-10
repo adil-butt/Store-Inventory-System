@@ -24,14 +24,6 @@ class User extends CI_Controller
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
-<<<<<<< HEAD
-	 */
-	public function index()
-	{
-		$data = array(); // optional parameter
-		$this->template->set('title', 'Dashboard');
-		$this->template->load('default_layout', 'contents' , 'user/dashboard', $data);
-=======
 	 * @param $pId
 	 */
 
@@ -382,6 +374,5 @@ class User extends CI_Controller
 
 		$this->template->set('title', $this->lang->line('home'));
 		$this->template->load('user_layout', 'contents' , 'user/dashboard', $data);
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 }

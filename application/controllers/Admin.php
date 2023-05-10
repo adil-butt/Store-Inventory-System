@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
-
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller
@@ -12,14 +8,6 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		test_login(1);
-<<<<<<< HEAD
-		$config['upload_path'] = 'assets/profileimages';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['encrypt_name'] = TRUE;
-		$this->load->library('upload', $config);
-		$this->load->library('image_lib');
-=======
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	/**
@@ -36,14 +24,6 @@ class Admin extends CI_Controller
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
-<<<<<<< HEAD
-	 * @param $billId
-	 */
-
-	public function search() {
-		$data = array();
-		if($this->input->post('searchItem')!='') {
-=======
 	 * @param $fieldName
 	 * @param $fileName
 	 * @return bool
@@ -115,7 +95,6 @@ class Admin extends CI_Controller
 	public function search() {
 		$data = array();
 		if($this->input->post('searchItem') != '') {
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			$accounts = $this->Account_Model->getSimilar($this->input->post('searchItem'));
 			$bills = $this->Bill_Model->getSimilar($this->input->post('searchItem'));
 			$products = $this->Product_Model->getSimilar($this->input->post('searchItem'));
@@ -130,13 +109,8 @@ class Admin extends CI_Controller
 		$data['bills'] = $bills;
 		$data['products'] = $products;
 		$data['sales'] = $sales;
-<<<<<<< HEAD
-		$this->template->set('title', 'Search');
-		$this->template->load('default_layout', 'contents' , 'admin/search', $data);
-=======
 		$this->template->set('title', $this->lang->line('search'));
 		$this->template->load('admin_layout', 'contents' , 'admin/search', $data);
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 	public function getAllProduct() {	//ajax JSON
@@ -196,10 +170,7 @@ class Admin extends CI_Controller
 					'price' => $this->input->post("productPrice"),
 					'unit' => $this->input->post("productUnit"),
 					'comments' => $this->input->post("productComments"),
-<<<<<<< HEAD
-=======
 					'description' => $this->input->post("productDescription"),
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				);
 				$where = array(
 					'id' => $productId,
@@ -242,11 +213,7 @@ class Admin extends CI_Controller
 
 	public function billDetail($billId='') {
 		if($billId != '') {
-<<<<<<< HEAD
-			$this->template->set('title', 'Bill Details');
-=======
 			$this->template->set('title', $this->lang->line('bill').' '.$this->lang->line('details'));
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			$where = array(
 				'id' => $billId
 			);
@@ -261,11 +228,7 @@ class Admin extends CI_Controller
 
 			$data['billRow'] = $row;
 		} else {
-<<<<<<< HEAD
-			$this->template->set('title', 'All Products');;
-=======
 			$this->template->set('title', $this->lang->line('all').' '.$this->lang->line('products'));;
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			$where = '';
 		}
 
@@ -281,11 +244,7 @@ class Admin extends CI_Controller
 
 		$data['productRow'] = $row;
 		$data['billId'] = $billId;
-<<<<<<< HEAD
-		$this->template->load('default_layout', 'contents' , 'admin/billdetail', $data);
-=======
 		$this->template->load('admin_layout', 'contents' , 'admin/billdetail', $data);
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 	}
 
@@ -334,14 +293,11 @@ class Admin extends CI_Controller
 	}		//ajax JSON
 
 	public function updateBill() {		// ajax JSON
-<<<<<<< HEAD
-=======
 		$config['upload_path'] = 'assets/product_images';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 		if($this->input->post('originalBillNumber') == $this->input->post('billNumber')) {
 			$this->form_validation->set_rules('billNumber', 'Bill Number', 'trim|max_length[50]|min_length[1]|required');
@@ -358,11 +314,8 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('productPrice[]', 'Product Price', 'trim|max_length[50]|min_length[1]|required|numeric');
 		$this->form_validation->set_rules('productUnit[]', 'Product Unit', 'trim|required');
 		if($this->form_validation->run() == TRUE) {
-<<<<<<< HEAD
-=======
 			$response = array();
 			$files = $_FILES;
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			$data = array(
 				'billnumber' => $this->input->post('billNumber'),
 				'comments' => $this->input->post('billComment'),
@@ -379,10 +332,7 @@ class Admin extends CI_Controller
 				$price = $this->input->post("productPrice");
 				$unit = $this->input->post("productUnit");
 				$comments = $this->input->post("productComment");
-<<<<<<< HEAD
-=======
 				$description = $this->input->post("productDescription");
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 				$check = 1;
 				for($i = 0; $i < $number; $i++) {
@@ -393,10 +343,7 @@ class Admin extends CI_Controller
 						'price' => $price[$i],
 						'unit' => $unit[$i],
 						'comments' => $comments[$i],
-<<<<<<< HEAD
-=======
 						'description' => $description[$i],
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					);
 					$where = array(
 						'id' => $productId[$i],
@@ -420,8 +367,6 @@ class Admin extends CI_Controller
 					}
 
 					$data['remaining'] = $remaining;
-<<<<<<< HEAD
-=======
 					if (is_uploaded_file($files['productImage']['tmp_name'][$i])) {
 						$_FILES['productImage']['name']= $files['productImage']['name'][$i];
 						$_FILES['productImage']['type']= $files['productImage']['type'][$i];
@@ -453,28 +398,12 @@ class Admin extends CI_Controller
 							$response['imageError'] = $this->upload->display_errors().' '.$this->lang->line('image').'(s) '.$this->lang->line('are').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully');
 						}
 					}
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 					if(!$this->Product_Model->updateProduct($data, $where)) {
 						$check = 0;
 					}
 				}
 				if($check) {
-<<<<<<< HEAD
-					$response = array(
-						'status' => 1,
-						'billId' => $this->input->post('addProductBillId'),
-						'billNumber' => $this->input->post('billNumber'),
-						'totalPrice' => $totalPrice,
-						'statusMessage' => $this->lang->line('bill').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'),
-					);
-				} else {
-					$error = $this->db->error();
-					$response = array(
-						'status' => 0,
-						'statusMessage' => 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"],
-					);
-=======
 					$response['status'] = 1;
 					$response['billId'] = $this->input->post('addProductBillId');
 					$response['billNumber'] = $this->input->post('billNumber');
@@ -484,20 +413,12 @@ class Admin extends CI_Controller
 					$error = $this->db->error();
 					$response['status'] = 0;
 					$response['statusMessage'] = 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"];
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				}
 
 			} else {
 				$error = $this->db->error();
-<<<<<<< HEAD
-				$response = array(
-					'status' => 0,
-					'statusMessage' => 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"],
-				);
-=======
 				$response['status'] = 0;
 				$response['statusMessage'] = 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"];
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			}
 
 		} else {
@@ -514,15 +435,12 @@ class Admin extends CI_Controller
 	}
 
 	public function addNewBill() {
-<<<<<<< HEAD
-=======
 		$config['upload_path'] = 'assets/product_images';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
 
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		if($this->input->post('addProductBillId') == '') {
 			$this->form_validation->set_rules('billNumber', 'Bill Number', 'trim|max_length[50]|min_length[1]|required|is_unique[bills.billnumber]',
 				array(
@@ -538,11 +456,8 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('productUnit[]', 'Product Unit', 'trim|required');
 
 		if($this->form_validation->run() == TRUE) {
-<<<<<<< HEAD
-=======
 			$response = array();
 			$files = $_FILES;
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			$addedDate = date('Y-m-d G:i:s');
 			if($this->input->post('addProductBillId') == '') {
 				$data = array(
@@ -554,15 +469,8 @@ class Admin extends CI_Controller
 					$insert_id = $this->db->insert_id();
 				} else {
 					$error = $this->db->error();
-<<<<<<< HEAD
-					$response = array(
-						'status' => 0,
-						'statusMessage' => 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"],
-					);
-=======
 					$response['status'] = 0;
 					$response['statusMessage'] = 'Database Error<br>Error Code: ' . $error["code"] . '<br>Error Message: ' . $error["message"];
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				}
 			} else {
 				$insert_id = $this->input->post('addProductBillId');
@@ -575,10 +483,7 @@ class Admin extends CI_Controller
 			$price = $this->input->post("productPrice");
 			$unit = $this->input->post("productUnit");
 			$comments = $this->input->post("productComment");
-<<<<<<< HEAD
-=======
 			$description = $this->input->post("productDescription");
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 			for($i = 0; $i < $number; $i++) {
 				$totalPrice = $totalPrice + ($quantity[$i]*$price[$i]);
@@ -590,26 +495,12 @@ class Admin extends CI_Controller
 					'price' => $price[$i],
 					'unit' => $unit[$i],
 					'comments' => $comments[$i],
-<<<<<<< HEAD
-=======
 					'description' => $description[$i],
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					'addeddate' => $addedDate,
 				);
 				if($this->input->post('addProductBillId') !== '') {
 					$data2[$i]['lastupdated'] = $addedDate;
 				}
-<<<<<<< HEAD
-			}
-			if($this->Product_Model->insertNewProduct($data2)) {
-				$response = array(
-					'status' => 1,
-					'billNumber' => $this->input->post('billNumber'),
-					'totalPrice' => $totalPrice,
-					'numberOfProducts' => $number,
-					'addedAt' => $addedDate,
-				);
-=======
 				if (is_uploaded_file($files['productImage']['tmp_name'][$i])) {
 					$_FILES['productImage']['name']= $files['productImage']['name'][$i];
 					$_FILES['productImage']['type']= $files['productImage']['type'][$i];
@@ -648,7 +539,6 @@ class Admin extends CI_Controller
 				$response['numberOfProducts'] = $number;
 				$response['addedAt'] = $addedDate;
 
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 				if($this->input->post('addProductBillId') == '') {
 					$response['id'] = $insert_id;
 					$response['statusMessage'] = $this->lang->line('bill').' '.$this->lang->line('added').' '.$this->lang->line('successfully');
@@ -670,23 +560,13 @@ class Admin extends CI_Controller
 					$response['total'] = $price;
 					$response['unit'] = $unit;
 					$response['comments'] = $comments;
-<<<<<<< HEAD
-=======
 					$response['description'] = $description;
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					$response['updatedAt'] = $addedDate;
 				}
 			} else {
 				$error = $this->db->error();
-<<<<<<< HEAD
-				$response = array(
-					'status' => 0,
-					'statusMessage' => 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"],
-				);
-=======
 				$response['status'] = 0;
 				$response['statusMessage'] = 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"];
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 			}
 		} else {
 			$response = array(
@@ -714,25 +594,17 @@ class Admin extends CI_Controller
 		}
 		$data['billRow'] = $row;
 
-<<<<<<< HEAD
-		$this->template->set('title', 'Bills');
-		$this->template->load('default_layout', 'contents' , 'admin/bills', $data);
-=======
 		$this->template->set('title', $this->lang->line('bills'));
 		$this->template->load('admin_layout', 'contents' , 'admin/bills', $data);
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 	}
 
 	public function profile() {
-<<<<<<< HEAD
-=======
 		$config['upload_path'] = 'assets/profileimages';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 		$this->form_validation->set_rules('updateFirstName', 'First Name', 'trim|max_length[50]|min_length[1]|required');
 		$this->form_validation->set_rules('updateLastName', 'Last Name', 'trim|max_length[50]|min_length[1]|required');
@@ -770,25 +642,16 @@ class Admin extends CI_Controller
 						'image_library'   => 'gd2',
 						'source_image'    =>  $image_data['full_path'],
 						'maintain_ratio'  =>  TRUE,
-<<<<<<< HEAD
-						'width'           =>  500,
-						'height'          =>  500,
-=======
 						'width'           =>  540,
 						'height'          =>  360,
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 					);
 					$this->image_lib->clear();
 					$this->image_lib->initialize($configer);
 					$this->image_lib->resize();
 
-<<<<<<< HEAD
-					unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
-=======
 					if($_SESSION['user']['profilepath'] != 'default.jpg') {
 						unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
 					}
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 
 					$data['profilepath'] = $image_data['file_name'];
 
@@ -824,22 +687,12 @@ class Admin extends CI_Controller
 			}
 		}
 		$data = array(); // optional parameter
-<<<<<<< HEAD
-		$this->template->set('title', 'Profile');
-		$this->template->load('default_layout', 'contents' , 'admin/profile', $data);
-
-	}
-
-	public function index()
-	{
-=======
 		$this->template->set('title', $this->lang->line('profile'));
 		$this->template->load('admin_layout', 'contents' , 'admin/profile', $data);
 
 	}
 
 	public function index() {
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 		$where = "sale.`addeddate` > (NOW() - INTERVAL 1 MONTH)";
 		$where2 = "products.`addeddate` > (NOW() - INTERVAL 1 MONTH)";
 		$row = $this->Sell_Model->getSalesWithPPrice($where);
@@ -879,13 +732,6 @@ class Admin extends CI_Controller
 			$data['chartData'] = json_encode($chartData);
 		} else {
 			$data = array(); // optional parameter
-<<<<<<< HEAD
-			$error = $this->db->error();
-			$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
-		}
-		$this->template->set('title', 'Admin Dashboard');
-		$this->template->load('default_layout', 'contents' , 'admin/dashboard', $data);
-=======
 			$data['todaySales'] = '0';
 			$data['todayPurchases'] = '0';
 			$data['monthSales'] = '0';
@@ -893,7 +739,6 @@ class Admin extends CI_Controller
 		}
 		$this->template->set('title', $this->lang->line('admin').' '.$this->lang->line('dashboard'));
 		$this->template->load('admin_layout', 'contents' , 'admin/dashboard', $data);
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
 	}
 
 }

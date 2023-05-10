@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<?php
-echo "User Dashboard is not yet ready";
-=======
 <!--Carousel Wrapper-->
 <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
 
@@ -270,4 +266,3 @@ echo "User Dashboard is not yet ready";
 
 	</div>
 </main>
->>>>>>> ac2811c4a7694c40a9a27213b4c91daf1673c7db
