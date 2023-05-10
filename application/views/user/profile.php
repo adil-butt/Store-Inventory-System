@@ -57,7 +57,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label><?php echo $this->lang->line('registration_time'); ?></label>
-					<input type="text" class="form-control" placeholder="Enter Phone" readonly value="<?PHP echo $_SESSION['user']['regtime']; ?>">
+					<input type="text" class="form-control" placeholder="Enter Phone" readonly value="<?PHP echo $_SESSION['user']['created_at']; ?>">
 				</div>
 			</div>
 			<div class="form-group">

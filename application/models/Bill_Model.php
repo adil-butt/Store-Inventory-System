@@ -1,11 +1,11 @@
 <?php
 class Bill_Model extends CI_Model {
 	public function getSimilar($search) {
-		$this->db->select('billnumber, comments, addeddate, lastupdated');
+		$this->db->select('billnumber, comments, created_at, updated_at');
 		$this->db->like('billnumber', $search);
 		$this->db->or_like('comments', $search);
-		$this->db->or_like('addeddate', $search);
-		$this->db->or_like('lastupdated', $search);
+		$this->db->or_like('created_at', $search);
+		$this->db->or_like('updated_at', $search);
 		$query = $this->db->get('bills');
 		return $query->result_array();
 	}

@@ -18,8 +18,8 @@
 				<?php echo $this->lang->line('bill').' '.$this->lang->line('number'); ?>: <span id="billDetailNumber"><?php echo $billRow[0]['billnumber']; ?></span><br>
 				<?php echo $this->lang->line('bill').' '.$this->lang->line('price'); ?>: <span id="billDetailTotal"><?php echo $billRow[0]['totalPrice']; ?></span><br>
 				<?php echo $this->lang->line('total'); ?> <?php echo $this->lang->line('number').' '.$this->lang->line('of').' '.$this->lang->line('product'); ?>: <span id="billDetailProducts"><?php echo $billRow[0]['totalProducts']; ?></span><br>
-				<?php echo $this->lang->line('added_date'); ?>: <span id="billDetailAddedAt"><?php echo $billRow[0]['addeddate']; ?></span><br>
-				<?php echo $this->lang->line('last_updated'); ?>: <span id="billDetailUpdatedAt"><?php echo $billRow[0]['lastupdated']; ?></span><br>
+				<?php echo $this->lang->line('added_date'); ?>: <span id="billDetailAddedAt"><?php echo $billRow[0]['created_at']; ?></span><br>
+				<?php echo $this->lang->line('last_updated'); ?>: <span id="billDetailUpdatedAt"><?php echo $billRow[0]['updated_at']; ?></span><br>
 				<?php echo $this->lang->line('comments'); ?>: <span id="billDetailComment"><?php echo $billRow[0]['comments']; ?></span>
 				<span class="d-sm-flex">
 				<button style="margin-left: auto" data-billid="<?php if($billId != '') { echo $billRow[0]['id']; } ?>" id="addNewProduct" type="button" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-product-hunt fa-sm text-white-50"></i> <?php echo $this->lang->line('add_more'); ?> <?php echo $this->lang->line('products'); ?> </button>
@@ -85,8 +85,8 @@
 									</td>
 								<td class="editable editableProductComments"><?php echo $row['comments']; ?></td>
 								<td class="editable editableProductDescription"><?php echo $row['description']; ?></td>
-								<td><?php echo $row['addeddate']; ?></td>
-								<td id="updatedAt<?php echo $row['id']; ?>"><?php echo $row['lastupdated']; ?></td>
+								<td><?php echo $row['created_at']; ?></td>
+								<td id="updatedAt<?php echo $row['id']; ?>"><?php echo $row['updated_at']; ?></td>
 								<td>
 									<button data-productid="<?php echo $row['id']; ?>" type="button" <?php echo ($row['remaining'] == '0' ? 'disabled' :''); ?> class="btn btn-outline-secondary sellProduct"><?php echo $this->lang->line('sell'); ?></button>
 									<?php if ($billId != '') { ?>
@@ -102,7 +102,7 @@
 					</table>
 				</div>
 			</div>
-			<div <?php if ($billId == ''){ echo 'style="display:none;"'; } ?> class="card-footer small text-muted"><?php echo $this->lang->line('last_updated'); ?> <?php echo $this->lang->line('at'); ?> <span id="pageLastUpdated"><?php echo $billRow[0]['lastupdated']; ?></span></div>
+			<div <?php if ($billId == ''){ echo 'style="display:none;"'; } ?> class="card-footer small text-muted"><?php echo $this->lang->line('last_updated'); ?> <?php echo $this->lang->line('at'); ?> <span id="pageLastUpdated"><?php echo $billRow[0]['updated_at']; ?></span></div>
 		</div>
 
 	</div>

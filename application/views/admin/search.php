@@ -42,7 +42,7 @@
 									<?php echo $this->lang->line('nic'); ?>: <?php echo $value['nic']; ?> <br>
 									<?php echo $this->lang->line('phone'); ?>: <?php echo $value['phone']; ?> <br>
 									<?php echo $this->lang->line('address'); ?>: <?php echo $value['address']; ?> <br>
-									<?php echo $this->lang->line('registration_time'); ?>: <?php echo $value['regtime']; ?>
+									<?php echo $this->lang->line('registration_time'); ?>: <?php echo $value['created_at']; ?>
 								</td>
 							</tr>
 						<?php } ?>
@@ -53,8 +53,8 @@
 								<td>
 									<?php echo $this->lang->line('bill'); ?> <?php echo $this->lang->line('number'); ?>: <?php echo $value['billnumber']; ?> <br>
 									<?php echo $this->lang->line('comments'); ?>: <?php echo $value['comments']; ?> <br>
-									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['addeddate']; ?> <br>
-									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['lastupdated']; ?>
+									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['created_at']; ?> <br>
+									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['updated_at']; ?>
 								</td>
 							</tr>
 						<?php } ?>
@@ -70,8 +70,8 @@
 									<?php echo $this->lang->line('unit'); ?>: <?php echo $value['unit']; ?> <br>
 									<?php echo $this->lang->line('comments'); ?>: <?php echo $value['comments']; ?> <br>
 									<?php echo $this->lang->line('description'); ?>: <?php echo $value['description']; ?> <br>
-									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['addeddate']; ?> <br>
-									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['lastupdated']; ?>
+									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['created_at']; ?> <br>
+									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['updated_at']; ?>
 								</td>
 							</tr>
 						<?php } ?>
@@ -89,8 +89,8 @@
 									<?php echo $this->lang->line('quantity'); ?>: <?php echo $value['quantity']; ?> <br>
 									<?php echo $this->lang->line('discount'); ?>: <?php echo $value['discount']; ?> <br>
 									<?php echo $this->lang->line('comments'); ?>: <?php echo $value['comments']; ?> <br>
-									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['addeddate']; ?> <br>
-									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['lastupdated']; ?>
+									<?php echo $this->lang->line('added_date'); ?>: <?php echo $value['created_at']; ?> <br>
+									<?php echo $this->lang->line('last_updated'); ?>: <?php echo $value['updated_at']; ?>
 								</td>
 							</tr>
 						<?php } ?>

@@ -1,7 +1,7 @@
 <?php
 class Product_Model extends CI_Model {
 	public function getSimilar($search, $where = '', $limit = '', $offset = '') {
-		$this->db->select('id, productname, quantity, remaining, price, unit, comments, description, imgpath, addeddate, lastupdated');
+		$this->db->select('id, productname, quantity, remaining, price, unit, comments, description, imgpath, created_at, updated_at');
 		if($where !== '') {
 			$this->db->where($where);
 		}
@@ -14,8 +14,8 @@ class Product_Model extends CI_Model {
 		$this->db->or_like('price', $search);
 		$this->db->or_like('unit', $search);
 		$this->db->or_like('comments', $search);
-		$this->db->or_like('addeddate', $search);
-		$this->db->or_like('lastupdated', $search);
+		$this->db->or_like('created_at', $search);
+		$this->db->or_like('updated_at', $search);
 		$query = $this->db->get('products');
 		return $query->result_array();
 	}
@@ -31,7 +31,7 @@ class Product_Model extends CI_Model {
     }
 
     public function getUpdatedDate($where) {
-		$this->db->select('lastupdated');
+		$this->db->select('updated_at');
 		$this->db->where($where);
 		$query = $this->db->get('products');
 		$row = $query->row_array();

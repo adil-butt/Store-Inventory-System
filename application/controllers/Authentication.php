@@ -5,7 +5,7 @@ class Authentication extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		test_login(3);
+		// test_login(3);
 		$config['upload_path'] = 'assets/profileimages';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
@@ -80,7 +80,7 @@ class Authentication extends CI_Controller {
 					if($row['status'] === '0') {
 						$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account_first'));
 					} else {
-						$code = md5(date('Y-m-d G:i:s'));
+						$code = md5(date('Y-m-d H:i:s'));
 						$where = array(
 							'username' => $row['username'],
 						);
@@ -122,7 +122,7 @@ class Authentication extends CI_Controller {
 		);
 		$row = $this->Account_Model->getAccountWhere($where);
 		if($row !== 0) {
-			if(md5((string)$row['regtime']) === $emailCode) {
+			if(md5((string)$row['created_at']) === $emailCode) {
 				if($row['status'] === '0') {
 					$data = array(
 						'status' => '1',
@@ -200,19 +200,19 @@ class Authentication extends CI_Controller {
 
 		$this->form_validation->set_rules('accRegFirstName', 'First Name', 'trim|max_length[50]|min_length[1]|required');
 		$this->form_validation->set_rules('accRegLastName', 'Last Name', 'trim|max_length[50]|min_length[1]|required');
-		$this->form_validation->set_rules('accRegUsername', 'User Name', 'trim|max_length[30]|min_length[4]|required|is_unique[accounts.username]',
+		$this->form_validation->set_rules('accRegUsername', 'User Name', 'trim|max_length[30]|min_length[4]|required|is_unique[users.username]',
 			array(
 				'is_unique'     => 'This %s already exists.'
 			)
 		);
-		$this->form_validation->set_rules('accRegEmail', 'Email', 'trim|max_length[100]|min_length[5]|valid_email|required|is_unique[accounts.email]',
+		$this->form_validation->set_rules('accRegEmail', 'Email', 'trim|max_length[100]|min_length[5]|valid_email|required|is_unique[users.email]',
 			array(
 				'is_unique'     => 'This %s already exists.'
 			)
 		);
 		$this->form_validation->set_rules('accRegPassword', 'Password', 'trim|max_length[100]|min_length[8]|required');
 		$this->form_validation->set_rules('accRegConfirmPassword', 'Confirm Password', 'trim|max_length[100]|min_length[8]|matches[accRegPassword]|required');
-		$this->form_validation->set_rules('accRegNic', 'NIC', 'trim|exact_length[13]|numeric|required|is_unique[accounts.nic]',
+		$this->form_validation->set_rules('accRegNic', 'NIC', 'trim|exact_length[13]|numeric|required|is_unique[users.nic]',
 			array(
 				'is_unique'     => 'This %s already exists.'
 			)
@@ -253,8 +253,8 @@ class Authentication extends CI_Controller {
 					$this->session->set_flashdata('error', $this->lang->line('image').' '.$this->lang->line('is').' '.$this->lang->line('not').' '.$this->lang->line('uploaded').' '.$this->lang->line('successfully'));
 				}
 			}
-			$regTime = date('Y-m-d G:i:s');
-			$data['regtime'] = $regTime;
+			$regTime = date('Y-m-d H:i:s');
+			$data['created_at'] = $regTime;
 			if($this->Account_Model->insertNewAccount($data)) {
 				$emailCode = md5((string)$regTime);
 				$message= /*-----------email body starts-----------*/

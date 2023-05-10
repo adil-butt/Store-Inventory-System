@@ -86,7 +86,7 @@
 	<ul class="navbar-nav ml-auto ml-md-0">
 		<li class="nav-item dropdown no-arrow">
 			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img class="rounded-circle" id="profileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
+				<img class="rounded-circle" id="profileImage" src="<?php echo isset($_SESSION['user']['profilepath']) ? base_url('assets/profileimages/'.$_SESSION['user']['profilepath']) : ''; ?>" width="50" height="45">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>">

@@ -5,12 +5,12 @@ class Sell_Model extends CI_Model {
 	}
 
 	public function getSimilar($search) {
-		$this->db->select('productid, quantity, discount, comments, addeddate, lastupdated');
+		$this->db->select('productid, quantity, discount, comments, created_at, updated_at');
 		$this->db->like('quantity', $search);
 		$this->db->or_like('discount', $search);
 		$this->db->or_like('comments', $search);
-		$this->db->or_like('addeddate', $search);
-		$this->db->or_like('lastupdated', $search);
+		$this->db->or_like('created_at', $search);
+		$this->db->or_like('updated_at', $search);
 		$query = $this->db->get('sale');
 		return $query->result_array();
 	}
@@ -47,8 +47,8 @@ class Sell_Model extends CI_Model {
 		$this->db->from('sale');
 		$this->db->join('products', 'products.id = sale.productid');
 		$this->db->where($where);
-		$this->db->group_by('DAY(sale.addeddate)');
-		$this->db->order_by('addeddate', 'ASC');
+		$this->db->group_by('DAY(sale.created_at)');
+		$this->db->order_by('created_at', 'ASC');
 		$query = $this->db->get();
 		if($query !== FALSE && $query->num_rows() > 0) {
 			return $query->result_array();

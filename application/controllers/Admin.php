@@ -186,7 +186,7 @@ class Admin extends CI_Controller
 						'status' => 1,
 						'totalPrice' => $this->input->post('productQuantity') * $this->input->post("productPrice"),
 						'remaining' => $remaining,
-						'updatedAt' => $updatedAt['lastupdated'],
+						'updatedAt' => $updatedAt['updated_at'],
 						'statusMessage' => $this->lang->line('product').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'),
 					);
 				} else {
@@ -234,12 +234,16 @@ class Admin extends CI_Controller
 
 		$row = $this->Product_Model->getResultOfProducts($where);
 
+		if (is_array($row) && count($row) > 0) {
 			for($i = 0; $i < count($row); $i++) {
-			$where = array	(
-				'id' => $row[$i]['id'],
-			);
-			$sum = $this->Product_Model->sumProducts($where);
-			$row[$i]['totalPrice'] = $sum['0']['SUM(price*quantity)'];
+				$where = array	(
+					'id' => $row[$i]['id'],
+				);
+				$sum = $this->Product_Model->sumProducts($where);
+				$row[$i]['totalPrice'] = $sum['0']['SUM(price*quantity)'];
+			}
+		} else {
+			$row = array();
 		}
 
 		$data['productRow'] = $row;
@@ -458,12 +462,12 @@ class Admin extends CI_Controller
 		if($this->form_validation->run() == TRUE) {
 			$response = array();
 			$files = $_FILES;
-			$addedDate = date('Y-m-d G:i:s');
+			$addedDate = date('Y-m-d H:i:s');
 			if($this->input->post('addProductBillId') == '') {
 				$data = array(
 					'billnumber' => $this->input->post('billNumber'),
 					'comments' => $this->input->post('billComment'),
-					'addeddate' => $addedDate,
+					'created_at' => $addedDate,
 				);
 				if ($this->Bill_Model->insertNewBill($data)) {
 					$insert_id = $this->db->insert_id();
@@ -496,10 +500,10 @@ class Admin extends CI_Controller
 					'unit' => $unit[$i],
 					'comments' => $comments[$i],
 					'description' => $description[$i],
-					'addeddate' => $addedDate,
+					'created_at' => $addedDate,
 				);
 				if($this->input->post('addProductBillId') !== '') {
-					$data2[$i]['lastupdated'] = $addedDate;
+					$data2[$i]['updated_at'] = $addedDate;
 				}
 				if (is_uploaded_file($files['productImage']['tmp_name'][$i])) {
 					$_FILES['productImage']['name']= $files['productImage']['name'][$i];
@@ -537,7 +541,7 @@ class Admin extends CI_Controller
 				$response['billNumber'] = $this->input->post('billNumber');
 				$response['totalPrice'] = $totalPrice;
 				$response['numberOfProducts'] = $number;
-				$response['addedAt'] = $addedDate;
+				$response['created_at'] = $addedDate;
 
 				if($this->input->post('addProductBillId') == '') {
 					$response['id'] = $insert_id;
@@ -549,7 +553,7 @@ class Admin extends CI_Controller
 						'id' => $insert_id,
 					);
 					$data = array(
-						'lastupdated' => $addedDate,
+						'updated_at' => $addedDate,
 					);
 					$this->Bill_Model->updateBill($data, $where);
 					$response['statusMessage'] = $this->lang->line('product').'(s) '.$this->lang->line('added').' '.$this->lang->line('successfully');
@@ -670,7 +674,7 @@ class Admin extends CI_Controller
 					'nic' => $this->input->post('updateNic'),
 					'phone' => $this->input->post('updatePhone'),
 					'address' => $this->input->post('updateAddress'),
-					'regtime' =>  $sessionData['regtime'],
+					'created_at' =>  $sessionData['created_at'],
 					'role' => $sessionData['role'],
 					'status' => $sessionData['status'],
 				);
@@ -693,8 +697,8 @@ class Admin extends CI_Controller
 	}
 
 	public function index() {
-		$where = "sale.`addeddate` > (NOW() - INTERVAL 1 MONTH)";
-		$where2 = "products.`addeddate` > (NOW() - INTERVAL 1 MONTH)";
+		$where = "sale.`created_at` > (NOW() - INTERVAL 1 MONTH)";
+		$where2 = "products.`created_at` > (NOW() - INTERVAL 1 MONTH)";
 		$row = $this->Sell_Model->getSalesWithPPrice($where);
 		$row2 = $this->Product_Model->getResultOfProducts($where2);
 		$chartLabels = array();
@@ -706,7 +710,7 @@ class Admin extends CI_Controller
 			$todayPurchases = 0;
 			for($i = 0; $i < count($row); $i++) {
 				$monthSales = $monthSales + $row[$i]['numberOfSales'];
-				$date = $row[$i]['addeddate'];
+				$date = $row[$i]['created_at'];
 				$createDate = new DateTime($date);
 				$strip = $createDate->format('Y-m-d');
 				if($strip == date('Y-m-d')) {
@@ -720,7 +724,7 @@ class Admin extends CI_Controller
 			$data['monthSales'] = $monthSales;
 
 			foreach ($row2 as $row) {
-				$date = $row['addeddate'];
+				$date = $row['created_at'];
 				$createDate = new DateTime($date);
 				$strip = $createDate->format('Y-m-d');
 				if($strip == date('Y-m-d')) {

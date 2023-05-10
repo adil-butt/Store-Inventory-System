@@ -48,8 +48,8 @@
 							<td id="returnQuantityMax<?php echo $row['id'] ?>"><?php echo $row['quantity'] ?></td>
 							<td><?php echo $row['discount'] ?></td>
 							<td><?php echo $row['comments'] ?></td>
-							<td><?php echo $row['addeddate'] ?></td>
-							<td><?php echo $row['lastupdated'] ?></td>
+							<td><?php echo $row['created_at'] ?></td>
+							<td><?php echo $row['updated_at'] ?></td>
 							<td><button type="button" data-sellid="<?php echo $row['id']; ?>" data-productid="<?php echo $row['productid']; ?>" class="btn btn-outline-secondary returnProduct"><?php echo $this->lang->line('return')." ".$this->lang->line('back'); ?></button>
 							<button type="button" data-sellid="<?php echo $row['id']; ?>" data-productid="<?php echo $row['productid']; ?>" class="btn btn-outline-secondary sellUpdate"><?php echo $this->lang->line('update'); ?></button>
 							<button type="button" data-sellid="<?php echo $row['id']; ?>" data-productid="<?php echo $row['productid']; ?>" class="btn btn-outline-secondary sellDelete"><?php echo $this->lang->line('delete'); ?></button></td>

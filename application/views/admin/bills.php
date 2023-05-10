@@ -49,7 +49,7 @@
 										<td id="billNumber<?php echo $row['id']; ?>"><?php echo $row['billnumber']; ?></td>
 										<td id="billTotalPrice<?php echo $row['id']; ?>"><?php echo $row['totalPrice'] ?></td>
 										<td><?php echo $row['totalProducts'] ?></td>
-										<td><?php echo $row['addeddate']; ?></td>
+										<td><?php echo $row['created_at']; ?></td>
 										<td>
 											<a class="btn btn-outline-primary" href="<?php echo base_url('admin/bill_detail/').$row['id']; ?>"><?php echo $this->lang->line('view_details'); ?></a>
 											<button data-billid="<?php echo $row['id']; ?>" type="button" class="btn btn-outline-secondary updateBill"><?php echo $this->lang->line('update'); ?></button>
