@@ -28,7 +28,7 @@
 				echo $message;
 			} ?>
 			<div class="text-center" style="margin-bottom: 20px;">
-				<a class="d-block small" href="<?php echo base_url('login') ?>"><?php echo $this->lang->line('login').' '.$this->lang->line('page'); ?></a>
+				<a class="d-block small" href="<?php echo base_url('home/0/1') ?>"><?php echo $this->lang->line('login'); ?></a>
 			</div>
 		</div>
 	</div>

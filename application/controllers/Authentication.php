@@ -5,7 +5,7 @@ class Authentication extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// test_login(3);
+		test_login(4);
 		$config['upload_path'] = 'assets/profileimages';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
@@ -121,7 +121,7 @@ class Authentication extends CI_Controller {
 			'username' => $username,
 		);
 		$row = $this->Account_Model->getAccountWhere($where);
-		if($row !== 0) {
+		if($row) {
 			if(md5((string)$row['created_at']) === $emailCode) {
 				if($row['status'] === '0') {
 					$data = array(
@@ -148,18 +148,61 @@ class Authentication extends CI_Controller {
 		}
 	}
 
-	public function logout($role) {
+	public function logout($role = 2) {
 		//$this->session->sess_destroy();
-		$this->session->unset_userdata('user');
-		$this->cart->destroy();
 		if($role == '1') {
-			redirect('login');
+			$this->session->unset_userdata('admin');
+			redirect('admin/login');
 		} else {
+			$this->session->unset_userdata('user');
+			$this->cart->destroy();
 			redirect('home');
 		}
 	}
 
 	public function login() {
+
+		if(null !== $this->input->post('inputEmailOrUsername')) {
+			$status = 0;
+			$error_message = '';
+
+			$password = md5($this->input->post('inputPassword'));
+
+			$this->form_validation->set_rules('inputEmailOrUsername', 'Email/Username', 'trim|max_length[100]|min_length[5]|valid_email');
+			$where = array	(
+				'password' => $password
+			);
+			$where['role'] = 2;
+			if($this->form_validation->run() === TRUE) {
+				$where['email'] = $this->input->post('inputEmailOrUsername');
+			} else {
+				$where['username'] = $this->input->post('inputEmailOrUsername');
+			}
+			$row = $this->Account_Model->getAccountWhere($where);
+			if($row) {
+				unset($row["password"]);
+				if($row['status'] === '0') {
+					$error_message = $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account');
+				} else {
+					if($row['role'] === '2') {
+						$this->session->set_userdata('user', $row);
+						$status = 1;
+					}
+				}
+			} else {
+				$error_message = $this->lang->line('invalid').' '.$this->lang->line('login').' '.$this->lang->line('credentials');
+			}
+
+			$response = array(
+				'status' => $status,
+				'error_message' => $error_message
+			);
+			echo json_encode($response);
+			exit;
+		}
+	}
+
+	public function adminLogin() {
 		if(null !== $this->input->post('inputEmailOrUsername')) {
 
 			$password = md5($this->input->post('inputPassword'));
@@ -173,17 +216,21 @@ class Authentication extends CI_Controller {
 			} else {
 				$where['username'] = $this->input->post('inputEmailOrUsername');
 			}
+
+			$where['role'] = 1;
+
 			$row = $this->Account_Model->getAccountWhere($where);
 			if($row) {
 				unset($row["password"]);
-				$this->session->set_userdata('user', $row);
+				if ($row['role'] === '1') {
+					$this->session->set_userdata('admin', $row);
+				}
 				if($row['status'] === '0') {
 					$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account'));
+					$this->session->unset_userdata('admin');
 				} else {
 					if($row['role'] === '1') {
 						redirect('admin');
-					} else {
-						redirect('home');
 					}
 				}
 			} else {
@@ -192,7 +239,7 @@ class Authentication extends CI_Controller {
 		}
 		$data['title'] = $this->lang->line('login');
 		$this->load->view('auth/include/header', $data);
-		$this->load->view('auth/login');
+		$this->load->view('auth/admin-login');
 		$this->load->view('auth/include/footer');
 	}
 

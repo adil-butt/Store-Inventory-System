@@ -4,5 +4,5 @@
 		<?php echo $message ?>
 	<h3>
 
-	<a style="color: blueviolet; padding-top: 50px" href="<?php echo base_url('login'); ?>"><?php echo $this->lang->line('click').' '.$this->lang->line('here').' '.$this->lang->line('to').' '.$this->lang->line('login'); ?></a>
+	<a style="color: blueviolet; padding-top: 50px" href="<?php echo base_url('home/0/1'); ?>"><?php echo $this->lang->line('click').' '.$this->lang->line('here').' '.$this->lang->line('to').' '.$this->lang->line('login'); ?></a>
 </div>

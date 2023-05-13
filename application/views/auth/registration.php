@@ -175,7 +175,7 @@
 				<?php echo form_submit('accRegSubmit', $this->lang->line('register'), 'class="btn btn-primary btn-block"'); ?>
 			<?php echo form_close(); ?>
 			<div class="text-center">
-				<a class="d-block small mt-3" href="<?php echo base_url('login') ?>"><?php echo $this->lang->line('login').' '.$this->lang->line('page'); ?></a>
+				<a class="d-block small mt-3" href="<?php echo base_url('home/0/1') ?>"><?php echo $this->lang->line('login'); ?></a>
 				<a class="d-block small" href="<?php echo base_url('forgot-password') ?>"><?php echo $this->lang->line('forgot_password'); ?>?</a>
 			</div>
 		</div>

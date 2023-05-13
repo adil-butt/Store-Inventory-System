@@ -26,10 +26,10 @@
 				</div>-->
 				<button type="submit" class="btn btn-primary btn-block"><?php echo $this->lang->line('login'); ?></button>
 			</form>
-			<div class="text-center">
+			<!-- <div class="text-center">
 				<a class="d-block small mt-3" href="<?php echo base_url('reg') ?>"><?php echo $this->lang->line('register').' '.$this->lang->line('an').' '.$this->lang->line('account'); ?></a>
 				<a class="d-block small" href="<?php echo base_url('forgot-password'); ?>"><?php echo $this->lang->line('forgot_password'); ?>?</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

@@ -44,8 +44,6 @@
         var langSell = "<?php echo $this->lang->line('sell'); ?>";
         var langSale = "<?php echo $this->lang->line('sale'); ?>";
         var langSales = "<?php echo $this->lang->line('sales'); ?>";
-        var langDescription = "<?php echo $this->lang->line('description'); ?>";
-        var langImage = "<?php echo $this->lang->line('image'); ?>";
 	</script>
 
 	<!-- Custom fonts for this template-->
@@ -66,7 +64,21 @@
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-	<a class="navbar-brand mr-1" href="#"><?php echo $_SESSION['admin']['username'].' ('.$this->lang->line('admin').')'; ?></a>
+	<a class="navbar-brand mr-1" href="#"><?php
+		if(isset($_SESSION['user'])) {
+			$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+			if(strpos($url, 'admin') === FALSE && strpos($url, 'user') === FALSE && $this->session->has_userdata('user')) {
+				echo $this->lang->line('qureshi_traders');		
+			} elseif($_SESSION['user']['role'] === '1') {
+				echo $_SESSION['user']['username'].' ('.$this->lang->line('admin').')';
+			} elseif($_SESSION['user']['role'] === '2') {
+				echo $_SESSION['user']['username'].' ('.$this->lang->line('user').')';
+			}
+		} else {
+			echo $this->lang->line('qureshi_traders');
+		}
+
+		?></a>
 	<button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
 		<i class="fas fa-bars"></i>
 	</button>
@@ -74,7 +86,7 @@
 	<!-- Navbar Search -->
 	<form method="post" action="<?php echo base_url().'admin/search'; ?>" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 		<div class="input-group">
-			<input type="text" name="searchItem" class="form-control" placeholder="<?php echo $this->lang->line('search')." ".$this->lang->line('for')." ".$this->lang->line('anything') ?>..." aria-label="Search" aria-describedby="basic-addon2">
+			<input type="text" name="searchItem" class="form-control" placeholder="<?php echo $this->lang->line('search')." ".$this->lang->line('for') ?>..." aria-label="Search" aria-describedby="basic-addon2">
 			<div class="input-group-append">
 				<button class="btn btn-primary" type="submit">
 					<i class="fas fa-search"></i>
@@ -82,44 +94,57 @@
 			</div>
 		</div>
 	</form>
-	<!-- Navbar -->
-	<ul class="navbar-nav ml-auto ml-md-0">
-		<li class="nav-item dropdown no-arrow">
-			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img class="rounded-circle" id="profileImage" src="<?php echo isset($_SESSION['admin']['profilepath']) ? base_url('assets/profileimages/'.$_SESSION['admin']['profilepath']) : ''; ?>" width="50" height="45">
-			</a>
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>">
-				<i class="fa fa-user-circle"></i>
-				<?php echo $this->lang->line('profile'); ?></a>
-				<a class="dropdown-item" id="viewProfilePhoto" href="#">
-				<i class="fa fa-image"></i>
-				<?php echo $this->lang->line('view_profile_photo'); ?></a>
-				<div class="dropdown-divider"></div>
-				<?php
-				if($this->session->userdata('site_lang') == 'japanese') { ?>
-					<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/english'; ?>">
-					<i class="fas fa-language"></i>
-						<?php echo $this->lang->line('change_language_to_english'); ?>
+
+	<?php
+	if(isset($_SESSION['user'])) {
+		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+		if((strpos($url, 'admin') !== FALSE || strpos($url, 'user') !== FALSE) && ($_SESSION['user']['role'] === '1' || $_SESSION['user']['role'] === '2')) {
+			?>
+			<!-- Navbar -->
+			<ul class="navbar-nav ml-auto ml-md-0">
+				<li class="nav-item dropdown no-arrow">
+					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img class="rounded-circle" id="profileImage" src="<?php echo base_url('assets/profileimages/'.$_SESSION['user']['profilepath']); ?>" width="50" height="45">
 					</a>
-				<?php } else { ?>
-					<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/japanese'; ?>">
-					<i class="fas fa-language"></i>
-						<?php echo $this->lang->line('change_language_to_japanese'); ?>
-					</a>
-				<?php } ?>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-				<i class="fas fa-sign-out-alt"></i>
-				<?php echo $this->lang->line('logout'); ?></a>
-			</div>
-		</li>
-	</ul>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+						<a class="dropdown-item" href="<?php echo base_url().'admin/profile'; ?>"><?php echo $this->lang->line('profile'); ?></a>
+						<a class="dropdown-item" id="viewProfilePhoto" href="#"><?php echo $this->lang->line('view_profile_photo'); ?></a>
+						<div class="dropdown-divider"></div>
+						<?php
+						if($this->session->userdata('site_lang') == 'japanese') { ?>
+							<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/english'; ?>">
+								<?php echo $this->lang->line('change_language_to_english'); ?>
+							</a>
+						<?php } else { ?>
+							<a class="dropdown-item" href="<?php echo base_url().'languageswitcher/switchLang/japanese'; ?>">
+								<?php echo $this->lang->line('change_language_to_japanese'); ?>
+							</a>
+						<?php } ?>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><?php echo $this->lang->line('logout'); ?></a>
+					</div>
+				</li>
+			</ul>
+			<?php
+		}
+	}
+	?>
+
 </nav>
 
 <!-- end of navbar -->
+
 <?php
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+if(strpos($url, 'admin') === FALSE && strpos($url, 'user') === FALSE && $this->session->has_userdata('user')) {
+	$dashboard = 'home';
+} elseif(!$this->session->has_userdata('user')) {
+	$dashboard = 'home';
+} elseif($this->session->has_userdata('user','role') == '1') {
 	$dashboard = 'admin';
+} elseif($this->session->has_userdata('user','role') == '2') {
+	$dashboard = 'user';
+}
 ?>
 <div id="wrapper">
 	<!-- Sidebar -->
@@ -136,12 +161,10 @@
 				<span><?php echo $this->lang->line('pages'); ?></span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<?php /*
 				<h6 class="dropdown-header"><?php echo $this->lang->line('login_screens').':'; ?></h6>
 				<a class="dropdown-item" href="<?php echo base_url('login'); ?>"><?php echo $this->lang->line('login'); ?></a>
 				<a class="dropdown-item" href="<?php echo base_url('reg'); ?>"><?php echo $this->lang->line('register'); ?></a>
 				<a class="dropdown-item" href="<?php echo base_url('forgot-password'); ?>"><?php echo $this->lang->line('forgot_password'); ?></a>
-				*/ ?>
 				<div class="dropdown-divider"></div>
 				<h6 class="dropdown-header"><?php echo $this->lang->line('other_pages').':'; ?></h6>
 				<a class="dropdown-item" href="<?php echo base_url('my404') ?>"><?php echo $this->lang->line('404_page'); ?></a>
@@ -161,16 +184,6 @@
 			<a class="nav-link" href="<?php echo base_url().'admin/sales'; ?>">
 				<i class="fas fa-fw fa-table"></i>
 				<span><?php echo $this->lang->line('sales')." ".$this->lang->line('table'); ?></span></a>
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="settingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fa fa-cog"></i>
-				<span><?php echo $this->lang->line('site').' '.$this->lang->line('setting'); ?></span>
-			</a>
-			<div class="dropdown-menu" aria-labelledby="settingDropdown">
-				<h6 class="dropdown-header"><?php echo $this->lang->line('site').' '.$this->lang->line('setting').':'; ?></h6>
-				<a class="dropdown-item" href="<?php echo base_url('site_setting'); ?>"><?php echo $this->lang->line('setting'); ?></a>
-			</div>
 		</li>
 	</ul>
 
@@ -300,7 +313,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="alert alert-danger" role="alert" id="createBillBackendError"  style="text-align: center; display:none;"></div>
-				<form id="billForm" name="billForm"  enctype="multipart/form-data">
+				<form id="billForm" name="billForm">
 					<h5><b><?php echo $this->lang->line('bill').' '.$this->lang->line('information'); ?></b></h5>
 					<div class="form-group">
 						<div class="form-label-group">
@@ -339,13 +352,6 @@
 									</span>
 									<b><span id="tempInvoiceTotal3"></span></b>
 								</div>
-								<div class="form-group col-md-2">
-									<?php echo $this->lang->line('total'); ?><br>
-									<span id="tempInvoiceTotalPrice">
-										<span id="tempInvoiceTotalPrice0" class="tempInvoiceTotalPrice0"></span><br class="tempInvoiceTotalPrice0">
-									</span>
-									<b><span id="tempInvoiceTotal4"></span></b>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -356,10 +362,17 @@
 					</div>
 
 					<div id="productsRow">
+						<!--							<div class="form-group">-->
+						<!--								<div class="form-row">-->
+						<!--									<button style="margin-left: auto;" type="button" class="close" id="removeProductRow" aria-label="Close">-->
+						<!--										<span aria-hidden="true">&times;</span>-->
+						<!--									</button>-->
+						<!--								</div>-->
+						<!--							</div>-->
 						<div class="form-group">
 							<div>
 								<input type="text" id="productId0" name="productId[]" class="form-control" style="text-align: center; display:none;">
-								<input type="text" id="productName0" name="productName[]" data-id="0" class="form-control detectNameInput" placeholder="<?php echo $this->lang->line('product_name'); ?>">
+								<input type="text" id="productName0" name="productName[]" value="<?php echo set_value('productName[]'); ?>" data-id="0" class="form-control detectNameInput" placeholder="<?php echo $this->lang->line('product_name'); ?>">
 								<div class="alert alert-warning" role="alert" id="productNameError0"  style="text-align: center; display:none;"></div>
 							</div>
 						</div>
@@ -392,15 +405,6 @@
 						</div>
 						<div class="form-group">
 							<textarea  class="form-control" id="productComment0" name="productComment[]" value="<?php echo set_value('productComment[]'); ?>" placeholder="<?php echo $this->lang->line('product_comments'); ?> (<?php echo $this->lang->line('optional'); ?>)" form="billForm"></textarea>
-						</div>
-						<div class="form-group">
-							<textarea  class="form-control" id="productDescription0" name="productDescription[]" value="<?php echo set_value('productDescription[]'); ?>" placeholder="<?php echo $this->lang->line('product').' '.$this->lang->line('description'); ?> (<?php echo $this->lang->line('optional'); ?>)" form="billForm"></textarea>
-						</div>
-						<div class="form-group">
-							<div class="form-label-group">
-								<input type="file" name="productImage[]" />
-								<label><?php echo $this->lang->line('product')." ".$this->lang->line('image')." (".$this->lang->line('optional').")"; ?></label>
-							</div>
 						</div>
 					</div>
 				</form>
@@ -450,7 +454,7 @@
 			<div class="modal-body"><?php echo $this->lang->line('select'); ?> "<?php echo $this->lang->line('logout'); ?>" <?php echo $this->lang->line('select_below_message'); ?>.</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal"><?php echo $this->lang->line('cancel'); ?></button>
-				<a class="btn btn-primary" href="<?php echo base_url('logout/1'); ?>"><?php echo $this->lang->line('logout'); ?></a>
+				<a class="btn btn-primary" href="<?php echo base_url('logout'); ?>"><?php echo $this->lang->line('logout'); ?></a>
 			</div>
 		</div>
 	</div>

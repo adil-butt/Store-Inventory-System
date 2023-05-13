@@ -18,7 +18,7 @@
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="<?php echo base_url('reg') ?>"><?php echo $this->lang->line('register').' '.$this->lang->line('an').' '.$this->lang->line('account'); ?></a>
-          <a class="d-block small" href="<?php echo base_url('login') ?>"><?php echo $this->lang->line('login').' '.$this->lang->line('page'); ?></a>
+          <a class="d-block small" href="<?php echo base_url('home/0/1') ?>"><?php echo $this->lang->line('login'); ?></a>
         </div>
       </div>
     </div>

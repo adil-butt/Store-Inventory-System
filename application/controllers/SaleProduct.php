@@ -212,7 +212,7 @@ class SaleProduct extends CI_Controller {
 					$this->session->set_flashdata('error', 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"]);
 				}
 			} else {
-				$data['userid'] = $_SESSION['user']['id'];
+				$data['userid'] = $_SESSION['admin']['id'];
 				$data['productid'] = $this->input->post('salePId');
 				$data['created_at'] = date('Y-m-d H:i:s');
 				if($this->Sell_Model->insertSellProduct($data)) {

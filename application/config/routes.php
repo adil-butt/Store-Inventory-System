@@ -50,16 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['about'] = 'user/about';
-$route['contact_us'] = 'user/contact';
-
-$route['checkout'] = 'user/checkout';
-$route['cart'] = 'user/cart';
-$route['display_product/(:num)'] = 'user/productDisplay/$1';
-$route['home/(:num)'] = 'user/index/$1';
-$route['profile'] = 'user/profile';
-$route['home'] = 'user';
-
+// admin routes - start
 $route['admin/sales'] = 'SaleProduct/salesTable';
 $route['admin/sale_product'] = 'SaleProduct/saleProduct';
 
@@ -70,15 +61,34 @@ $route['admin/bill_detail/(:any)'] = 'admin/billDetail/$1';
 $route['admin/bills'] = 'admin/bills';
 $route['admin/profile'] = 'admin/profile';
 $route['admin'] = 'admin';
+// admin routes - end
 
+// public routes without login - start
+$route['home'] = 'home';
+$route['home/(:num)'] = 'home/index/$1';
+$route['home/(:num)/(:num)'] = 'home/index/$1/$2';
+$route['about'] = 'home/about';
+$route['contact_us'] = 'home/contact';
+$route['display_product/(:num)'] = 'home/productDisplay/$1';
+$route['cart'] = 'home/cart';
+$route['checkout'] = 'home/checkout';
+// public routes without login - end
+
+// user routes start
+$route['profile'] = 'user/profile';
+// user routes end
+
+// authentication routes start
 $route['reset_password/(:any)/(:any)'] = 'authentication/resetPassword/$1/$2';
 $route['verify/(:any)/(:any)'] = 'authentication/verification/$1/$2';
 $route['logout/(:any)'] = 'authentication/logout/$1';
 $route['reg'] = 'authentication/registration';
 $route['login'] = 'authentication/login';
+$route['admin/login'] = 'authentication/adminLogin';
 $route['forgot-password'] = 'authentication/forgotPassword';
+// authentication routes end
 
-$route['default_controller'] = 'user';
+$route['default_controller'] = 'home';
 $route['404_override'] = 'my404';
 $route['translate_uri_dashes'] = FALSE;
 

@@ -29,6 +29,55 @@ class Admin extends CI_Controller
 	 * @return bool
 	 */
 
+	public function index() {
+		$where = "sale.`created_at` > (NOW() - INTERVAL 1 MONTH)";
+		$where2 = "products.`created_at` > (NOW() - INTERVAL 1 MONTH)";
+		$row = $this->Sell_Model->getSalesWithPPrice($where);
+		$row2 = $this->Product_Model->getResultOfProducts($where2);
+		$chartLabels = array();
+		$chartData = array();
+		if ($row && $row2) {
+			$data['monthPurchases'] = count($row2);
+			$todaySales = 0;
+			$monthSales = 0;
+			$todayPurchases = 0;
+			for($i = 0; $i < count($row); $i++) {
+				$monthSales = $monthSales + $row[$i]['numberOfSales'];
+				$date = $row[$i]['created_at'];
+				$createDate = new DateTime($date);
+				$strip = $createDate->format('Y-m-d');
+				if($strip == date('Y-m-d')) {
+					$todaySales = $row[$i]['numberOfSales'];
+				}
+				$strip = $createDate->format('M-d');
+				$chartLabels[$i] = $strip;
+				$chartData[$i] = $row[$i]['price'];
+			}
+			$data['todaySales'] = $todaySales;
+			$data['monthSales'] = $monthSales;
+
+			foreach ($row2 as $row) {
+				$date = $row['created_at'];
+				$createDate = new DateTime($date);
+				$strip = $createDate->format('Y-m-d');
+				if($strip == date('Y-m-d')) {
+					$todayPurchases++;
+				}
+			}
+			$data['todayPurchases'] = $todayPurchases;
+			$data['chartLabels'] = json_encode($chartLabels);
+			$data['chartData'] = json_encode($chartData);
+		} else {
+			$data = array(); // optional parameter
+			$data['todaySales'] = '0';
+			$data['todayPurchases'] = '0';
+			$data['monthSales'] = '0';
+			$data['monthPurchases'] = '0';
+		}
+		$this->template->set('title', $this->lang->line('admin').' '.$this->lang->line('dashboard'));
+		$this->template->load('admin_layout', 'contents' , 'admin/dashboard', $data);
+	}
+
 	public function uploadSliderImage($fieldName, $fileName) {
 		$config['upload_path'] = 'assets/slider_images';
 		$config['allowed_types'] = 'jpg';
@@ -653,8 +702,8 @@ class Admin extends CI_Controller
 					$this->image_lib->initialize($configer);
 					$this->image_lib->resize();
 
-					if($_SESSION['user']['profilepath'] != 'default.jpg') {
-						unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
+					if($_SESSION['admin']['profilepath'] != 'default.jpg') {
+						unlink('assets/profileimages/'.$_SESSION['admin']['profilepath']);		// delete the old image
 					}
 
 					$data['profilepath'] = $image_data['file_name'];
@@ -694,55 +743,6 @@ class Admin extends CI_Controller
 		$this->template->set('title', $this->lang->line('profile'));
 		$this->template->load('admin_layout', 'contents' , 'admin/profile', $data);
 
-	}
-
-	public function index() {
-		$where = "sale.`created_at` > (NOW() - INTERVAL 1 MONTH)";
-		$where2 = "products.`created_at` > (NOW() - INTERVAL 1 MONTH)";
-		$row = $this->Sell_Model->getSalesWithPPrice($where);
-		$row2 = $this->Product_Model->getResultOfProducts($where2);
-		$chartLabels = array();
-		$chartData = array();
-		if ($row && $row2) {
-			$data['monthPurchases'] = count($row2);
-			$todaySales = 0;
-			$monthSales = 0;
-			$todayPurchases = 0;
-			for($i = 0; $i < count($row); $i++) {
-				$monthSales = $monthSales + $row[$i]['numberOfSales'];
-				$date = $row[$i]['created_at'];
-				$createDate = new DateTime($date);
-				$strip = $createDate->format('Y-m-d');
-				if($strip == date('Y-m-d')) {
-					$todaySales = $row[$i]['numberOfSales'];
-				}
-				$strip = $createDate->format('M-d');
-				$chartLabels[$i] = $strip;
-				$chartData[$i] = $row[$i]['price'];
-			}
-			$data['todaySales'] = $todaySales;
-			$data['monthSales'] = $monthSales;
-
-			foreach ($row2 as $row) {
-				$date = $row['created_at'];
-				$createDate = new DateTime($date);
-				$strip = $createDate->format('Y-m-d');
-				if($strip == date('Y-m-d')) {
-					$todayPurchases++;
-				}
-			}
-			$data['todayPurchases'] = $todayPurchases;
-			$data['chartLabels'] = json_encode($chartLabels);
-			$data['chartData'] = json_encode($chartData);
-		} else {
-			$data = array(); // optional parameter
-			$data['todaySales'] = '0';
-			$data['todayPurchases'] = '0';
-			$data['monthSales'] = '0';
-			$data['monthPurchases'] = '0';
-		}
-		$this->template->set('title', $this->lang->line('admin').' '.$this->lang->line('dashboard'));
-		$this->template->load('admin_layout', 'contents' , 'admin/dashboard', $data);
 	}
 
 }
