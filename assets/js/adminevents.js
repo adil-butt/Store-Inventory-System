@@ -6,7 +6,7 @@ $(document).ready(function () {
 	var checkUpdateQuantity = 1;
 
 	$(document).on('input', '.detectQuantityInput', function () {
-		if($('#submitBillButton').text() == updateBillButton) {
+		if($('#submitBillButton').text() == langUpdateButton) {
 			var pId = $("#productId"+$(this).data('id')).val();
 			var pQuantity = $(this).val();
 			let dataId = $(this).data('id');
@@ -50,8 +50,8 @@ $(document).ready(function () {
 	});
 
 	$('#addNewProduct').click(function () {
-		$('#billModalTitle').text(addMore+' '+products);
-		$('#submitBillButton').text(addBillButton);
+		$('#billModalTitle').text(langAddMore+' '+langProducts);
+		$('#submitBillButton').text(langAddButton);
 		$('#billModal').find("input,textarea,select").val('');
 		$('#addProductBillId').val($(this).data('billid'));
 		$('#billNumber').val($('#billDetailNumber').text());
@@ -75,22 +75,22 @@ $(document).ready(function () {
 			var isCorrect = 1;
 			if (productName  === '') {
 				isCorrect = 0;
-				alert(langProductName+' '+LangIsEmpty);
+				alert(langProductName+' '+langIsEmpty);
 			} else if(productQuantity  === '') {
 				isCorrect = 0;
-				alert(products+' '+langQuantity+' '+LangIsEmpty);
+				alert(langProducts+' '+langQuantity+' '+langIsEmpty);
 			} else if(!$.isNumeric(productQuantity)) {
 				isCorrect = 0;
-				alert(products+' '+langQuantity+' '+LangMustNumeric);
+				alert(langProducts+' '+langQuantity+' '+langMustNumeric);
 			} else if (productPrice  === '') {
 				isCorrect = 0;
-				alert(products+' '+langPrice+' '+LangIsEmpty);
+				alert(langProducts+' '+langPrice+' '+langIsEmpty);
 			} else if(!$.isNumeric(productPrice)) {
 				isCorrect = 0;
-				alert(products+' '+langPrice+' '+LangMustNumeric);
+				alert(langProducts+' '+langPrice+' '+langMustNumeric);
 			} else if (productUnit === '') {
 				isCorrect = 0;
-				alert(products+' '+langUnit+' '+LangIsEmpty);
+				alert(langProducts+' '+langUnit+' '+langIsEmpty);
 			}
 			if(isCorrect) {
 				$.ajax({
@@ -134,7 +134,7 @@ $(document).ready(function () {
 		}
 
 		let currentTD = $(this).parents('tr').find('td.editable');
-		if ($(this).html() == updateBillButton) {
+		if ($(this).html() == langUpdateButton) {
 			$.each(currentTD, function () {
 				$(this).prop('contenteditable', true);
 			});
@@ -149,7 +149,7 @@ $(document).ready(function () {
 			}
 		}
 		if(isCorrect) {
-			$(this).html($(this).html() == updateBillButton ? langSaveButton : updateBillButton)
+			$(this).html($(this).html() == langUpdateButton ? langSaveButton : langUpdateButton)
 		} else {
 			$(this).html(langSaveButton);
 		}
@@ -223,8 +223,8 @@ $(document).ready(function () {
 	});
 
 	$('#billRow').on('click', '.updateBill',  function() {
-		$('#billModalTitle').text(updateBill);
-		$('#submitBillButton').text(updateBillButton);
+		$('#billModalTitle').text(langUpdateBill);
+		$('#submitBillButton').text(langUpdateButton);
 		$('#billModal').find("input,textarea,select").val('');
 		$("#addMoreProducts").hide();
 		$('#addProductBillId').val($(this).data('billid'));
@@ -286,15 +286,15 @@ $(document).ready(function () {
 								'\t\t\t\t\t\t\t\t</div>\n' +
 								'\t\t\t\t\t\t\t</div>\n' +
 								'\t\t\t\t\t\t\t<div class="form-group">\n' +
-								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(k+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['comments']+'</textarea>\n' +
+								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(k+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+langOptional+')" form="billForm">'+data.productRow[k+1]['comments']+'</textarea>\n' +
 								'\t\t\t\t\t\t\t</div>' +
 								'\t\t\t\t\t\t\t<div class="form-group">\n' +
-								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(k+1)+'" name="productDescription[]"  placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm">'+data.productRow[k+1]['description']+'</textarea>\n' +
+								'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(k+1)+'" name="productDescription[]"  placeholder="'+langProducts+" "+langDescription+' ('+langOptional+')" form="billForm">'+data.productRow[k+1]['description']+'</textarea>\n' +
 								'\t\t\t\t\t\t\t</div> ' +
 								'\t\t\t\t\t\t\t<div class="form-group">\n' +
 								'\t\t\t\t\t\t\t\t<div class="form-label-group">\n' +
 								'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" />\n' +
-								'\t\t\t\t\t\t\t\t\t\t<label>'+products+" "+langImage+" ("+LangOptional+")"+'</label>\n' +
+								'\t\t\t\t\t\t\t\t\t\t<label>'+langProducts+" "+langImage+" ("+langOptional+")"+'</label>\n' +
 								'\t\t\t\t\t\t\t\t\t</div></div>';
 							$('#productsRow').append(addNewProductRow);
 							$('#productUnit'+(k+1)).val(data.productRow[k+1]['unit']);
@@ -312,8 +312,8 @@ $(document).ready(function () {
 	});
 
 	$('#addNewBill').click(function () {
-		$('#billModalTitle').text(addNewBill);
-		$('#submitBillButton').text(addBillButton);
+		$('#billModalTitle').text(langAddNewBill);
+		$('#submitBillButton').text(langAddButton);
 		$('#billModal').find("input,textarea,select").val('');
 		$('#addMoreProducts').show();
 		$('#billModal').modal('toggle');
@@ -331,7 +331,7 @@ $(document).ready(function () {
 		let billNumber = $.trim($("#billNumber").val());
 		if (billNumber  === '') {
 			isCorrect = 0;
-			$("#billNumberError").text(langBill+' '+langNumber+' '+' '+LangIsEmpty);
+			$("#billNumberError").text(langBill+' '+langNumber+' '+' '+langIsEmpty);
 			$("#billNumberError").show("slow");
 		} else {
 			$("#billNumberError").hide("slow");
@@ -344,18 +344,18 @@ $(document).ready(function () {
 
 				if (productName  === '') {
 					isCorrect = 0;
-					$("#productNameError"+arr[j]).text(langProductName+' '+LangIsEmpty);
+					$("#productNameError"+arr[j]).text(langProductName+' '+langIsEmpty);
 					$("#productNameError"+arr[j]).show("slow");
 				} else {
 					$("#productNameError"+arr[j]).hide("slow");
 				}
 				if (productQuantity  === '') {
 					isCorrect = 0;
-					$("#productQuantityError"+arr[j]).text(products+' '+langQuantity+' '+LangIsEmpty);
+					$("#productQuantityError"+arr[j]).text(langProducts+' '+langQuantity+' '+langIsEmpty);
 					$("#productQuantityError"+arr[j]).show("slow");
 				} else if(!$.isNumeric(productQuantity)) {
 					isCorrect = 0;
-					$("#productQuantityError"+arr[j]).text(products+' '+langQuantity+' '+LangMustNumeric);
+					$("#productQuantityError"+arr[j]).text(langProducts+' '+langQuantity+' '+langMustNumeric);
 					$("#productQuantityError"+arr[j]).show("slow");
 				} else {
 					if(checkUpdateQuantity) {
@@ -364,18 +364,18 @@ $(document).ready(function () {
 				}
 				if (productPrice  === '') {
 					isCorrect = 0;
-					$("#productPriceError"+arr[j]).text(products+' '+langPrice+' '+LangIsEmpty);
+					$("#productPriceError"+arr[j]).text(langProducts+' '+langPrice+' '+langIsEmpty);
 					$("#productPriceError"+arr[j]).show("slow");
 				} else if(!$.isNumeric(productPrice)) {
 					isCorrect = 0;
-					$("#productPriceError"+arr[j]).text(products+' '+langPrice+' '+LangMustNumeric);
+					$("#productPriceError"+arr[j]).text(langProducts+' '+langPrice+' '+langMustNumeric);
 					$("#productPriceError"+arr[j]).show("slow");
 				} else {
 					$("#productPriceError"+arr[j]).hide("slow");
 				}
 				if (productUnit === '') {
 					isCorrect = 0;
-					$("#productUnitError"+arr[j]).text(products+' '+langUnit+' '+LangIsEmpty);
+					$("#productUnitError"+arr[j]).text(langProducts+' '+langUnit+' '+langIsEmpty);
 					$("#productUnitError"+arr[j]).show("slow");
 				} else {
 					$("#productUnitError"+arr[j]).hide("slow");
@@ -384,7 +384,7 @@ $(document).ready(function () {
 		}
 		if (isCorrect) {
 			let formData = new FormData($('#billForm')[0]);
-			if($("#submitBillButton").text() == updateBillButton) {
+			if($("#submitBillButton").text() == langUpdateButton) {
 				if(checkUpdateQuantity) {
 					formData.append('originalBillNumber', originalBillNumber);
 					$.ajax({
@@ -497,10 +497,10 @@ $(document).ready(function () {
 										'</select>',
 										data.comments[k],
 										data.description[k],
-										data.addedAt,
+										data.created_at,
 										data.updatedAt,
 										'<button data-productid="'+i+'" type="button" class="btn btn-outline-secondary sellProduct">'+langSell+'</button>'+
-										'<button data-productprice="'+parseInt(data.quantity[k])*parseInt(data.total[k])+'" data-productid="'+i+'" type="button" class="btn btn-outline-secondary updateProduct">'+updateBillButton+'</button>\n' +
+										'<button data-productprice="'+parseInt(data.quantity[k])*parseInt(data.total[k])+'" data-productid="'+i+'" type="button" class="btn btn-outline-secondary updateProduct">'+langUpdateButton+'</button>\n' +
 										'\t\t\t\t\t\t\t\t\t<button data-productprice="'+parseInt(data.quantity[k])*parseInt(data.total[k])+'" data-productid="'+i+'" type="button" class="btn btn-outline-danger deleteProduct">'+langDelete+'</button>'
 									] ).draw( false ).node();
 									$(rowNode).find('td:nth-child(1)').addClass('editable editableProductName');
@@ -525,9 +525,9 @@ $(document).ready(function () {
 									data.billNumber,
 									data.totalPrice,
 									data.numberOfProducts,
-									data.addedAt,
+									data.created_at,
 									'<a class="btn btn-outline-primary" href="'+baseUrl+'admin/bill_detail/'+data.id+'">'+langViewDetails+'</a>\n' +
-									'\t\t\t\t\t\t\t\t\t\t\t<button data-billid="'+data.id+'" type="button" class="btn btn-outline-secondary updateBill">'+updateBillButton+'</button>\n' +
+									'\t\t\t\t\t\t\t\t\t\t\t<button data-billid="'+data.id+'" type="button" class="btn btn-outline-secondary updateBill">'+langUpdateButton+'</button>\n' +
 									'\t\t\t\t\t\t\t\t\t\t\t<button data-billid="'+data.id+'" type="button" class="btn btn-outline-danger deleteBill">'+langDelete+'</button>'
 								] ).draw( false ).node();
 								$(rowNode).attr("id", "billRow"+data.id);
@@ -716,15 +716,15 @@ $(document).ready(function () {
 			'\t\t\t\t\t\t\t\t</div>\n' +
 			'\t\t\t\t\t\t\t</div>\n' +
 			'\t\t\t\t\t\t\t<div class="form-group">\n' +
-			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(largest+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+LangOptional+')" form="billForm"></textarea>\n' +
+			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productComment'+(largest+1)+'" name="productComment[]" placeholder="'+langProductComments+' ('+langOptional+')" form="billForm"></textarea>\n' +
 			'\t\t\t\t\t\t\t</div>' +
 			'\t\t\t\t\t\t\t<div class="form-group">\n' +
-			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(largest+1)+'" name="productDescription[]" placeholder="'+products+" "+langDescription+' ('+LangOptional+')" form="billForm"></textarea>\n' +
+			'\t\t\t\t\t\t\t\t<textarea  class="form-control" id="productDescription'+(largest+1)+'" name="productDescription[]" placeholder="'+langProducts+" "+langDescription+' ('+langOptional+')" form="billForm"></textarea>\n' +
 			'\t\t\t\t\t\t\t</div>' +
 			'\t\t\t\t\t\t\t<div class="form-group">\n' +
 			'\t\t\t\t\t\t\t\t<div class="form-label-group">\n' +
 			'\t\t\t\t\t\t\t\t\t<input type="file" name="productImage[]" />\n' +
-			'\t\t\t\t\t\t\t\t\t\t<label>'+products+" "+langImage+" ("+LangOptional+")"+'</label>\n' +
+			'\t\t\t\t\t\t\t\t\t\t<label>'+langProducts+" "+langImage+" ("+langOptional+")"+'</label>\n' +
 			'\t\t\t\t\t\t\t\t\t</div></div>';
 		$('#productsRow').prepend(addNewProductRow);
 
@@ -762,5 +762,309 @@ $(document).ready(function () {
 		$("#tempInvoiceTotal3").text('');
 		$("#tempInvoiceTotal4").text('');
 		$("#tempInvoice").hide();
+	});
+
+	$('#userRow').on('click', '.deleteUser',  function() {
+		$('#deleteUserId').val($(this).data('userid'));
+		$('#deleteUserModal').modal('toggle');
+	});
+
+	$('#deleteUser').click(function () {
+		let userId = '';
+		if($.trim($("#deleteUserId").val()) !== '') {
+			userId = $.trim($("#deleteUserId").val());
+		}
+
+		if(userId !== '') {
+			$.ajax({
+				url: baseUrl+'admin/deleteUser',
+				type: 'POST',
+				dataType: 'JSON',
+				data: {deleteUserId: userId},
+				success: function (data) {
+					if(data.status) {
+						let datatable = $('#dataTable').DataTable();
+						datatable.row("#userRow"+userId).remove().draw();
+					}
+					$('#deleteUserModal').modal('toggle');
+					$("#createUserMessage").text(data.statusMessage);
+					$("#createUserMessage").show("slow").delay(1000).fadeOut("slow");
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					$("#createUserMessage").text('Status: '+textStatus+'   Error: '+errorThrown+' ');
+					$('#deleteUserModal').modal('toggle');
+					$("#createUserMessage").show("slow").delay(3000).fadeOut("slow");
+				}
+			});
+		}
+
+	});
+
+	$('#addNewUser').click(function () {
+		$('#userModalTitle').text(langAddNewUser);
+		$('#submitUserButton').text(langAddButton);
+		$('#addUserModal').find("input,textarea,select").val('');
+		$('#addUserModal').modal('toggle');
+	});
+
+	$(document).on('click', '#submitUserButton', function () {
+		$("#addUserBackendError").hide();
+
+		let isCorrect = 1;
+		let productName;
+		let productQuantity;
+		let productPrice;
+		let productUnit;
+
+		let username = $.trim($("#username").val());
+		if (username  === '') {
+			isCorrect = 0;
+			$("#usernameError").text(langUser+' '+langName+' '+' '+langIsEmpty);
+			$("#usernameError").show("slow");
+		} else {
+			$("#usernameError").hide("slow");
+			let j;
+			for (j = 0; j <= i; j++) {
+				productName = $.trim($("#productName"+arr[j]).val());
+				productQuantity = $.trim($("#productQuantity"+arr[j]).val());
+				productPrice = $.trim($("#productPrice"+arr[j]).val());
+				productUnit = $.trim($("#productUnit"+arr[j]).val());
+
+				if (productName  === '') {
+					isCorrect = 0;
+					$("#productNameError"+arr[j]).text(langProductName+' '+langIsEmpty);
+					$("#productNameError"+arr[j]).show("slow");
+				} else {
+					$("#productNameError"+arr[j]).hide("slow");
+				}
+				if (productQuantity  === '') {
+					isCorrect = 0;
+					$("#productQuantityError"+arr[j]).text(langProducts+' '+langQuantity+' '+langIsEmpty);
+					$("#productQuantityError"+arr[j]).show("slow");
+				} else if(!$.isNumeric(productQuantity)) {
+					isCorrect = 0;
+					$("#productQuantityError"+arr[j]).text(langProducts+' '+langQuantity+' '+langMustNumeric);
+					$("#productQuantityError"+arr[j]).show("slow");
+				} else {
+					if(checkUpdateQuantity) {
+						$("#productQuantityError"+arr[j]).hide("slow");
+					}
+				}
+				if (productPrice  === '') {
+					isCorrect = 0;
+					$("#productPriceError"+arr[j]).text(langProducts+' '+langPrice+' '+langIsEmpty);
+					$("#productPriceError"+arr[j]).show("slow");
+				} else if(!$.isNumeric(productPrice)) {
+					isCorrect = 0;
+					$("#productPriceError"+arr[j]).text(langProducts+' '+langPrice+' '+langMustNumeric);
+					$("#productPriceError"+arr[j]).show("slow");
+				} else {
+					$("#productPriceError"+arr[j]).hide("slow");
+				}
+				if (productUnit === '') {
+					isCorrect = 0;
+					$("#productUnitError"+arr[j]).text(langProducts+' '+langUnit+' '+langIsEmpty);
+					$("#productUnitError"+arr[j]).show("slow");
+				} else {
+					$("#productUnitError"+arr[j]).hide("slow");
+				}
+			}
+		}
+		if (isCorrect) {
+			let formData = new FormData($('#billForm')[0]);
+			if($("#submitBillButton").text() == langUpdateButton) {
+				if(checkUpdateQuantity) {
+					formData.append('originalBillNumber', originalBillNumber);
+					$.ajax({
+						url: baseUrl+'admin/updateBill',
+						type: 'POST',
+						dataType: 'JSON',
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+							if(data.status) {
+								$('#billForm')[0].reset();
+								$('#billTotalPrice'+data.billId).text(data.totalPrice);
+								$('#billNumber'+data.billId).text(data.billNumber);
+								$("#createBillMessage").text(data.statusMessage);
+								$('#billModal').modal('toggle');
+								$("#createBillMessage").show("slow").delay(3000).fadeOut("slow");
+								if(i > 0) {
+									for(let l = 1; l <= i; l++) {
+										$("#addNewProductsRow"+l).remove();
+									}
+								}
+								i = 0;
+							} else {
+								if(data.statusMessage) {
+									$('#createBillBackendError').html(data.statusMessage);
+									$("#createBillBackendError").show("slow");
+								} else if(data.billNumberError != '') {
+									$('#createBillBackendError').html(data.billNumberError);
+									$("#createBillBackendError").show("slow");
+									$("#createBillBackendError").show("slow");
+								} else if(data.productNameError != '') {
+									$('#createBillBackendError').html(data.productNameError);
+									$("#createBillBackendError").show("slow");
+								} else if(data.productQuantityError != '') {
+									$('#createBillBackendError').html(data.productQuantityError);
+									$("#createBillBackendError").show("slow");
+								} else if(data.productPriceError != '') {
+									$('#createBillBackendError').html(data.productPriceError);
+									$("#createBillBackendError").show("slow");
+								} else if(data.productUnitError != '') {
+									$('#createBillBackendError').html(data.productUnitError);
+									$("#createBillBackendError").show("slow");
+								} else if(data.imageError != '') {
+									$('#createBillBackendError').html(data.imageError);
+									$("#createBillBackendError").show("slow");
+								}
+							}
+							if(data.status2) {
+								$("#imageUploadMessage").text(data.imageError);
+								$("#imageUploadMessage").show("slow").delay(3000).fadeOut("slow");
+							}
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown) {
+							$('#billForm')[0].reset();
+							$("#createBillMessage").text('Status: '+textStatus+'   Error: '+errorThrown+' ');
+							$('#billModal').modal('toggle');
+							$("#createBillMessage").show("slow").delay(3000).fadeOut("slow");
+						}
+					});
+				} else {
+					$("#createBillBackendError").text('Please Correct the Error first');
+					$("#createBillBackendError").show("slow").delay(2000).fadeOut("slow");
+				}
+			} else {
+				$.ajax({
+					url: baseUrl+'admin/addNewBill',
+					type: 'POST',
+					dataType: 'JSON',
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+
+					success: function (data) {
+						if(data.status) {
+							let datatable = $('#dataTable').DataTable();
+							$('#billForm')[0].reset();
+							let totalPrice = $('#billDetailTotal').text();
+							totalPrice = parseInt(totalPrice) + parseInt(data.totalPrice);
+							$("#billDetailTotal").text(totalPrice);
+							let totalProducts = $('#billDetailProducts').text();
+							totalProducts = parseInt(totalProducts) + parseInt(data.numberOfProducts);
+							$("#billDetailProducts").text(totalProducts);
+
+							if($('#addProductBillId').val() != '') {
+								var k=0;
+								$("#pageLastUpdated").text(data.updatedAt);
+								$("#billDetailUpdatedAt").text(data.updatedAt);
+
+								for(let i=data.firstId; i <= data.lastId; i++) {
+									let rowNode = datatable.row.add( [
+										data.productName[k],
+										data.quantity[k],
+										data.quantity[k],
+										data.total[k],
+										parseInt(data.quantity[k])*parseInt(data.total[k]),
+										'<select class="form-control" disabled>'+
+										'<option value="/KG">/'+langKg+'</option>'+
+										'<option value="/Metre">/'+langMetre+'</option>'+
+										'<option value="/Square Metre">/'+langSquare+' '+langMetre+'</option>'+
+										'<option value="/1000 Metre">/1000 '+langMetre+'</option>'+
+										'<option value="/100 Metre">/100 '+langMetre+'</option>'+
+										'<option value="/10 Metre">/10 '+langMetre+'</option>'+
+										'<option value="/100 GM">/100 '+langGm+'</option>'+
+										'<option value="/100 Millilitres">/100 '+langMillilitres+'</option>'+
+										'<option value="/Item Included">/'+langItemIncluded+'</option>'+
+										'<option value="Other">'+langOther+'</option>'+
+										'</select>',
+										data.comments[k],
+										data.description[k],
+										data.created_at,
+										data.updatedAt,
+										'<button data-productid="'+i+'" type="button" class="btn btn-outline-secondary sellProduct">'+langSell+'</button>'+
+										'<button data-productprice="'+parseInt(data.quantity[k])*parseInt(data.total[k])+'" data-productid="'+i+'" type="button" class="btn btn-outline-secondary updateProduct">'+langUpdateButton+'</button>\n' +
+										'\t\t\t\t\t\t\t\t\t<button data-productprice="'+parseInt(data.quantity[k])*parseInt(data.total[k])+'" data-productid="'+i+'" type="button" class="btn btn-outline-danger deleteProduct">'+langDelete+'</button>'
+									] ).draw( false ).node();
+									$(rowNode).find('td:nth-child(1)').addClass('editable editableProductName');
+									$(rowNode).find('td:nth-child(2)').addClass('editable editableProductQuantity');
+									$(rowNode).find('td:nth-child(3)').attr('id', 'editableProductRemaining'+i);
+									$(rowNode).find('td:nth-child(4)').addClass('editable editableProductPrice');
+									$(rowNode).find('td:nth-child(5)').attr('id', 'editableProductTotal'+i);
+									$(rowNode).find('td:nth-child(6)').addClass('editableProductUnit');
+									$(rowNode).find('select').attr('id', 'editableProductUnit'+i);
+									$(rowNode).find('td:nth-child(7)').addClass('editable editableProductComments');
+									$(rowNode).find('td:nth-child(8)').addClass('editable editableProductDescription');
+									$(rowNode).attr("id", "productRow"+i);
+									$('select[id="editableProductUnit'+i+'"] option[value="'+data.unit[k]+'"]').attr('selected','selected');
+									k++;
+								}
+								$("#tempInvoice").hide();
+								$("#billDetailMessage").text(data.statusMessage);
+								$('#billModal').modal('toggle');
+								$("#billDetailMessage").show("slow").delay(3000).fadeOut("slow");
+							} else {
+								let rowNode = datatable.row.add( [
+									data.billNumber,
+									data.totalPrice,
+									data.numberOfProducts,
+									data.created_at,
+									'<a class="btn btn-outline-primary" href="'+baseUrl+'admin/bill_detail/'+data.id+'">'+langViewDetails+'</a>\n' +
+									'\t\t\t\t\t\t\t\t\t\t\t<button data-billid="'+data.id+'" type="button" class="btn btn-outline-secondary updateBill">'+langUpdateButton+'</button>\n' +
+									'\t\t\t\t\t\t\t\t\t\t\t<button data-billid="'+data.id+'" type="button" class="btn btn-outline-danger deleteBill">'+langDelete+'</button>'
+								] ).draw( false ).node();
+								$(rowNode).attr("id", "billRow"+data.id);
+								$("#createBillMessage").text(data.statusMessage);
+								$('#billModal').modal('toggle');
+								$("#createBillMessage").show("slow").delay(3000).fadeOut("slow");
+							}
+							i = 0;
+						} else {
+							if(data.statusMessage) {
+								$('#createBillBackendError').html(data.statusMessage);
+								$("#createBillBackendError").show("slow");
+							} else if(data.billNumberError != '') {
+								$('#createBillBackendError').html(data.billNumberError);
+								$("#createBillBackendError").show("slow");
+								$("#createBillBackendError").show("slow");
+							} else if(data.productNameError != '') {
+								$('#createBillBackendError').html(data.productNameError);
+								$("#createBillBackendError").show("slow");
+							} else if(data.productQuantityError != '') {
+								$('#createBillBackendError').html(data.productQuantityError);
+								$("#createBillBackendError").show("slow");
+							} else if(data.productPriceError != '') {
+								$('#createBillBackendError').html(data.productPriceError);
+								$("#createBillBackendError").show("slow");
+							} else if(data.productUnitError != '') {
+								$('#createBillBackendError').html(data.productUnitError);
+								$("#createBillBackendError").show("slow");
+							}
+						}
+						if(data.status2) {
+							if($('#addProductBillId').val() != '') {
+								$("#imageUploadMessage2").text(data.imageError);
+								$("#imageUploadMessage2").show("slow").delay(3000).fadeOut("slow");
+							} else {
+								$("#imageUploadMessage").text(data.imageError);
+								$("#imageUploadMessage").show("slow").delay(3000).fadeOut("slow");
+							}
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						$('#billForm')[0].reset();
+						$("#billDetailMessage").text('Status: '+textStatus+'   Error: '+errorThrown+' ');
+						$('#billModal').modal('toggle');
+						$("#billDetailMessage").show("slow").delay(3000).fadeOut("slow");
+					}
+				});
+			}
+		}
+
 	});
 });

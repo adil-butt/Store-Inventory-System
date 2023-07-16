@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	$(document).on('click', '.sellUpdate', function () {
 		$('#saleModal').find("input,textarea,select").val('');
-		$("#saleModalTitle").text(updateBillButton+" "+langSale);
+		$("#saleModalTitle").text(langUpdateButton+" "+langSale);
 		$("#saleId").val($(this).data('sellid'));
 		$("#salePId").val($(this).data('productid'));
 		$.ajax({
@@ -56,7 +56,7 @@ $(document).ready(function () {
 
 	$(document).on('click', '.sellProduct', function () {
 		$('#billModal').find("input,textarea,select").val('');
-		$("#saleModalTitle").text(langSale+" "+products);
+		$("#saleModalTitle").text(langSale+" "+langProducts);
 		$("#saleId").val('');
 		$("#salePId").val($(this).data('productid'));
 		$("#salePName").val($("#productRow"+$(this).data('productid')).find($(".editableProductName")).text());

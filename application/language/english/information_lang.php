@@ -7,6 +7,14 @@ $lang['contact_us'] = 'Contact Us';
 $lang['sign_in'] = 'Sign In';
 $lang['sign_up'] = 'Sign Up';
 
+// for admin
+$lang['add_new_user'] = 'Add New User';
+$lang['id'] = 'Id';
+$lang['role'] = 'Role';
+$lang['status'] = 'Status';
+$lang['active'] = 'Active';
+$lang['in_active'] = 'In Active';
+
 // for user footer
 $lang['user_copyright'] = 'Copyright';
 
@@ -71,6 +79,7 @@ $lang['add_items_to_checkout'] = 'Pleas add items in cart in order to make check
 $lang['qureshi_traders'] = 'Qureshi Traders';
 $lang['admin'] = 'Admin';
 $lang['user'] = 'User';
+$lang['users'] = 'Users';
 $lang['profile'] = 'Profile';
 $lang['view_profile_photo'] = 'View Profile Photo';
 $lang['change_language_to_japanese'] = 'Change language<br>to Japanese<br>(言語を日本語に変更する)';
@@ -198,6 +207,7 @@ $lang['phone'] = 'Phone';
 $lang['address'] = 'Address';
 $lang['registration_time'] = 'Registration Time';
 $lang['change_profile_image'] = 'Change Profile Image';
+$lang['upload_profile_image'] = 'Upload Profile Image';
 $lang['update'] = 'Update';
 
 // for bill page
@@ -267,4 +277,5 @@ $lang['update_quantity_error_message'] = 'You must have greater amount of quanti
 $lang['account_not_activated'] = 'Your Account is not activated yet';
 $lang['activate_account'] = 'Please Activate your account in order to login';
 $lang['activate_account_first'] = 'Please Activate your Account First';
+$lang['account_deleted'] = 'This account is deleted';
 

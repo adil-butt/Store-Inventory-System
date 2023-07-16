@@ -344,11 +344,11 @@
     // Animations initialization
     new WOW().init();
 
-	let is_login = <?php echo $is_login; ?>;
-	
-	if (is_login) {
-		$('#loginModal').modal('show');
-	}
+	$("#inputEmailOrUsername, #inputPassword").on('keyup',function(e) {
+		if(e.which == 13) {
+			$("#login_btn").trigger("click");
+		}
+	});
 
 	$(document).on('click', '#login_btn', function () {
 		let username = $("#inputEmailOrUsername").val();
@@ -376,7 +376,7 @@
 				},
 				success: function (data) {
 					if(data.status) {
-						location.reload();
+						window.location.href = baseUrl;
 					} else {
 						$(".login_error_msg").text(data.error_message);
 						$(".login_error_msg").removeClass("d-none");

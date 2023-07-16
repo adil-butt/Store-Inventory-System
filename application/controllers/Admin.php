@@ -80,7 +80,7 @@ class Admin extends CI_Controller
 
 	public function uploadSliderImage($fieldName, $fileName) {
 		$config['upload_path'] = 'assets/slider_images';
-		$config['allowed_types'] = 'jpg';
+		$config['allowed_types'] = 'jpg|jpeg|png';
 		$config['min_width']  = '1024';
 		$config['min_height']  = '768';
 		$config['file_name'] = $fileName;
@@ -347,7 +347,7 @@ class Admin extends CI_Controller
 
 	public function updateBill() {		// ajax JSON
 		$config['upload_path'] = 'assets/product_images';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
@@ -489,7 +489,7 @@ class Admin extends CI_Controller
 
 	public function addNewBill() {
 		$config['upload_path'] = 'assets/product_images';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
@@ -528,6 +528,7 @@ class Admin extends CI_Controller
 			} else {
 				$insert_id = $this->input->post('addProductBillId');
 			}
+
 			$number = count($this->input->post('productName'));
 			$totalPrice = 0;
 
@@ -635,7 +636,7 @@ class Admin extends CI_Controller
 		echo json_encode($response);
 	}		//ajax JSON
 
-	public function bills() {
+	public function bills() {		
 		$row = $this->Bill_Model->getResultOfBills();
 		for($i = 0; $i < count($row); $i++) {
 			$where = array	(
@@ -651,10 +652,52 @@ class Admin extends CI_Controller
 		$this->template->load('admin_layout', 'contents' , 'admin/bills', $data);
 
 	}
+	
+	public function users() {	
+		$config['upload_path'] = 'assets/profileimages';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config);
+		$this->load->library('image_lib');
+		
+		$select = 'id, username, firstname, lastname, email, nic, phone, address, role, status, created_at';
+		$users = $this->Account_Model->getAccountWhere(array('status !=' => 2), $select);
+		$data['users'] = $users;
+
+		$this->template->set('title', $this->lang->line('users'));
+		$this->template->load('admin_layout', 'contents' , 'admin/users', $data);
+
+	}
+
+	public function deleteUser() {
+		if($this->input->post('deleteUserId')) {
+			$where = array(
+				'id' => $this->input->post('deleteUserId'),
+			);
+			$data = array(
+				'status' => 2
+			);
+			if($this->Account_Model->updateAccount($data, $where)) {
+				$response = array(
+					'status' => 1,
+					'statusMessage' => $this->lang->line('account').' '.$this->lang->line('deleted').' '.$this->lang->line('successfully'),
+				);
+			} else {
+				$error = $this->db->error();
+					$response = array(
+					'status' => 0,
+					'statusMessage' => 'Database Error<br>Error Code: '.$error["code"].'<br>Error Message: '.$error["message"],
+				);
+			}
+			
+			echo json_encode($response);
+		}
+	}		//ajax JSON
+
 
 	public function profile() {
 		$config['upload_path'] = 'assets/profileimages';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
@@ -672,7 +715,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('updateAddress', 'Address', 'trim|max_length[100]|min_length[5]|required');
 
 		if($this->form_validation->run() == TRUE) {
-			$sessionData = $this->session->userdata('user');
+			$sessionData = $this->session->userdata('admin');
 			$data = array(
 				'firstname' => $this->input->post('updateFirstName'),
 				'lastname' => $this->input->post('updateLastName'),
@@ -702,7 +745,7 @@ class Admin extends CI_Controller
 					$this->image_lib->initialize($configer);
 					$this->image_lib->resize();
 
-					if($_SESSION['admin']['profilepath'] != 'default.jpg') {
+					if(isset($_SESSION['admin']['profilepath']) && $_SESSION['admin']['profilepath'] != 'default.jpg') {
 						unlink('assets/profileimages/'.$_SESSION['admin']['profilepath']);		// delete the old image
 					}
 
@@ -732,7 +775,7 @@ class Admin extends CI_Controller
 				} else {
 					$row['profilepath'] = $sessionData['profilepath'];
 				}
-				$this->session->set_userdata('user', $row);
+				$this->session->set_userdata('admin', $row);
 				$this->session->set_flashdata('success', $this->lang->line('account').' '.$this->lang->line('updated').' '.$this->lang->line('successfully'));
 			} else {
 				$error = $this->db->error();

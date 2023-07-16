@@ -14,17 +14,17 @@
 	<script> var baseUrl = "<?php echo base_url(); ?>";</script>
 
 	<script>
-        var addNewBill = "<?php echo $this->lang->line('add_new_bill'); ?>";
-        var addBillButton = "<?php echo $this->lang->line('add'); ?>";
-        var updateBill = "<?php echo $this->lang->line('update').' '.$this->lang->line('bill'); ?>";
-        var updateBillButton = "<?php echo $this->lang->line('update'); ?>";
+        var langAddNewBill = "<?php echo $this->lang->line('add_new_bill'); ?>";
+        var langAddButton = "<?php echo $this->lang->line('add'); ?>";
+        var langUpdateBill = "<?php echo $this->lang->line('update').' '.$this->lang->line('bill'); ?>";
+        var langUpdateButton = "<?php echo $this->lang->line('update'); ?>";
         var langSaveButton = "<?php echo $this->lang->line('save'); ?>";
         var langDelete = "<?php echo $this->lang->line('delete'); ?>";
         var langViewDetails = "<?php echo $this->lang->line('view_details'); ?>";
-        var addMore = "<?php echo $this->lang->line('add_more'); ?>";
+        var langAddMore = "<?php echo $this->lang->line('add_more'); ?>";
         var langBill = "<?php echo $this->lang->line('bill'); ?>";
         var langNumber = "<?php echo $this->lang->line('number'); ?>";
-        var products = "<?php echo $this->lang->line('product'); ?>";
+        var langProducts = "<?php echo $this->lang->line('product'); ?>";
         var langProductName = "<?php echo $this->lang->line('product_name'); ?>";
         var langQuantity = "<?php echo $this->lang->line('quantity'); ?>";
         var langPrice = "<?php echo $this->lang->line('price'); ?>";
@@ -37,15 +37,19 @@
         var langItemIncluded = "<?php echo $this->lang->line('item_included'); ?>";
         var langOther = "<?php echo $this->lang->line('other'); ?>";
         var langProductComments = "<?php echo $this->lang->line('product_comments'); ?>";
-        var LangOptional = "<?php echo $this->lang->line('optional'); ?>";
-        var LangIsEmpty = "<?php echo $this->lang->line('is_empty'); ?>";
-        var LangMustNumeric = "<?php echo $this->lang->line('must_numeric'); ?>";
-        var LangRemaining = "<?php echo $this->lang->line('remaining'); ?>";
+        var langOptional = "<?php echo $this->lang->line('optional'); ?>";
+        var langIsEmpty = "<?php echo $this->lang->line('is_empty'); ?>";
+        var langMustNumeric = "<?php echo $this->lang->line('must_numeric'); ?>";
+        var langRemaining = "<?php echo $this->lang->line('remaining'); ?>";
         var langSell = "<?php echo $this->lang->line('sell'); ?>";
         var langSale = "<?php echo $this->lang->line('sale'); ?>";
         var langSales = "<?php echo $this->lang->line('sales'); ?>";
         var langDescription = "<?php echo $this->lang->line('description'); ?>";
         var langImage = "<?php echo $this->lang->line('image'); ?>";
+		var langAddNewUser = "<?php echo $this->lang->line('add_new_user'); ?>";
+		var langUpdateUser = "<?php echo $this->lang->line('update').' '.$this->lang->line('user'); ?>";
+		var langUser = "<?php echo $this->lang->line('user'); ?>";
+		var langName = "<?php echo $this->lang->line('name'); ?>";
 	</script>
 
 	<!-- Custom fonts for this template-->
@@ -162,6 +166,11 @@
 				<i class="fas fa-fw fa-table"></i>
 				<span><?php echo $this->lang->line('sales')." ".$this->lang->line('table'); ?></span></a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="<?php echo base_url().'admin/users'; ?>">
+				<i class="fas fa-fw fa-users"></i>
+				<span><?php echo $this->lang->line('users')." ".$this->lang->line('table'); ?></span></a>
+		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="settingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fa fa-cog"></i>
@@ -171,6 +180,11 @@
 				<h6 class="dropdown-header"><?php echo $this->lang->line('site').' '.$this->lang->line('setting').':'; ?></h6>
 				<a class="dropdown-item" href="<?php echo base_url('site_setting'); ?>"><?php echo $this->lang->line('setting'); ?></a>
 			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" target="_blank" href="<?php echo base_url(); ?>">
+				<i class="fas fa-fw fa-globe"></i>
+				<span><?php echo $this->lang->line('qureshi_traders'); ?></span></a>
 		</li>
 	</ul>
 

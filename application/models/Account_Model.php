@@ -18,10 +18,16 @@ class Account_Model extends CI_Model {
 		return $this->db->insert('users', $data);
 	}
 
-	public function getAccountWhere($where) {
-		$this->db->where($where);
-		$query = $this->db->get('users', $where);
-		return $query->row_array();
+	public function getAccountWhere($where = '', $select = '') {
+		if($where !== '') {
+			$this->db->where($where);
+		}
+		if ($select !== '')
+		{
+			$this->db->select($select);
+		}
+		$query = $this->db->get('users');
+		return $query->result_array();
 	}
 
 	public function getAuthCode($where) {

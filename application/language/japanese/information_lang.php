@@ -7,6 +7,14 @@ $lang['contact_us'] = 'お問い合わせ';
 $lang['sign_in'] = 'サインイン';
 $lang['sign_up'] = 'サインアップ';
 
+// for admin
+$lang['add_new_user'] = '新しいユーザーを追加';
+$lang['id'] = 'ID';
+$lang['role'] = '役割';
+$lang['status'] = 'スターテス';
+$lang['active'] = 'アクティブ';
+$lang['in_active'] = '非活性';
+
 // for user footer
 $lang['user_copyright'] = '著作権';
 
@@ -71,6 +79,7 @@ $lang['add_items_to_checkout'] = 'チェックアウトするためにカート�
 $lang['qureshi_traders'] = 'クレシトレーダー';
 $lang['admin'] = '管理者';
 $lang['user'] = 'ユーザー';
+$lang['users'] = 'ユーザー';
 $lang['profile'] = 'プロフィール';
 $lang['view_profile_photo'] = 'プロフィール写真を見る';
 $lang['change_language_to_japanese'] = '言語を変えてください<br>日本語へ';
@@ -197,6 +206,7 @@ $lang['phone'] = '電話';
 $lang['address'] = '住所';
 $lang['registration_time'] = '登録時間';
 $lang['change_profile_image'] = 'プロフィール画像の変更';
+$lang['upload_profile_image'] = 'プロフィール画像をアップロードする';
 $lang['update'] = '更新';
 
 // for bill page
@@ -266,3 +276,4 @@ $lang['update_quantity_error_message'] = '販売したアイテムよりも数�
 $lang['account_not_activated'] = 'アカウントはまだ有効化されていません';
 $lang['activate_account'] = 'ログインするには、アカウントを有効にしてください';
 $lang['activate_account_first'] = '最初にアカウントを有効にしてください';
+$lang['account_deleted'] = 'このアカウントは削除されます。';

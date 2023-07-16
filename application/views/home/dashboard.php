@@ -266,3 +266,13 @@
 
 	</div>
 </main>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+		let is_login = <?php echo $is_login; ?>;
+	
+		if (is_login) {
+			$('#loginModal').modal('show');
+		}
+	});
+</script>

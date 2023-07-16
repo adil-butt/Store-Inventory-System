@@ -60,6 +60,7 @@ $route['admin/all_products'] = 'admin/billDetail';
 $route['admin/bill_detail/(:any)'] = 'admin/billDetail/$1';
 $route['admin/bills'] = 'admin/bills';
 $route['admin/profile'] = 'admin/profile';
+$route['admin/users'] = 'admin/users';
 $route['admin'] = 'admin';
 // admin routes - end
 

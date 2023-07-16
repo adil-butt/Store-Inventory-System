@@ -28,7 +28,7 @@
 
 								<!--firstName-->
 								<div class="md-form ">
-									<input type="text" id="firstName" value="<?php echo $_SESSION['user']['firstname']; ?>" class="form-control">
+									<input type="text" id="firstName" value="<?php echo isset($_SESSION['user']['firstname']) ? $_SESSION['user']['firstname'] : ''; ?>" class="form-control">
 									<label for="firstName" class=""><?php echo $this->lang->line('first_name'); ?></label>
 								</div>
 
@@ -40,7 +40,7 @@
 
 								<!--lastName-->
 								<div class="md-form">
-									<input type="text" id="lastName" value="<?php echo $_SESSION['user']['lastname']; ?>" class="form-control">
+									<input type="text" id="lastName" value="<?php echo isset($_SESSION['user']['firstname']) ? $_SESSION['user']['lastname'] : ''; ?>" class="form-control">
 									<label for="lastName" class=""><?php echo $this->lang->line('last_name'); ?></label>
 								</div>
 
@@ -55,18 +55,18 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1">@</span>
 							</div>
-							<input type="text" class="form-control py-0" placeholder="<?php echo $this->lang->line('user_name'); ?>" value="<?php echo $_SESSION['user']['username']; ?>" aria-describedby="basic-addon1">
+							<input type="text" class="form-control py-0" placeholder="<?php echo $this->lang->line('user_name'); ?>" value="<?php echo isset($_SESSION['user']['username']) ? $_SESSION['user']['username'] : '' ; ?>" aria-describedby="basic-addon1">
 						</div>
 
 						<!--email-->
 						<div class="md-form mb-5">
-							<input type="text" id="email" class="form-control" placeholder="youremail@example.com" value="<?php echo $_SESSION['user']['email']; ?>">
+							<input type="text" id="email" class="form-control" placeholder="youremail@example.com" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : '' ; ?>">
 							<label for="email" class=""><?php echo $this->lang->line('email'); ?></label>
 						</div>
 
 						<!--address-->
 						<div class="md-form mb-5">
-							<input type="text" id="address" name="address" class="form-control" placeholder="1234 Main St" value="<?php echo $_SESSION['user']['address']; ?>">
+							<input type="text" id="address" name="address" class="form-control" placeholder="1234 Main St" value="<?php echo isset($_SESSION['user']['address']) ? $_SESSION['user']['address'] : '' ; ?>">
 							<label for="address" class=""><?php echo $this->lang->line('address'); ?></label>
 							<?php echo form_error('address', '<p class="alert alert-warning" role="alert">'); ?>
 						</div>
@@ -79,7 +79,7 @@
 
 						<!--phone-->
 						<div class="md-form mb-5">
-							<input type="text" id="phone" name="phone" class="form-control" placeholder="03XX-XXXXXXX" value="<?php echo $_SESSION['user']['phone']; ?>">
+							<input type="text" id="phone" name="phone" class="form-control" placeholder="03XX-XXXXXXX" value="<?php echo isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : ''; ?>">
 							<label for="phone" class=""><?php echo $this->lang->line('phone'); ?></label>
 							<?php echo form_error('phone', '<p class="alert alert-warning" role="alert">'); ?>
 						</div>

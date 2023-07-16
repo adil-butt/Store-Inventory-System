@@ -14,17 +14,17 @@
 	<script> var baseUrl = "<?php echo base_url(); ?>";</script>
 
 	<script>
-        var addNewBill = "<?php echo $this->lang->line('add_new_bill'); ?>";
-        var addBillButton = "<?php echo $this->lang->line('add'); ?>";
-        var updateBill = "<?php echo $this->lang->line('update').' '.$this->lang->line('bill'); ?>";
-        var updateBillButton = "<?php echo $this->lang->line('update'); ?>";
+        var langAddNewBill = "<?php echo $this->lang->line('add_new_bill'); ?>";
+        var langAddButton = "<?php echo $this->lang->line('add'); ?>";
+        var langUpdateBill = "<?php echo $this->lang->line('update').' '.$this->lang->line('bill'); ?>";
+        var langUpdateButton = "<?php echo $this->lang->line('update'); ?>";
         var langSaveButton = "<?php echo $this->lang->line('save'); ?>";
         var langDelete = "<?php echo $this->lang->line('delete'); ?>";
         var langViewDetails = "<?php echo $this->lang->line('view_details'); ?>";
-        var addMore = "<?php echo $this->lang->line('add_more'); ?>";
+        var langAddMore = "<?php echo $this->lang->line('add_more'); ?>";
         var langBill = "<?php echo $this->lang->line('bill'); ?>";
         var langNumber = "<?php echo $this->lang->line('number'); ?>";
-        var products = "<?php echo $this->lang->line('product'); ?>";
+        var langProducts = "<?php echo $this->lang->line('product'); ?>";
         var langProductName = "<?php echo $this->lang->line('product_name'); ?>";
         var langQuantity = "<?php echo $this->lang->line('quantity'); ?>";
         var langPrice = "<?php echo $this->lang->line('price'); ?>";
@@ -37,10 +37,10 @@
         var langItemIncluded = "<?php echo $this->lang->line('item_included'); ?>";
         var langOther = "<?php echo $this->lang->line('other'); ?>";
         var langProductComments = "<?php echo $this->lang->line('product_comments'); ?>";
-        var LangOptional = "<?php echo $this->lang->line('optional'); ?>";
-        var LangIsEmpty = "<?php echo $this->lang->line('is_empty'); ?>";
-        var LangMustNumeric = "<?php echo $this->lang->line('must_numeric'); ?>";
-        var LangRemaining = "<?php echo $this->lang->line('remaining'); ?>";
+        var langOptional = "<?php echo $this->lang->line('optional'); ?>";
+        var langIsEmpty = "<?php echo $this->lang->line('is_empty'); ?>";
+        var langMustNumeric = "<?php echo $this->lang->line('must_numeric'); ?>";
+        var langRemaining = "<?php echo $this->lang->line('remaining'); ?>";
         var langSell = "<?php echo $this->lang->line('sell'); ?>";
         var langSale = "<?php echo $this->lang->line('sale'); ?>";
         var langSales = "<?php echo $this->lang->line('sales'); ?>";

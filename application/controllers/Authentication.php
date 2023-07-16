@@ -7,7 +7,7 @@ class Authentication extends CI_Controller {
 		parent::__construct();
 		test_login(4);
 		$config['upload_path'] = 'assets/profileimages';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
@@ -76,8 +76,11 @@ class Authentication extends CI_Controller {
 					'email' => $email,
 				);
 				$row = $this->Account_Model->getAccountWhere($where);
-				if($row) {
-					if($row['status'] === '0') {
+				if (is_array($row) && count($row) > 0) {
+					$row = $row[0];
+					if ($row['status'] === '2') {
+						$this->session->set_flashdata('error', $this->lang->line('account_deleted'));
+					} elseif ($row['status'] === '0') {
 						$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account_first'));
 					} else {
 						$code = md5(date('Y-m-d H:i:s'));
@@ -121,9 +124,12 @@ class Authentication extends CI_Controller {
 			'username' => $username,
 		);
 		$row = $this->Account_Model->getAccountWhere($where);
-		if($row) {
+		if (is_array($row) && count($row) > 0) {
+			$row = $row[0];
 			if(md5((string)$row['created_at']) === $emailCode) {
-				if($row['status'] === '0') {
+				if ($row['status'] === '2') {
+					$data['message'] = $this->lang->line('account_deleted');
+				} else if($row['status'] === '0') {
 					$data = array(
 						'status' => '1',
 					);
@@ -179,9 +185,12 @@ class Authentication extends CI_Controller {
 				$where['username'] = $this->input->post('inputEmailOrUsername');
 			}
 			$row = $this->Account_Model->getAccountWhere($where);
-			if($row) {
+			if (is_array($row) && count($row) > 0) {
+				$row = $row[0];
 				unset($row["password"]);
-				if($row['status'] === '0') {
+				if ($row['status'] === '2') {
+					$error_message = $this->lang->line('account_deleted');
+				} elseif($row['status'] === '0') {
 					$error_message = $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account');
 				} else {
 					if($row['role'] === '2') {
@@ -220,16 +229,16 @@ class Authentication extends CI_Controller {
 			$where['role'] = 1;
 
 			$row = $this->Account_Model->getAccountWhere($where);
-			if($row) {
+			if (is_array($row) && count($row) > 0) {
+				$row = $row[0];
 				unset($row["password"]);
-				if ($row['role'] === '1') {
-					$this->session->set_userdata('admin', $row);
-				}
-				if($row['status'] === '0') {
+				if ($row['status'] === '2') {
+					$this->session->set_flashdata('error', $this->lang->line('account_deleted'));
+				} elseif($row['status'] === '0') {
 					$this->session->set_flashdata('error', $this->lang->line('account_not_activated').'<br>'.$this->lang->line('activate_account'));
-					$this->session->unset_userdata('admin');
 				} else {
 					if($row['role'] === '1') {
+						$this->session->set_userdata('admin', $row);
 						redirect('admin');
 					}
 				}
@@ -278,6 +287,7 @@ class Authentication extends CI_Controller {
 				'phone' => $this->input->post('accRegPhone'),
 				'address' => $this->input->post('accRegAddress'),
 				'role' => '2',
+				'profilepath' => 'default.jpg',
 			);
 			if (isset($_FILES['accRegProfileImage']) && is_uploaded_file($_FILES['accRegProfileImage']['tmp_name'])) {
 				if($this->upload->do_upload('accRegProfileImage')) {

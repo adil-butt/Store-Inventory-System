@@ -113,7 +113,7 @@ class User extends CI_Controller
 
 	public function profile() {
 		$config['upload_path'] = 'assets/profileimages';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 		$this->load->library('image_lib');
@@ -161,7 +161,7 @@ class User extends CI_Controller
 					$this->image_lib->initialize($configer);
 					$this->image_lib->resize();
 
-					if($_SESSION['user']['profilepath'] != 'default.jpg') {
+					if(isset($_SESSION['user']['profilepath']) && $_SESSION['user']['profilepath']  != 'default.jpg') {
 						unlink('assets/profileimages/'.$_SESSION['user']['profilepath']);		// delete the old image
 					}
 
